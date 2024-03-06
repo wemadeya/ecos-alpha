@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="59.961" height="59.961" viewBox="0 0 59.961 59.961">
+  <defs>
+    <filter id="Icon_akar-circle-check-fill" x="0" y="0" width="59.961" height="59.961" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="check" transform="translate(24873.436 23556.121)">
+    <g transform="matrix(1, 0, 0, 1, -24873.44, -23556.12)" filter="url(#Icon_akar-circle-check-fill)">
+      <path id="Icon_akar-circle-check-fill-2" data-name="Icon akar-circle-check-fill" d="M22.48,1.5a20.98,20.98,0,1,0,20.98,20.98A20.981,20.981,0,0,0,22.48,1.5Z" transform="translate(7.5 4.5)" fill="#fff"/>
+    </g>
+    <g id="Groupe_2006" data-name="Groupe 2006" transform="translate(37.945 -27.387)">
+      <path id="Icon_akar-circle-check-fill-3" data-name="Icon akar-circle-check-fill" d="M18,1.5A16.5,16.5,0,1,0,34.5,18,16.5,16.5,0,0,0,18,1.5Z" transform="translate(-24899.4 -23519.754)" fill="#268eff"/>
+      <path id="Icon_akar-check" data-name="Icon akar-check" d="M6,14.286l5.286,5.286L20.1,9" transform="translate(-24894.449 -23516.039)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

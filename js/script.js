@@ -66,8 +66,7 @@ window.addEventListener("scroll", () => {
   const check2 = document.querySelector(".check_2");
   const checkwrapper1Text = document.querySelector(".check_wrapper_1_text");
   const checkwrapper2Text = document.querySelector(".check_wrapper_2_text");
-  const fonctionnementWrapper2Top =
-    fonctionnementWrapper2.getBoundingClientRect().top;
+  const fonctionnementWrapper2Top = fonctionnementWrapper2.getBoundingClientRect().top;
 
   if (scrollTop > scrollTop + fonctionnementWrapper2Top - clientHeight * 0.8) {
     // fonctionnement_wrapper_2
@@ -144,7 +143,8 @@ window.addEventListener("scroll", () => {
 ///////////////////////////////////////////////////////////////
 ///// Animation: Il vous reste des questions - accordeon /////
 
-/***** accordeon checkbox *****/
+// accordeon checkbox 
+// accordeon checkbox 
 function initCheckboxAccordions() {
   document.querySelectorAll(".accordion_checkbox_title").forEach(accordionCheckboxTitle => {
     const checkboxPrincipal = accordionCheckboxTitle.querySelector(".checkbox");
@@ -154,7 +154,7 @@ function initCheckboxAccordions() {
 
     const updateCheckboxPrincipalState = () => {
       const totalSubCheckboxes = subQuestionCheckboxes.length;
-      const checkedSubCheckboxes = Array.from(subQuestionCheckboxes).filter(cb => cb.checked).length;
+      const checkedSubCheckboxes = Array.from(subQuestionCheckboxes).filter(Checkbox => Checkbox.checked).length;
 
       checkboxPrincipal.checked = checkedSubCheckboxes === totalSubCheckboxes;
       checkboxPrincipal.indeterminate = checkedSubCheckboxes > 0 && checkedSubCheckboxes < totalSubCheckboxes;
@@ -175,16 +175,21 @@ function initCheckboxAccordions() {
     });
 
     checkboxPrincipal.addEventListener("change", () => {
+      if (!accordionCheckboxTitle.classList.contains("active")) {
+        accordionCheckboxTitle.classList.add("active");
+        chevron.classList.add('rotate');
+        const accordionCheckboxText = accordionCheckboxTitle.nextElementSibling;
+        accordionCheckboxText.style.maxHeight = accordionCheckboxText.scrollHeight + "px";
+      }
       Array.from(subQuestionCheckboxes).forEach(checkbox => checkbox.checked = checkboxPrincipal.checked);
       updateCheckboxPrincipalState();
     });
 
-    // Initial state update
     updateCheckboxPrincipalState();
   });
 }
 
-// Fonction pour gérer les accordéons à boutons radio
+// accordeon radio
 function initRadioAccordions() {
   document.querySelectorAll(".accordion_radio_title").forEach(accordionRadioTitle => {
     const chevronRadio = accordionRadioTitle.querySelector('.chevron');

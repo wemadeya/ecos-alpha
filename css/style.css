@@ -130,7 +130,6 @@ header, footer {
 }
 header {
     width: 75%;
-    background: linear-gradient(180deg, rgba(247,251,255,1) 0%, rgba(247,251,255,0.5018382352941176) 100%);
 }
 main {
     width: 70%;
@@ -772,15 +771,42 @@ header .ecos-alpha {
     align-items: center;
     justify-content: space-between;
 }
-/***** range_wrapper *****/
-.range_wrapper {
+/***** notation_range_wrapper *****/
+.notation_range_wrapper {
     display: flex;
     gap: 35px;
 }
-.range_wrapper .notation_text {
+.notation_range_wrapper .notation_text {
     flex: 1 0 0;
 }
-
+.step_title {
+    color: #C0C0C0;
+}
+.step_range_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin-top: auto;
+}
+.step_range_content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+.step_wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 96%;
+    margin: auto;
+}
+.step {
+    height: 20px;
+    width: 4px;
+    border-radius: 50px;
+    background-color: #C0C0C0;
+}
 /******************/
 /***** Outil *****/
 .outil {

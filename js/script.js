@@ -143,8 +143,8 @@ window.addEventListener("scroll", () => {
 ///////////////////////////////////////////////////////////////
 ///// Animation: Il vous reste des questions - accordeon /////
 
-// accordeon checkbox 
-// accordeon checkbox 
+///////////////////////////////
+///// accordeon checkbox /////
 function initCheckboxAccordions() {
   document.querySelectorAll(".accordion_checkbox_title").forEach(accordionCheckboxTitle => {
     const checkboxPrincipal = accordionCheckboxTitle.querySelector(".checkbox");
@@ -189,7 +189,8 @@ function initCheckboxAccordions() {
   });
 }
 
-// accordeon radio
+////////////////////////////
+///// accordeon radio /////
 function initRadioAccordions() {
   document.querySelectorAll(".accordion_radio_title").forEach(accordionRadioTitle => {
     const chevronRadio = accordionRadioTitle.querySelector('.chevron');
@@ -232,40 +233,48 @@ function initRadioAccordions() {
 initCheckboxAccordions();
 initRadioAccordions();
 
-// notations range
+////////////////////////////
+///// notations range /////
 
-   // Sélectionne tous les éléments input de type range
-   const texts = [
+   const textQuestions = [
     { title: "Performance insuffisante", text: "Pose des questions fermées ou trop directives ou qui ne répondent pas aux objectifs. Utilise le jargon médical."},
     { title: "Performance limité", text: "Pose des questions qui s'éloignent des objectifs. Utilise quelques fois un jargon médical sans explication." },
     { title: "Performance satisfaisante", text: "Utilise différents types de questions couvrant les éléments essentiels. Utilise quelques fois un jargon médical mais toujours avec explications. " },
     { title: "Performance très satisfaisante", text: "Pose des questions précises couvrant la plupart des éléments avec quelques omissions mineures. Utilise le language approprié." },
-    { title: "Performance remarquable", text: "pose des questions avec assurance et savoir-faire." }
+    { title: "Performance remarquable", text: "Pose des questions avec assurance et savoir-faire." }
 ];
+
+  const textEntrevue = [
+    { title: "Performance insuffisante", text: "Approche désordonnée."},
+    { title: "Performance limité", text: "Entrevue peu structuré, présente les difficultés à recadrer les discussions qui s'éloignent des objectifs." },
+    { title: "Performance satisfaisante", text: "Entrevue centrée sur le problème et couvre les éléments essentiels." },
+    { title: "Performance très satisfaisante", text: "Entrevue menée de façon logique, structurée, centrée sur le problème, ne cherche pas l'information non pertinente." },
+    { title: "Performance remarquable", text: "Entrevue ayant un but précis, approche intégrée." }
+  ];
+
+// Tableau contenant les ensembles de textes pour un accès facile par index
+const textsSets = [textQuestions, textEntrevue];
 
 // Fonction pour mettre à jour les titres et les textes en fonction de la valeur du curseur
 function updateTexts(range) {
-    const stepRangeWrapper = range.closest('.notation_text');
-    const stepTitle = stepRangeWrapper.querySelector('.step_title');
-    const stepText = stepRangeWrapper.querySelector('.step_text');
-
-    // Utilise la valeur de l'élément range pour déterminer quels textes afficher
+    const notationText = range.closest('.notation_text');
+    const index = Array.from(notationText.parentNode.children).indexOf(notationText);
+    const texts = textsSets[index]; // Sélectionne le bon ensemble de textes en fonction de l'index
+    const stepTitle = notationText.querySelector('.step_title');
+    const stepText = notationText.querySelector('.step_text');
+    
     const currentValue = range.value;
     stepTitle.innerText = texts[currentValue].title;
     stepText.innerText = texts[currentValue].text;
 }
 
-// Sélectionne tous les éléments input de type range
-const ranges = document.querySelectorAll('.notation_range_wrapper input[type="range"]');
+// Initialisation et écouteurs d'événements pour chaque curseur
+document.querySelectorAll('.notation_range_wrapper input[type="range"]').forEach(range => {
+    range.value = "0"; // Initialise à 0
+    updateTexts(range); // Mise à jour initiale basée sur la valeur par défaut
 
-ranges.forEach(range => {
-    // Initialise les textes avec les valeurs correspondant à la step 0
-    range.value = "0"; // Assurez-vous que la valeur initiale est définie à 0
-    updateTexts(range);
-
-    // Ajoute un écouteur d'événement 'input' à chaque élément range
     range.addEventListener('input', function() {
-        updateTexts(this);
+        updateTexts(this); // Mise à jour lors du changement
     });
 });
 

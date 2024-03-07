@@ -2048,7 +2048,9 @@ footer nav .link{
         flex-direction: column;
         gap: 35px;
     }
-
+    .notation_range_wrapper {
+        flex-direction: column;
+    }
     /******************/
     /***** outil *****/
     .outil {

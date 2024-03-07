@@ -968,7 +968,7 @@ header .ecos-alpha {
 }
 .popup_correction, .popup_notation {
     width: 50%;
-    width: 40%;
+    width: 50%;
     height: 70%;
 }
 .popup_correction_content,.popup_notation_content  {
@@ -1711,7 +1711,7 @@ footer nav .link{
     }
     /***** correction_notation *****/
     .popup_correction, .popup_notation {
-        width: 60%;
+        width: 70%;
         height: 60%;
     }
     /***** communaute *****/

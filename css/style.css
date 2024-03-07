@@ -1655,7 +1655,7 @@ footer nav .link{
         transform: translateX(5%);
     }
     .popup_correction, .popup_notation {
-        width: 65%;
+        width: 75%;
         height: 65%;
     }
     /***** parcours *****/
@@ -1711,7 +1711,7 @@ footer nav .link{
     }
     /***** correction_notation *****/
     .popup_correction, .popup_notation {
-        width: 70%;
+        width: 80%;
         height: 60%;
     }
     /***** communaute *****/

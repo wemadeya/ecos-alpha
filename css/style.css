@@ -788,6 +788,7 @@ header .ecos-alpha {
 }
 .step_text {
     color: #C0C0C0;
+    height: 100px;
 }
 .step_range_wrapper {
     display: flex;
@@ -967,8 +968,7 @@ header .ecos-alpha {
     transition: 0.3s ease;
 }
 .popup_correction, .popup_notation {
-    width: 50%;
-    width: 50%;
+    width: 60%;
     height: 70%;
 }
 .popup_correction_content,.popup_notation_content  {
@@ -2040,7 +2040,7 @@ footer nav .link{
         height: 70%;
     }
     .popup_correction_content, .popup_notation_content {
-        padding: 0px 20px;
+        padding: 0px 10px;
     }
     /***** range_wrapper *****/
     .range_wrapper {

@@ -232,6 +232,43 @@ function initRadioAccordions() {
 initCheckboxAccordions();
 initRadioAccordions();
 
+// notations range
+
+   // Sélectionne tous les éléments input de type range
+   const texts = [
+    { title: "Performance insuffisante", text: "Pose des questions fermées ou trop directives ou qui ne répondent pas aux objectifs. Utilise le jargon médical."},
+    { title: "Performance limité", text: "Pose des questions qui s'éloignent des objectifs. Utilise quelques fois un jargon médical sans explication." },
+    { title: "Performance satisfaisante", text: "Utilise différents types de questions couvrant les éléments essentiels. Utilise quelques fois un jargon médical mais toujours avec explications. " },
+    { title: "Performance très satisfaisante", text: "Pose des questions précises couvrant la plupart des éléments avec quelques omissions mineures. Utilise le language approprié." },
+    { title: "Performance remarquable", text: "pose des questions avec assurance et savoir-faire." }
+];
+
+// Fonction pour mettre à jour les titres et les textes en fonction de la valeur du curseur
+function updateTexts(range) {
+    const stepRangeWrapper = range.closest('.notation_text');
+    const stepTitle = stepRangeWrapper.querySelector('.step_title');
+    const stepText = stepRangeWrapper.querySelector('.step_text');
+
+    // Utilise la valeur de l'élément range pour déterminer quels textes afficher
+    const currentValue = range.value;
+    stepTitle.innerText = texts[currentValue].title;
+    stepText.innerText = texts[currentValue].text;
+}
+
+// Sélectionne tous les éléments input de type range
+const ranges = document.querySelectorAll('.notation_range_wrapper input[type="range"]');
+
+ranges.forEach(range => {
+    // Initialise les textes avec les valeurs correspondant à la step 0
+    range.value = "0"; // Assurez-vous que la valeur initiale est définie à 0
+    updateTexts(range);
+
+    // Ajoute un écouteur d'événement 'input' à chaque élément range
+    range.addEventListener('input', function() {
+        updateTexts(this);
+    });
+});
+
 ///////////////////////////////////////
 ///// Evénements sur btnDownload /////
 const allBtnDownload = document.querySelectorAll(".btn_blue");
@@ -628,9 +665,9 @@ function changeTab() {
           break;
         case "patient":
           phase_1.textContent = "Préparation des joueurs";
-          texte_1.textContent = "Test tab 2";
+          texte_1.textContent = "Les étudiants se préparent. L'acteur prend connaissance de son rôle, et l’évaluateur de la grille de correction et des annexes. Lorsqu'ils sont prêts, le médecin lance le chronomètre pour lire ses consignes en 1 minute maximum.";
           phase_2.textContent = "Simulation";
-          texte_2.textContent = "Test tab 2";
+          texte_2.textContent = "Lorsque tous les joueurs sont prêts, le médecin lance un nouveau chronomètre pour débuter la simulation et l’évaluateur note sa prestation dans une limite de 8 minutes maximum (7 minutes + temps de préparation non consommé).";
           phase_1_numero.textContent = "Phase 1/2";
           phase_2_numero.textContent = "Phase 2/2";
           phase_2_container.style.marginBottom = "300px";
@@ -638,11 +675,11 @@ function changeTab() {
           break;
         case "evaluateur":
           phase_1.textContent = "Préparation des joueurs";
-          texte_1.textContent = "Test tab 3";
+          texte_1.textContent = "Les étudiants se préparent. L'acteur prend connaissance de son rôle, et l’évaluateur de la grille de correction et des annexes. Lorsqu'ils sont prêts, le médecin lance le chronomètre pour lire ses consignes en 1 minute maximum.";
           phase_2.textContent = "Simulation";
-          texte_2.textContent = "Test tab 3";
+          texte_2.textContent = "Lorsque tous les joueurs sont prêts, le médecin lance un nouveau chronomètre pour débuter la simulation et l’évaluateur note sa prestation dans une limite de 8 minutes maximum (7 minutes + temps de préparation non consommé).";
           phase_3.textContent = "Résultat";
-          texte_3.textContent = "Test tab 3";
+          texte_3.textContent = "L'évaluateur termine son évaluation, même après 8 minutes. Il peut ensuite la transmettre à l'étudiant qui a accès à sa note, sa grille d'évaluation et une correction détaillée du cas.";
           phase_3_container.style.display = "flex";
           phase_1_numero.textContent = "Phase 1/3";
           phase_2_numero.textContent = "Phase 2/3";

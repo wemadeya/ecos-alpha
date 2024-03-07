@@ -130,6 +130,7 @@ header, footer {
 }
 header {
     width: 75%;
+    background: linear-gradient(180deg, rgba(247,251,255,1) 0%, rgba(247,251,255,0.5018382352941176) 100%);
 }
 main {
     width: 70%;
@@ -666,7 +667,7 @@ header .ecos-alpha {
 .correction_btn:hover, .notation_btn:hover {
     background: #323232;
 }
-/* correction */
+/***** correction *****/
 .correction_content p {
     font-size: 16px;
     font-weight: 400;
@@ -674,7 +675,7 @@ header .ecos-alpha {
     text-align: justify;
     color: #7B9EC4;
 }
-/* notation */
+/***** notation *****/
 .correction_content {
     mask-image: linear-gradient(180deg, rgb(0 0 0 / 100%) 70%, rgba(0 0 0 / 0%) 100%);
 }
@@ -771,7 +772,16 @@ header .ecos-alpha {
     align-items: center;
     justify-content: space-between;
 }
+/***** range_wrapper *****/
+.range_wrapper {
+    display: flex;
+    gap: 35px;
+}
+.range_wrapper .notation_text {
+    flex: 1 0 0;
+}
 
+/******************/
 /***** Outil *****/
 .outil {
     display: flex;
@@ -934,7 +944,7 @@ header .ecos-alpha {
     overflow-y: scroll;
     scrollbar-width: thin;
     overflow-y: scroll;
-    padding: 0px 40px;
+    padding: 20px 40px;
     width: 100%;
 }
 .popup_correction_content .correction_text {
@@ -1763,6 +1773,12 @@ footer nav .link{
 
 
 @media screen and (max-width: 768px) {
+    /***** @keyframes *****/
+    @keyframes anim-iphone-3-top {
+        100% {
+            transform: translate(-50%, -30%);
+        }
+    }
     ul {
         font-size: 14px;
     }
@@ -1982,6 +1998,8 @@ footer nav .link{
     .communaute_content_2 .iphone-3-d {
         display: none;
     }
+
+    /********************************/
     /***** correction_notation *****/
     .popup_correction, .popup_notation {
         width: 90%;
@@ -1990,6 +2008,14 @@ footer nav .link{
     .popup_correction_content, .popup_notation_content {
         padding: 0px 20px;
     }
+    /***** range_wrapper *****/
+    .range_wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+    }
+
+    /******************/
     /***** outil *****/
     .outil {
         gap: 25px;
@@ -2019,6 +2045,8 @@ footer nav .link{
     .outil_content_2 .offre_ecos {
         display: flex;
     }
+
+    /*******************/
     /***** footer *****/
     footer {
         align-items: center;
@@ -2031,12 +2059,6 @@ footer nav .link{
     }
     footer .btn {
         display: none;
-    }
-    /***** @keyframes *****/
-    @keyframes anim-iphone-3-top {
-        100% {
-            transform: translate(-50%, -30%);
-        }
     }
     /***** Parcours & popup *****/
     .parcours_nav a {

@@ -778,8 +778,15 @@ header .ecos-alpha {
 }
 .notation_range_wrapper .notation_text {
     flex: 1 0 0;
+    justify-content: flex-start;
+}
+.notation_range_wrapper .notation_text h5 {
+    height: 50px;
 }
 .step_title {
+    color: #C0C0C0;
+}
+.step_text {
     color: #C0C0C0;
 }
 .step_range_wrapper {
@@ -787,13 +794,15 @@ header .ecos-alpha {
     flex-direction: column;
     gap: 20px;
     width: 100%;
-    margin-top: auto;
 }
 .step_range_content {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 100%;
+}
+.range {
+    cursor: pointer;
 }
 .step_wrapper {
     display: flex;
@@ -1916,7 +1925,6 @@ footer nav .link{
     .fonctionnement_wrapper_3 .fonctionnement_content:last-of-type {
         display: none;
     }
-    
     .fonctionnement_content {
         width: 100%;
     }

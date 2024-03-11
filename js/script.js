@@ -276,6 +276,9 @@ allBtnDownload.forEach((btnDownload) => {
     modalDownloadWrapper.classList.add("display");
     modal.classList.add("anim_download");
     body.style.overflow = "hidden";
+    if (window.innerWidth < 768) {
+      body.style.overflow = "auto";
+    }
   });
 });
 
@@ -361,6 +364,7 @@ document.addEventListener("mousedown", (event) => {
     modal.classList.remove("anim_download");
     modalDownloadWrapper.classList.remove("display");
     modalDownloadWrapper.style.visibility = "hidden";
+    body.style.overflow = "auto";
   }
   if (
     !event.target.closest(".popup_correction") &&
@@ -369,6 +373,7 @@ document.addEventListener("mousedown", (event) => {
     popupCorrection.classList.remove("anim_download");
     popupCorrectionWrapper.classList.remove("display");
     popupCorrectionWrapper.style.visibility = "hidden";
+    body.style.overflow = "auto";
   }
   if (
     !event.target.closest(".popup_notation") &&
@@ -377,6 +382,7 @@ document.addEventListener("mousedown", (event) => {
     popupNotation.classList.remove("anim_download");
     popupNotationWrapper.classList.remove("display");
     popupNotationWrapper.style.visibility = "hidden";
+    body.style.overflow = "auto";
   }
 });
 

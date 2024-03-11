@@ -701,6 +701,7 @@ header .ecos-alpha {
 .checkbox_wrapper, .radio_wrapper {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 7px;
     width: 100%;
     font-size: 14px;
@@ -716,6 +717,8 @@ header .ecos-alpha {
     border-left: 4px solid #FF4747;
     width: 100%;
     cursor: pointer;
+    width: calc(100% - 28px);
+    font-size: 16px;
 }
 .accordion_checkbox, .accordion_radio {
     display: flex;
@@ -749,6 +752,10 @@ header .ecos-alpha {
     justify-content: space-between;
     align-items: center;
 }
+.sub_question_content label {
+    width: calc(100% - 28px);
+    font-size: 14px;
+}
 .checkbox {
     cursor: pointer;
 }
@@ -770,6 +777,7 @@ header .ecos-alpha {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 14px;
 }
 /***** notation_range_wrapper *****/
 .notation_range_wrapper {
@@ -808,11 +816,11 @@ header .ecos-alpha {
 .step_wrapper {
     display: flex;
     justify-content: space-between;
-    width: 96%;
+    width: 98%;
     margin: auto;
 }
 .step {
-    height: 20px;
+    height: 16px;
     width: 4px;
     border-radius: 50px;
     background-color: #C0C0C0;
@@ -954,7 +962,7 @@ header .ecos-alpha {
     padding: 50px 10px;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 50px;
     border-radius: 25px;
     background: #FFF;
@@ -969,7 +977,7 @@ header .ecos-alpha {
 }
 .popup_correction, .popup_notation {
     width: 60%;
-    height: 70%;
+    height: 50%;
 }
 .popup_correction_content,.popup_notation_content  {
     display: flex;
@@ -2187,6 +2195,13 @@ footer nav .link{
     }
     .parcours_wrapper {
         padding: 20px 20px;
+    }
+    /***** correction_notation *****/
+    .checkbox_wrapper label {
+        font-size: 16px;
+    }
+    .step_wrapper {
+        width: 96%;
     }
     /***** Footer *****/
     footer {

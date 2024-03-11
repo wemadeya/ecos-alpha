@@ -19,16 +19,13 @@ window.addEventListener("scroll", () => {
   });
 
   // fonctionnement_wrapper_1
-  const fonctionnementWrapper1 = document.querySelector(
-    ".fonctionnement_wrapper_1"
-  );
+  const fonctionnementWrapper1 = document.querySelector(".fonctionnement_wrapper_1");
   const iphoneA = document.querySelector(".iphone-3-a");
   const iphoneB = document.querySelector(".iphone-3-b");
   const fonctionnementTitle = document.querySelector(".fonctionnement_title_1");
   const fonctionnementText = document.querySelector(".fonctionnement_text");
   const fonctionnementBtn = document.querySelector(".fonctionnement_btn");
-  const fonctionnementWrapper1Top =
-    fonctionnementWrapper1.getBoundingClientRect().top;
+  const fonctionnementWrapper1Top = fonctionnementWrapper1.getBoundingClientRect().top;
 
   if (scrollTop > scrollTop + fonctionnementWrapper1Top - clientHeight * 0.8) {
     iphoneA.classList.add("anim-iphone-3-top");
@@ -40,31 +37,18 @@ window.addEventListener("scroll", () => {
   }
 
   // fonctionnement_wrapper_2 & fonctionnement_wrapper_3
-  const fonctionnementWrapper2 = document.querySelector(
-    ".fonctionnement_wrapper_2"
-  );
-  const fonctionnementWrapper3 = document.querySelector(
-    ".fonctionnement_wrapper_3"
-  );
-  const fonctionnementTitle2 = document.querySelector(
-    ".fonctionnement_title_2"
-  );
-  const fonctionnementTitle3 = document.querySelector(
-    ".fonctionnement_title_3"
-  );
-  const fonctionnementIphone1 = document.querySelector(
-    ".fonctionnement_iphone_1"
-  );
-  const fonctionnementIphone2 = document.querySelector(
-    ".fonctionnement_iphone_2"
-  );
-  const fonctionnementIphone3 = document.querySelector(
-    ".fonctionnement_iphone_3"
-  );
+  const fonctionnementWrapper2 = document.querySelector(".fonctionnement_wrapper_2");
+  const fonctionnementWrapper3 = document.querySelector(".fonctionnement_wrapper_3");
+  const fonctionnementTitle2 = document.querySelector(".fonctionnement_title_2");
+  const fonctionnementTitle3 = document.querySelector(".fonctionnement_title_3");
+  const fonctionnementIphone1 = document.querySelector(".fonctionnement_iphone_1");
+  const fonctionnementIphone2 = document.querySelector(".fonctionnement_iphone_2");
+  const fonctionnementIphone3 = document.querySelector(".fonctionnement_iphone_3");
   const progressbar = document.querySelector(".progress_bar");
   const check1 = document.querySelector(".check_1");
   const check2 = document.querySelector(".check_2");
   const checkwrapper1Text = document.querySelector(".check_wrapper_1_text");
+  .0
   const checkwrapper2Text = document.querySelector(".check_wrapper_2_text");
   const fonctionnementWrapper2Top = fonctionnementWrapper2.getBoundingClientRect().top;
 
@@ -284,12 +268,14 @@ const allBtnDownload = document.querySelectorAll(".btn_blue");
 const parcoursBtnDownload = document.querySelectorAll(".parcours_phase_btn");
 const modalDownloadWrapper = document.querySelector(".modal_download_wrapper");
 const modal = document.querySelector(".modal_download");
+const body =document.querySelector("body");
 
 allBtnDownload.forEach((btnDownload) => {
   btnDownload.addEventListener("click", () => {
     modalDownloadWrapper.style.visibility = "visible";
     modalDownloadWrapper.classList.add("display");
     modal.classList.add("anim_download");
+    body.style.overflow = "hidden";
   });
 });
 
@@ -299,6 +285,7 @@ parcoursBtnDownload.forEach((btnDownload) => {
     modalDownloadWrapper.style.visibility = "visible";
     modalDownloadWrapper.classList.add("display");
     modal.classList.add("anim_download");
+    body.style.overflow = "hidden";
   });
 });
 
@@ -310,6 +297,7 @@ closeModal.addEventListener("click", () => {
   modal.classList.remove("anim_download");
   modalDownloadWrapper.style.visibility = "hidden";
   modalDownloadWrapper.classList.remove("display");
+  body.style.overflow = "auto";
 });
 
 //////////////////////////////////////////////////////
@@ -324,6 +312,7 @@ correctionBtn.addEventListener("click", () => {
   popupCorrectionWrapper.style.visibility = "visible";
   popupCorrectionWrapper.classList.add("display");
   popupCorrection.classList.add("anim_download");
+  body.style.overflow = "hidden";
 });
 
 ////////////////////////////////////////////////////
@@ -336,6 +325,7 @@ notationBtn.addEventListener("click", () => {
   popupNotationWrapper.style.visibility = "visible";
   popupNotationWrapper.classList.add("display");
   popupNotation.classList.add("anim_download");
+  body.style.overflow = "hidden";
 });
 
 //////////////////////////////////////////////////////////////
@@ -346,6 +336,7 @@ popupCorrectionClose.addEventListener("click", () => {
   popupCorrection.classList.remove("anim_download");
   popupCorrectionWrapper.style.visibility = "hidden";
   popupCorrectionWrapper.classList.remove("display");
+  body.style.overflow = "auto";
 });
 
 /////////////////////////////////////////////////////////////
@@ -356,6 +347,7 @@ popupNotationClose.addEventListener("click", () => {
   popupNotation.classList.remove("anim_download");
   popupNotationWrapper.style.visibility = "hidden";
   popupNotationWrapper.classList.remove("display");
+  body.style.overflow = "auto";
 });
 
 //////////////////////////////////////////////
@@ -499,16 +491,19 @@ document.addEventListener("DOMContentLoaded", function () {
   function openPopup() {
     popupContainer.classList.add("active");
     console.log("popup ouverte");
+    
   }
 
   // Fonction pour fermer la popup
   function closePopup() {
     popupContainer.classList.remove("active");
+    body.style.overflow = "auto";
   }
 
   document.querySelectorAll(".parcours_img_button").forEach((button) => {
     button.addEventListener("click", function () {
       openPopup();
+      body.style.overflow = "hidden";
     });
   });
   openButton.addEventListener("click", openPopup);

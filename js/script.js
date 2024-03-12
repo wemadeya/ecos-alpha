@@ -389,12 +389,12 @@ document.addEventListener("mousedown", (event) => {
 
 //Parcours
 const imagesParRole = {
-  medecin: ["img/medecin-1.png", "img/medecin-2.png", "img/medecin-3.png"],
-  patient: ["img/medecin-1.png", "img/medecin-2.png"],
+  medecin: ["img/medecin-1.webp", "img/medecin-2.webp", "img/medecin-3.webp"],
+  patient: ["img/medecin-1.webp", "img/medecin-2.webp"],
   evaluateur: [
-    "img/medecin-1.png",
-    "img/medecin-2.png",
-    "img/evaluateur-3.png",
+    "img/medecin-1.webp",
+    "img/medecin-4.webp",
+    "img/medecin-5.webp",
   ],
 };
 let roleActif = "medecin";
@@ -550,7 +550,7 @@ function updatePopupContent(phaseIndex) {
       popupTitle.style.webkitTextFillColor = "transparent";
       popupText.textContent =
         "Le patient prend connaissance de sa fiche, et l'évaluateur de sa grille. Lorsqu'ils sont prêts, le médecin lance le chronomètre pour lire les consignes";
-      popupImage.src = "./img/iphone-7.png";
+      popupImage.src = "./img/iphone-7.webp";
       break;
     case 1:
       popupTitle.textContent = "Étape 2";
@@ -561,7 +561,7 @@ function updatePopupContent(phaseIndex) {
       popupTitle.style.webkitTextFillColor = "transparent";
       popupText.textContent =
         "Lorsqu'il est prêt, le médecin lance un nouveau chronomètre pour lancer la partie";
-      popupImage.src = "./img/iphone-7.png";
+      popupImage.src = "./img/iphone-7.webp";
       break;
     case 2:
       popupTitle.textContent = "Étape 3";
@@ -572,7 +572,7 @@ function updatePopupContent(phaseIndex) {
       popupTitle.style.webkitTextFillColor = "transparent";
       popupText.textContent =
         "L'évaluateur termine son évaluation, même après 8 minutes. Le médecin a ensuite accès à la grille et la correction détaillée";
-      popupImage.src = "./img/iphone-8.png";
+      popupImage.src = "./img/iphone-8.webp";
       break;
     case 3:
       popupTitle.textContent = "Étape 1";
@@ -583,7 +583,7 @@ function updatePopupContent(phaseIndex) {
       popupTitle.style.webkitTextFillColor = "transparent";
       popupText.textContent =
         "Le patient prend connaissance de sa fiche, et l'évaluateur de sa grille. Lorsqu'ils sont prêts, le médecin lance le chronomètre pour lire les consignes";
-      popupImage.src = "./img/iphone-10.png";
+      popupImage.src = "./img/iphone-10.webp";
       break;
     case 4:
       popupTitle.textContent = "Étape 2";
@@ -594,7 +594,7 @@ function updatePopupContent(phaseIndex) {
       popupTitle.style.webkitTextFillColor = "transparent";
       popupText.textContent =
         "Lorsqu'il est prêt, le médecin lance un nouveau chronomètre pour lancer la partie";
-      popupImage.src = "./img/iphone-10.png";
+      popupImage.src = "./img/iphone-10.webp";
       break;
     case 5:
       popupTitle.textContent = "Étape 3";
@@ -605,7 +605,7 @@ function updatePopupContent(phaseIndex) {
       popupTitle.style.webkitTextFillColor = "transparent";
       popupText.textContent =
         "L'évaluateur termine son évaluation, même après 8 minutes. Le médecin a ensuite accès à la grille et la correction détaillée";
-      popupImage.src = "./img/iphone-9.png";
+      popupImage.src = "./img/iphone-9.webp";
       break;
   }
 }
@@ -717,6 +717,7 @@ function changeTabMobile() {
   const image = document.querySelector(".parcours_img");
   const phase_3_img = document.getElementById("evaluateur_img");
   const phase_3_container = document.getElementById("phase_3_container_mobile");
+  const phase_2_img = document.getElementById("phase_2_img");
 
   links.forEach((link) => {
     link.addEventListener("click", function (e) {
@@ -752,7 +753,8 @@ function changeTabMobile() {
           phase_1_numero.textContent = "Phase 1/3";
           phase_2_numero.textContent = "Phase 2/3";
           phase_3_numero.textContent = "Phase 3/3";
-          phase_3_img.src = "./img/medecin-3.png";
+          phase_2_img.src = "./img/medecin-2.webp";
+          phase_3_img.src = "./img/medecin-3.webp";
           break;
         case "patient":
           phase_1.textContent = "Préparation des joueurs";
@@ -762,6 +764,7 @@ function changeTabMobile() {
           phase_1_numero.textContent = "Phase 1/2";
           phase_2_numero.textContent = "Phase 2/2";
           phase_3_container.style.display = "none";
+          phase_2_img.src = "./img/medecin-2.webp";
           break;
         case "evaluateur":
           phase_1.textContent = "Préparation des joueurs";
@@ -774,7 +777,8 @@ function changeTabMobile() {
           phase_1_numero.textContent = "Phase 1/3";
           phase_2_numero.textContent = "Phase 2/3";
           phase_3_numero.textContent = "Phase 3/3";
-          phase_3_img.src = "./img/evaluateur-3.png";
+          phase_2_img.src = "./img/medecin-4.webp";
+          phase_3_img.src = "./img/medecin-5.webp";
           break;
       }
     });

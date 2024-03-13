@@ -311,12 +311,14 @@ const popupCorrectionWrapper = document.querySelector(
 );
 const popupCorrection = document.querySelector(".popup_correction");
 
-correctionBtn.addEventListener("click", () => {
-  popupCorrectionWrapper.style.visibility = "visible";
-  popupCorrectionWrapper.classList.add("display");
-  popupCorrection.classList.add("anim_download");
-  body.style.overflow = "hidden";
-});
+if(correctionBtn) {
+  correctionBtn.addEventListener("click", () => {
+    popupCorrectionWrapper.style.visibility = "visible";
+    popupCorrectionWrapper.classList.add("display");
+    popupCorrection.classList.add("anim_download");
+    body.style.overflow = "hidden";
+  });
+}
 
 ////////////////////////////////////////////////////
 ///// Écouter les événements sur notation_btn /////
@@ -324,35 +326,38 @@ const notationBtn = document.querySelector(".notation_btn");
 const popupNotationWrapper = document.querySelector(".popup_notation_wrapper");
 const popupNotation = document.querySelector(".popup_notation");
 
-notationBtn.addEventListener("click", () => {
-  popupNotationWrapper.style.visibility = "visible";
-  popupNotationWrapper.classList.add("display");
-  popupNotation.classList.add("anim_download");
-  body.style.overflow = "hidden";
-});
-
+if(notationBtn) {
+  notationBtn.addEventListener("click", () => {
+    popupNotationWrapper.style.visibility = "visible";
+    popupNotationWrapper.classList.add("display");
+    popupNotation.classList.add("anim_download");
+    body.style.overflow = "hidden";
+  });
+}
 //////////////////////////////////////////////////////////////
 ///// Écouter les événements sur popup_correction_close /////
 const popupCorrectionClose = document.querySelector(".popup_correction_close");
 
-popupCorrectionClose.addEventListener("click", () => {
-  popupCorrection.classList.remove("anim_download");
-  popupCorrectionWrapper.style.visibility = "hidden";
-  popupCorrectionWrapper.classList.remove("display");
-  body.style.overflow = "auto";
-});
-
+if(popupCorrectionClose) {
+  popupCorrectionClose.addEventListener("click", () => {
+    popupCorrection.classList.remove("anim_download");
+    popupCorrectionWrapper.style.visibility = "hidden";
+    popupCorrectionWrapper.classList.remove("display");
+    body.style.overflow = "auto";
+  });
+}
 /////////////////////////////////////////////////////////////
 ///// Écouter les événements sur popup_notation_close //////
 const popupNotationClose = document.querySelector(".popup_notation_close");
 
-popupNotationClose.addEventListener("click", () => {
-  popupNotation.classList.remove("anim_download");
-  popupNotationWrapper.style.visibility = "hidden";
-  popupNotationWrapper.classList.remove("display");
-  body.style.overflow = "auto";
-});
-
+if(popupNotationClose) {
+  popupNotationClose.addEventListener("click", () => {
+    popupNotation.classList.remove("anim_download");
+    popupNotationWrapper.style.visibility = "hidden";
+    popupNotationWrapper.classList.remove("display");
+    body.style.overflow = "auto";
+  });
+}
 //////////////////////////////////////////////
 ///// Écouter les événements mousedown //////
 document.addEventListener("mousedown", (event) => {

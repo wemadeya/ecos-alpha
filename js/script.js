@@ -133,44 +133,65 @@ function initCheckboxAccordions() {
     const checkboxPrincipal = accordionCheckboxTitle.querySelector(".checkbox");
     const label = accordionCheckboxTitle.querySelector('label');
     const chevron = accordionCheckboxTitle.querySelector('.chevron');
+    const isNoSubQuestion = accordionCheckboxTitle.classList.contains("no_sub_question");
     const subQuestionCheckboxes = accordionCheckboxTitle.closest('.accordion_checkbox').querySelectorAll('.sub_question_content .checkbox');
 
     const updateCheckboxPrincipalState = () => {
-      const totalSubCheckboxes = subQuestionCheckboxes.length;
-      const checkedSubCheckboxes = Array.from(subQuestionCheckboxes).filter(Checkbox => Checkbox.checked).length;
+      if (!isNoSubQuestion) {
+        const totalSubCheckboxes = subQuestionCheckboxes.length;
+        const checkedSubCheckboxes = Array.from(subQuestionCheckboxes).filter(checkbox => checkbox.checked).length;
 
-      checkboxPrincipal.checked = checkedSubCheckboxes === totalSubCheckboxes;
-      checkboxPrincipal.indeterminate = checkedSubCheckboxes > 0 && checkedSubCheckboxes < totalSubCheckboxes;
+        checkboxPrincipal.checked = checkedSubCheckboxes === totalSubCheckboxes;
+        checkboxPrincipal.indeterminate = checkedSubCheckboxes > 0 && checkedSubCheckboxes < totalSubCheckboxes;
 
-      label.classList.toggle('indeterminate', checkboxPrincipal.indeterminate);
-      label.classList.toggle('checked', checkboxPrincipal.checked && !checkboxPrincipal.indeterminate);
+        label.classList.toggle('indeterminate', checkboxPrincipal.indeterminate);
+        label.classList.toggle('checked', checkboxPrincipal.checked && !checkboxPrincipal.indeterminate);
+      }
     };
 
-    subQuestionCheckboxes.forEach(subCheckbox => {
-      subCheckbox.addEventListener("change", updateCheckboxPrincipalState);
-    });
+    if (!isNoSubQuestion) {
+      subQuestionCheckboxes.forEach(subCheckbox => {
+        subCheckbox.addEventListener("change", updateCheckboxPrincipalState);
+      });
+    }
 
     label.addEventListener("click", function() {
-      accordionCheckboxTitle.classList.toggle("active");
-      chevron.classList.toggle('rotate');
-      const accordionCheckboxText = accordionCheckboxTitle.nextElementSibling;
-      accordionCheckboxText.style.maxHeight = accordionCheckboxTitle.classList.contains("active") ? accordionCheckboxText.scrollHeight + "px" : null;
+      if (!isNoSubQuestion) {
+        accordionCheckboxTitle.classList.toggle("active");
+        if(chevron) {
+          chevron.classList.toggle('rotate');
+        }
+        
+        const accordionCheckboxText = accordionCheckboxTitle.nextElementSibling;
+        accordionCheckboxText.style.maxHeight = accordionCheckboxTitle.classList.contains("active") ? accordionCheckboxText.scrollHeight + "px" : null;
+      }
     });
 
     checkboxPrincipal.addEventListener("change", () => {
-      if (!accordionCheckboxTitle.classList.contains("active")) {
-        accordionCheckboxTitle.classList.add("active");
-        chevron.classList.add('rotate');
+      if (isNoSubQuestion) {
+        // Spécifiquement pour les checkbox sans sous-questions
+        label.classList.toggle('checked', checkboxPrincipal.checked);
+      } else {
         const accordionCheckboxText = accordionCheckboxTitle.nextElementSibling;
-        accordionCheckboxText.style.maxHeight = accordionCheckboxText.scrollHeight + "px";
+        if (!accordionCheckboxTitle.classList.contains("active")) {
+          accordionCheckboxTitle.classList.add("active");
+          if(chevron) {
+            chevron.classList.add('rotate');
+          }
+          accordionCheckboxText.style.maxHeight = accordionCheckboxText.scrollHeight + "px";
+        }
+        Array.from(subQuestionCheckboxes).forEach(checkbox => checkbox.checked = checkboxPrincipal.checked);
+        updateCheckboxPrincipalState();
       }
-      Array.from(subQuestionCheckboxes).forEach(checkbox => checkbox.checked = checkboxPrincipal.checked);
-      updateCheckboxPrincipalState();
     });
 
-    updateCheckboxPrincipalState();
+    if (!isNoSubQuestion) {
+      updateCheckboxPrincipalState();
+    }
   });
 }
+
+
 
 ////////////////////////////
 ///// accordeon radio /////
@@ -220,18 +241,18 @@ initRadioAccordions();
 ///// notations range /////
 
    const textQuestions = [
-    { title: "Insuffisante", text: "Pose des questions fermées où trop directives ou qui ne répondent pas aux objectifs. Utilise le jargon médical."},
+    { title: "Insuffisant", text: "Pose des questions fermées où trop directives ou qui ne répondent pas aux objectifs. Utilise le jargon médical."},
     { title: "Limité", text: "Pose des questions qui s'éloignent des objectifs. Utilise quelques fois un jargon médical sans explication." },
-    { title: "Satisfaisante", text: "Utilise différents types de questions couvrant les éléments essentiels. Utilise quelques fois un jargon médical mais toujours avec explications. " },
-    { title: "Très satisfaisante", text: "Pose des questions précises couvrant la plupart des éléments avec quelques omissions mineures. Utilise le language approprié." },
+    { title: "Satisfaisant", text: "Utilise différents types de questions couvrant les éléments essentiels. Utilise quelques fois un jargon médical mais toujours avec explications. " },
+    { title: "Très satisfaisant", text: "Pose des questions précises couvrant la plupart des éléments avec quelques omissions mineures. Utilise le language approprié." },
     { title: "Remarquable", text: "Pose des questions avec assurance et savoir-faire." }
 ];
 
   const textEntrevue = [
-    { title: "Insuffisante", text: "Approche désordonnée."},
+    { title: "Insuffisant", text: "Approche désordonnée."},
     { title: "Limité", text: "Entrevues peu structuré, présentent les difficultés à recadrer les discussions qui s'éloignent des objectifs." },
-    { title: "Satisfaisante", text: "Entrevue centrée sur le problème et couvre les éléments essentiels." },
-    { title: "Très satisfaisante", text: "Entrevue mener de façon logique, structurée, centrée sur le problème, ne cherche pas l'information non pertinente." },
+    { title: "Satisfaisant", text: "Entrevue centrée sur le problème et couvre les éléments essentiels." },
+    { title: "Très satisfaisant", text: "Entrevue mener de façon logique, structurée, centrée sur le problème, ne cherche pas l'information non pertinente." },
     { title: "Remarquable", text: "Entrevue ayant un but précis, approche intégrée." }
   ];
 

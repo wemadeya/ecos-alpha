@@ -48,7 +48,6 @@ window.addEventListener("scroll", () => {
   const check1 = document.querySelector(".check_1");
   const check2 = document.querySelector(".check_2");
   const checkwrapper1Text = document.querySelector(".check_wrapper_1_text");
-  .0
   const checkwrapper2Text = document.querySelector(".check_wrapper_2_text");
   const fonctionnementWrapper2Top = fonctionnementWrapper2.getBoundingClientRect().top;
 
@@ -221,19 +220,19 @@ initRadioAccordions();
 ///// notations range /////
 
    const textQuestions = [
-    { title: "Performance insuffisante", text: "Pose des questions fermées ou trop directives ou qui ne répondent pas aux objectifs. Utilise le jargon médical."},
-    { title: "Performance limité", text: "Pose des questions qui s'éloignent des objectifs. Utilise quelques fois un jargon médical sans explication." },
-    { title: "Performance satisfaisante", text: "Utilise différents types de questions couvrant les éléments essentiels. Utilise quelques fois un jargon médical mais toujours avec explications. " },
-    { title: "Performance très satisfaisante", text: "Pose des questions précises couvrant la plupart des éléments avec quelques omissions mineures. Utilise le language approprié." },
-    { title: "Performance remarquable", text: "Pose des questions avec assurance et savoir-faire." }
+    { title: "Insuffisante", text: "Pose des questions fermées où trop directives ou qui ne répondent pas aux objectifs. Utilise le jargon médical."},
+    { title: "Limité", text: "Pose des questions qui s'éloignent des objectifs. Utilise quelques fois un jargon médical sans explication." },
+    { title: "Satisfaisante", text: "Utilise différents types de questions couvrant les éléments essentiels. Utilise quelques fois un jargon médical mais toujours avec explications. " },
+    { title: "Très satisfaisante", text: "Pose des questions précises couvrant la plupart des éléments avec quelques omissions mineures. Utilise le language approprié." },
+    { title: "Remarquable", text: "Pose des questions avec assurance et savoir-faire." }
 ];
 
   const textEntrevue = [
-    { title: "Performance insuffisante", text: "Approche désordonnée."},
-    { title: "Performance limité", text: "Entrevue peu structuré, présente les difficultés à recadrer les discussions qui s'éloignent des objectifs." },
-    { title: "Performance satisfaisante", text: "Entrevue centrée sur le problème et couvre les éléments essentiels." },
-    { title: "Performance très satisfaisante", text: "Entrevue menée de façon logique, structurée, centrée sur le problème, ne cherche pas l'information non pertinente." },
-    { title: "Performance remarquable", text: "Entrevue ayant un but précis, approche intégrée." }
+    { title: "Insuffisante", text: "Approche désordonnée."},
+    { title: "Limité", text: "Entrevues peu structuré, présentent les difficultés à recadrer les discussions qui s'éloignent des objectifs." },
+    { title: "Satisfaisante", text: "Entrevue centrée sur le problème et couvre les éléments essentiels." },
+    { title: "Très satisfaisante", text: "Entrevue mener de façon logique, structurée, centrée sur le problème, ne cherche pas l'information non pertinente." },
+    { title: "Remarquable", text: "Entrevue ayant un but précis, approche intégrée." }
   ];
 
 // Tableau contenant les ensembles de textes pour un accès facile par index

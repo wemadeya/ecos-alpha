@@ -720,6 +720,9 @@ header .ecos-alpha {
     width: calc(100% - 28px);
     font-size: 16px;
 }
+.radio_choice_wrapper.max-content {
+    max-height: max-content;
+}
 .accordion_checkbox, .accordion_radio {
     display: flex;
     flex-direction: column;
@@ -978,6 +981,7 @@ header .ecos-alpha {
 .popup_correction, .popup_notation {
     width: 60%;
     height: 50%;
+    max-width: 800px;
 }
 .popup_correction_content,.popup_notation_content  {
     display: flex;
@@ -1769,7 +1773,7 @@ footer nav .link button {
         color: #7B9EC4;
     }
     .popup {
-        padding: 20px 20px;
+        padding: 20px;
         gap: 20px;
     }
     .popup_content {

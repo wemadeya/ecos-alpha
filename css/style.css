@@ -1575,7 +1575,6 @@ header .ecos-alpha {
     margin-top: 50px;
     padding: 50px;
 }
-<<<<<<< HEAD
 .paragraph_content {
     display: flex;
     flex-direction: column;
@@ -1584,11 +1583,8 @@ header .ecos-alpha {
 .paragraph a {
     padding: 0;
 }
-.cg_h2 {
-=======
 
 .paragraph h2 {
->>>>>>> aa250c0d22ca8d5ebd03a118ebe79163246e4b95
     color: black;
     font-size: 26px;
 }

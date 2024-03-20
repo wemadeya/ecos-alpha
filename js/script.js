@@ -559,91 +559,134 @@ function updatePopupContent(phaseIndex) {
   const popupTitle = document.querySelector(".popup_title");
   const popupText = document.querySelector(".popup_text");
   const popupImage = document.querySelector(".popup_img");
+  const acteur = document.getElementById('acteur');
+  const evaluateur = document.getElementById('evaluateur');
 
   popupTitle.style.background = "";
   popupTitle.style.backgroundClip = "";
   popupTitle.style.webkitBackgroundClip = "";
   popupTitle.style.webkitTextFillColor = "";
 
-  switch (phaseIndex) {
-    case 0:
-      popupTitle.textContent = "Étape 1";
-      popupTitle.style.background =
-        "linear-gradient(87deg, #0A68CF 3.41%, #469EFF 28.39%)";
-      popupTitle.style.backgroundClip = "text";
-      popupTitle.style.webkitBackgroundClip = "text";
-      popupTitle.style.webkitTextFillColor = "transparent";
-      popupText.textContent =
-        "Le patient prend connaissance de sa fiche, et l'évaluateur de sa grille. Lorsqu'ils sont prêts, le médecin lance le chronomètre pour lire les consignes";
-      popupImage.src = "./img/iphone-7.webp";
-      break;
-    case 1:
-      popupTitle.textContent = "Étape 2";
-      popupTitle.style.background =
-        "linear-gradient(265deg, #FFE9E9 65.15%, #FF7474 79.87%)";
-      popupTitle.style.backgroundClip = "text";
-      popupTitle.style.webkitBackgroundClip = "text";
-      popupTitle.style.webkitTextFillColor = "transparent";
-      popupText.textContent =
-        "Lorsqu'il est prêt, le médecin lance un nouveau chronomètre pour lancer la partie";
-      popupImage.src = "./img/iphone-7.webp";
-      break;
-    case 2:
-      popupTitle.textContent = "Étape 3";
-      popupTitle.style.background =
-        "linear-gradient(260deg, #FFEED3 54.11%, #FFB850 83.54%)";
-      popupTitle.style.backgroundClip = "text";
-      popupTitle.style.webkitBackgroundClip = "text";
-      popupTitle.style.webkitTextFillColor = "transparent";
-      popupText.textContent =
-        "L'évaluateur termine son évaluation, même après 8 minutes. Le médecin a ensuite accès à la grille et la correction détaillée";
-      popupImage.src = "./img/iphone-8.webp";
-      break;
-    case 3:
-      popupTitle.textContent = "Étape 1";
-      popupTitle.style.background =
-        "linear-gradient(87deg, #0A68CF 3.41%, #469EFF 28.39%)";
-      popupTitle.style.backgroundClip = "text";
-      popupTitle.style.webkitBackgroundClip = "text";
-      popupTitle.style.webkitTextFillColor = "transparent";
-      popupText.textContent =
-        "Le patient prend connaissance de sa fiche, et l'évaluateur de sa grille. Lorsqu'ils sont prêts, le médecin lance le chronomètre pour lire les consignes";
-      popupImage.src = "./img/iphone-10.webp";
-      break;
-    case 4:
-      popupTitle.textContent = "Étape 2";
-      popupTitle.style.background =
-        "linear-gradient(265deg, #FFE9E9 65.15%, #FF7474 79.87%)";
-      popupTitle.style.backgroundClip = "text";
-      popupTitle.style.webkitBackgroundClip = "text";
-      popupTitle.style.webkitTextFillColor = "transparent";
-      popupText.textContent =
-        "Lorsqu'il est prêt, le médecin lance un nouveau chronomètre pour lancer la partie";
-      popupImage.src = "./img/iphone-10.webp";
-      break;
-    case 5:
-      popupTitle.textContent = "Étape 3";
-      popupTitle.style.background =
-        "linear-gradient(260deg, #FFEED3 54.11%, #FFB850 83.54%)";
-      popupTitle.style.backgroundClip = "text";
-      popupTitle.style.webkitBackgroundClip = "text";
-      popupTitle.style.webkitTextFillColor = "transparent";
-      popupText.textContent =
-        "L'évaluateur termine son évaluation, même après 8 minutes. Le médecin a ensuite accès à la grille et la correction détaillée";
-      popupImage.src = "./img/iphone-9.webp";
-      break;
+  if (acteur.classList.contains('active')) {
+    switch (phaseIndex) {
+      case 0:
+        popupTitle.textContent = "Étape 1";
+        popupTitle.style.background =
+          "linear-gradient(87deg, #0A68CF 3.41%, #469EFF 28.39%)";
+        popupTitle.style.backgroundClip = "text";
+        popupTitle.style.webkitBackgroundClip = "text";
+        popupTitle.style.webkitTextFillColor = "transparent";
+        popupText.textContent =
+          "Le patient prend connaissance de sa fiche, et l'évaluateur de sa grille. Lorsqu'ils sont prêts, le médecin lance le chronomètre pour lire les consignes";
+        popupImage.src = "./img/acteur-popup.webp";
+        break;
+      case 1:
+        popupTitle.textContent = "Étape 2";
+        popupTitle.style.background =
+          "linear-gradient(265deg, #FFE9E9 65.15%, #FF7474 79.87%)";
+        popupTitle.style.backgroundClip = "text";
+        popupTitle.style.webkitBackgroundClip = "text";
+        popupTitle.style.webkitTextFillColor = "transparent";
+        popupText.textContent =
+          "Lorsqu'il est prêt, le médecin lance un nouveau chronomètre pour lancer la partie";
+        popupImage.src = "./img/acteur-popup.webp";
+        break;
+      case 2:
+        popupTitle.textContent = "Étape 3";
+        popupTitle.style.background =
+          "linear-gradient(260deg, #FFEED3 54.11%, #FFB850 83.54%)";
+        popupTitle.style.backgroundClip = "text";
+        popupTitle.style.webkitBackgroundClip = "text";
+        popupTitle.style.webkitTextFillColor = "transparent";
+        popupText.textContent =
+          "L'évaluateur termine son évaluation, même après 8 minutes. Le médecin a ensuite accès à la grille et la correction détaillée";
+        popupImage.src = "./img/acteur-popup.webp";
+        break;
+    }
+  }  else if (evaluateur.classList.contains('active')) {
+    switch (phaseIndex) {
+      case 0:
+        popupTitle.textContent = "Étape 1";
+        popupTitle.style.background =
+          "linear-gradient(87deg, #0A68CF 3.41%, #469EFF 28.39%)";
+        popupTitle.style.backgroundClip = "text";
+        popupTitle.style.webkitBackgroundClip = "text";
+        popupTitle.style.webkitTextFillColor = "transparent";
+        popupText.textContent =
+          "Le patient prend connaissance de sa fiche, et l'évaluateur de sa grille. Lorsqu'ils sont prêts, le médecin lance le chronomètre pour lire les consignes";
+        popupImage.src = "./img/evaluateur-popup-1-2.webp";
+        break;
+      case 1:
+        popupTitle.textContent = "Étape 2";
+        popupTitle.style.background =
+          "linear-gradient(265deg, #FFE9E9 65.15%, #FF7474 79.87%)";
+        popupTitle.style.backgroundClip = "text";
+        popupTitle.style.webkitBackgroundClip = "text";
+        popupTitle.style.webkitTextFillColor = "transparent";
+        popupText.textContent =
+          "Lorsqu'il est prêt, le médecin lance un nouveau chronomètre pour lancer la partie";
+        popupImage.src = "./img/evaluateur-popup-1-2.webp";
+        break;
+      case 2:
+        popupTitle.textContent = "Étape 3";
+        popupTitle.style.background =
+          "linear-gradient(260deg, #FFEED3 54.11%, #FFB850 83.54%)";
+        popupTitle.style.backgroundClip = "text";
+        popupTitle.style.webkitBackgroundClip = "text";
+        popupTitle.style.webkitTextFillColor = "transparent";
+        popupText.textContent =
+          "L'évaluateur termine son évaluation, même après 8 minutes. Le médecin a ensuite accès à la grille et la correction détaillée";
+        popupImage.src = "./img/evaluateur-popup-3.webp";
+        break;
+    }
+  } else {
+    switch (phaseIndex) {
+      case 0:
+        popupTitle.textContent = "Étape 1";
+        popupTitle.style.background =
+          "linear-gradient(87deg, #0A68CF 3.41%, #469EFF 28.39%)";
+        popupTitle.style.backgroundClip = "text";
+        popupTitle.style.webkitBackgroundClip = "text";
+        popupTitle.style.webkitTextFillColor = "transparent";
+        popupText.textContent =
+          "Le patient prend connaissance de sa fiche, et l'évaluateur de sa grille. Lorsqu'ils sont prêts, le médecin lance le chronomètre pour lire les consignes";
+        popupImage.src = "./img/medecin-popup-1.webp";
+        break;
+      case 1:
+        popupTitle.textContent = "Étape 2";
+        popupTitle.style.background =
+          "linear-gradient(265deg, #FFE9E9 65.15%, #FF7474 79.87%)";
+        popupTitle.style.backgroundClip = "text";
+        popupTitle.style.webkitBackgroundClip = "text";
+        popupTitle.style.webkitTextFillColor = "transparent";
+        popupText.textContent =
+          "Lorsqu'il est prêt, le médecin lance un nouveau chronomètre pour lancer la partie";
+        popupImage.src = "./img/medecin-popup-2.webp";
+        break;
+      case 2:
+        popupTitle.textContent = "Étape 3";
+        popupTitle.style.background =
+          "linear-gradient(260deg, #FFEED3 54.11%, #FFB850 83.54%)";
+        popupTitle.style.backgroundClip = "text";
+        popupTitle.style.webkitBackgroundClip = "text";
+        popupTitle.style.webkitTextFillColor = "transparent";
+        popupText.textContent =
+          "L'évaluateur termine son évaluation, même après 8 minutes. Le médecin a ensuite accès à la grille et la correction détaillée";
+        popupImage.src = "./img/medecin-popup-3.webp";
+        break;
+    }
   }
 }
 
 //onglets mobile
 document.getElementById("btn_phase_1").addEventListener("click", function () {
-  updatePopupContent(3);
+  updatePopupContent(0);
 });
 document.getElementById("btn_phase_2").addEventListener("click", function () {
-  updatePopupContent(4);
+  updatePopupContent(1);
 });
 document.getElementById("btn_phase_3").addEventListener("click", function () {
-  updatePopupContent(5);
+  updatePopupContent(2);
 });
 
 //Onglets
@@ -783,9 +826,9 @@ function changeTabMobile() {
           break;
         case "patient":
           phase_1.textContent = "Préparation des joueurs";
-          texte_1.textContent = "Test tab 2";
+          texte_1.textContent = "Préparation des étudiants. Le patient prend connaissance de sa fiche, et l'évaluateur de sa grille. Lorsqu'ils sont prêts, le médecin lance le chronomètre pour lire les consignes";
           phase_2.textContent = "Simulation";
-          texte_2.textContent = "Test tab 2";
+          texte_2.textContent = "Lorsqu'il est prêt, le médecin lance un nouveau chronomètre pour lancer la partie";
           phase_1_numero.textContent = "Phase 1/2";
           phase_2_numero.textContent = "Phase 2/2";
           phase_3_container.style.display = "none";
@@ -793,11 +836,11 @@ function changeTabMobile() {
           break;
         case "evaluateur":
           phase_1.textContent = "Préparation des joueurs";
-          texte_1.textContent = "Test tab 3";
+          texte_1.textContent = "Préparation des étudiants. Le patient prend connaissance de sa fiche, et l'évaluateur de sa grille. Lorsqu'ils sont prêts, le médecin lance le chronomètre pour lire les consignes";
           phase_2.textContent = "Simulation";
-          texte_2.textContent = "Test tab 3";
+          texte_2.textContent = "Lorsqu'il est prêt, le médecin lance un nouveau chronomètre pour lancer la partie";
           phase_3.textContent = "Résultat";
-          texte_3.textContent = "Test tab 3";
+          texte_3.textContent = "L'évaluateur termine son évaluation, même après 8 minutes. Le médecin a ensuite accès à la grille et la correction détaillée";
           phase_3_container.style.display = "flex";
           phase_1_numero.textContent = "Phase 1/3";
           phase_2_numero.textContent = "Phase 2/3";

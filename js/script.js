@@ -378,6 +378,7 @@ if(popupNotationClose) {
     body.style.overflow = "auto";
   });
 }
+
 //////////////////////////////////////////////
 ///// Écouter les événements mousedown //////
 document.addEventListener("mousedown", (event) => {
@@ -520,9 +521,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Fonction pour ouvrir la popup
   function openPopup() {
-    popupContainer.classList.add("active");
-    console.log("popup ouverte");
-    
+    popupContainer.classList.add("active");   
   }
 
   // Fonction pour fermer la popup

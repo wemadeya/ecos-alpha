@@ -2290,11 +2290,13 @@ footer nav .link button {
     ul {
         font-size: 14px;
     }
-
-    .modal_download_wrapper {
+    .modal_download_content {
+        gap: 25px;
+        flex-direction: column;
+    }
+    .download_mobile {
         display: none;
     }
-
     /***** main *****/
     main {
         width: 90%;
@@ -2860,5 +2862,8 @@ footer nav .link button {
 
     .tarif_span {
         display: none;
+    }
+    .btn_black {
+        width: 230px;
     }
 }

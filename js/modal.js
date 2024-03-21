@@ -14,53 +14,12 @@ allBtnDownload.forEach((btnDownload) => {
     body.style.overflow = "hidden";
     if (window.innerWidth < 768) {
       body.style.overflow = "auto";
+      btnDownload.href = "hello"
     }
   });
 });
-/*
-//document.addEventListener("DOMContentLoaded", function() {
-  allBtnDownload.forEach((btnDownload) => {
-  const userAgent = navigator.userAgent || window.opera;
 
-  // Sélectionnez l'élément lien
-  //const downloadLink = document.getElementById('downloadApp');
 
-/*
-  // Vérifiez si l'utilisateur est sur iOS
-  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    btnDownload.href = 'https://apps.apple.com/fr/app/ecos-alpha/id6477926660?l=en-GB';
-  }
-  // Vérifiez si l'utilisateur est sur Android
-  else if (/android/i.test(userAgent)) {
-    btnDownload.href = 'https://play.google.com/store/apps/details?id=com.ecosalpha.app&pcampaignid=web_share';
-  }
-  // Si ni iOS ni Android, vous pouvez définir un lien par défaut ou le laisser inchangé
-  else {
-    btnDownload.href = '#'; // Ou un lien par défaut
-  }
-});
-*/
-
-document.addEventListener("DOMContentLoaded", function() {
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-  // Sélectionnez l'élément lien
-  var downloadLink = document.getElementById('btn-blue');
-
-  // Vérifiez si l'utilisateur est sur iOS
-  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    downloadLink.href = 'https://lien-vers-appstore';
-  }
-  // Vérifiez si l'utilisateur est sur Android
-  else if (/android/i.test(userAgent)) {
-    downloadLink.href = 'https://lien-vers-playstore';
-  }
-  // Si ni iOS ni Android, vous pouvez définir un lien par défaut ou le laisser inchangé
-  else {
-    downloadLink.href = '#'; // Ou un lien par défaut
-  }
-});
-//});
 ///////////////////////////////////////////////////////
 ///// Écouter les événements sur btn modal_close /////
 const closeModal = document.querySelector(".modal_close");

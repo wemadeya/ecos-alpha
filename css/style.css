@@ -2286,7 +2286,6 @@ footer nav .link button {
             transform: translate(-50%, -30%);
         }
     }
-
     ul {
         font-size: 14px;
     }
@@ -2707,6 +2706,13 @@ footer nav .link button {
     .paragraph .cg_h3 {
         font-size: 16px;
     }
+    .cgu_cgv_list {
+        padding-left: 10px;
+    }
+    .cgu_cgv_list li ul {
+        padding-left: 15px;
+    }
+
 }
 
 @media screen and (max-width: 425px) {

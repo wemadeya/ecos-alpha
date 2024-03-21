@@ -2784,7 +2784,7 @@ footer nav .link button {
     /***** Footer *****/
     footer {
         flex-direction: column;
-        gap: 10px;
+        gap: 25px;
     }
     footer nav {
         gap: 25px;

@@ -2568,6 +2568,8 @@ footer nav .link button {
     .communaute_content_2 .iphone-3-c {
         left: 50%;
         transform: translate(-50%, 0%);
+        width: 90%;
+        object-fit: contain;
     }
 
     .communaute_content_2 .iphone-3-d {

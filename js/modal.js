@@ -12,10 +12,6 @@ allBtnDownload.forEach((btnDownload) => {
     modalDownloadWrapper.classList.add("display");
     modal.classList.add("anim_download");
     body.style.overflow = "hidden";
-    if (window.innerWidth < 768) {
-      body.style.overflow = "auto";
-      btnDownload.href = "hello"
-    }
   });
 });
 

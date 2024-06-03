@@ -786,6 +786,74 @@
                 </a>
             </nav>
         </footer>
+        <!-- Cookies -->
+        <div id="cookie-banner" class="cookie-banner" aria-modal="true" data-nosnippet="true" role="dialog" aria-live="polite" aria-labelledby="cookie-header" aria-describedby="cookie-message" style="display: none;">
+            <div class="cookie-banner-header">
+                <div class="cookie-title" id="cookie-header">Gestion des cookies</div>
+                <div class="close" tabindex="0" role="button" aria-label="close-dialog">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+                </div>
+            </div>
+            
+            <div class="cookie-body">
+                <div class="message" id="cookie-message">
+                    <p>Nous utilisons des cookies pour vous offrir la meilleure expérience possible. Ils nous permettent également d'analyser le comportement des utilisateurs afin d'améliorer constamment le site pour vous.
+                    </p>
+                </div>
+                <div class="categories">
+                    <div class="category functional">
+                        <div class="category-header">
+                            <span class="banner-checkbox">
+                                <input type="checkbox" id="functional-cookies" data-category="functional" class="consent-checkbox functional" size="40" value="1" disabled checked>
+                                <label class="cookie-label" for="functional-cookies" tabindex="0"><span class="screen-reader-text">Fonctionnel</span></label>
+                            </span>
+                        </div>
+                    </div>
+        
+                    <div class="category preferences">
+                        <div class="category-header">
+                            <span class="banner-checkbox">
+                                <input type="checkbox" id="preferences-cookies" data-category="preferences" class="consent-checkbox preferences" size="40" value="1">
+                                <label class="cookie-label" for="preferences-cookies" tabindex="0"><span class="screen-reader-text">Préférences</span></label>
+                            </span>
+                        </div>
+                    </div>
+        
+                    <div class="category statistics">
+                        <div class="category-header">
+                            <span class="banner-checkbox">
+                                <input type="checkbox" id="statistics-cookies" data-category="statistics" class="consent-checkbox statistics" size="40" value="1">
+                                <label class="cookie-label" for="statistics-cookies" tabindex="0"><span class="screen-reader-text">Statistiques</span></label>
+                            </span>
+                        </div>
+                    </div>
+        
+                    <div class="category marketing">
+                        <div class="category-header">
+                            <span class="banner-checkbox">
+                                <input type="checkbox" id="marketing-cookies" data-category="marketing" class="consent-checkbox marketing" size="40" value="1">
+                                <label class="cookie-label" for="marketing-cookies" tabindex="0"><span class="screen-reader-text">Marketing</span></label>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="cookie-buttons">
+                <button class="btn secondary" id="save-preferences" style="display: block;">Enregistrer les préférences</button>
+                <button class="btn secondary" id="decline-cookies">Refuser</button>
+                <button class="btn accept" id="accept-cookies">Accepter</button>
+            </div>
+        
+            <div class="cookie-links">
+                <a class="cookie-link cookie-statement" href="https://cours-agora.fr/politique-de-cookies-ue/" data-relative_url="">Politique de cookies</a>
+                <a class="cookie-link privacy-statement" href="https://cours-agora.fr/declaration-de-confidentialite-ue/" data-relative_url="">Déclaration de confidentialité</a>
+            </div>
+        </div>
+        
+        <button id="manage-consent-btn" class="manage-consent-btn" style="display: none;">
+            <img src="https://assets-global.website-files.com/64df601a11e5d664426546fc/651a88e3a9a06925c203fa43_cookies.webp" alt="">
+        </button>
         <!-- Google Tag Manager (noscript) -->
         <noscript>
             <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WT4DKTVV" height="0" width="0" style="display:none;visibility:hidden"></iframe>

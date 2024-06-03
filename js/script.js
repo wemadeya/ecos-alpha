@@ -872,61 +872,61 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //cookie 
 document.addEventListener("DOMContentLoaded", function() {
-  function toggleBannerVisibility(show) {
-      document.getElementById("cookie-banner").style.display = show ? "block" : "none";
-      document.getElementById("manage-consent-btn").style.display = show ? "none" : "block";
-  }
+    function toggleBannerVisibility(show) {
+        document.getElementById("cookie-banner").style.display = show ? "block" : "none";
+        document.getElementById("manage-consent-btn").style.display = show ? "none" : "block";
+    }
 
-  if (!localStorage.getItem("cookieConsent")) {
-      toggleBannerVisibility(true);
-  } else {
-      toggleBannerVisibility(false);
-  }
+    if (!localStorage.getItem("cookieConsent")) {
+        toggleBannerVisibility(true);
+    } else {
+        toggleBannerVisibility(false);
+    }
 
-  document.getElementById("accept-cookies").addEventListener("click", function() {
-      let consent = {
-          functional: true,
-          preferences: true,
-          statistics: true,
-          marketing: true
-      };
-      localStorage.setItem("cookieConsent", JSON.stringify(consent));
-      toggleBannerVisibility(false);
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({'event': 'cookie_consent', 'consent_status': consent});
-  });
+    document.getElementById("accept-cookies").addEventListener("click", function() {
+        let consent = {
+            functional: true,
+            preferences: true,
+            statistics: true,
+            marketing: true
+        };
+        localStorage.setItem("cookieConsent", JSON.stringify(consent));
+        toggleBannerVisibility(false);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({'event': 'cookie_consent', 'consent_status': consent});
+    });
 
-  document.getElementById("decline-cookies").addEventListener("click", function() {
-      let consent = {
-          functional: false,
-          preferences: false,
-          statistics: false,
-          marketing: false
-      };
-      localStorage.setItem("cookieConsent", JSON.stringify(consent));
-      toggleBannerVisibility(false);
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({'event': 'cookie_consent', 'consent_status': consent});
-  });
+    document.getElementById("decline-cookies").addEventListener("click", function() {
+        let consent = {
+            functional: false,
+            preferences: false,
+            statistics: false,
+            marketing: false
+        };
+        localStorage.setItem("cookieConsent", JSON.stringify(consent));
+        toggleBannerVisibility(false);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({'event': 'cookie_consent', 'consent_status': consent});
+    });
 
-  document.getElementById("save-preferences").addEventListener("click", function() {
-      let consent = {
-          functional: document.getElementById("functional-cookies").checked,
-          preferences: document.getElementById("preferences-cookies").checked,
-          statistics: document.getElementById("statistics-cookies").checked,
-          marketing: document.getElementById("marketing-cookies").checked
-      };
-      localStorage.setItem("cookieConsent", JSON.stringify(consent));
-      toggleBannerVisibility(false);
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({'event': 'cookie_consent', 'consent_status': consent});
-  });
+    document.getElementById("save-preferences").addEventListener("click", function() {
+        let consent = {
+            functional: document.getElementById("functional-cookies").checked,
+            preferences: document.getElementById("preferences-cookies").checked,
+            statistics: document.getElementById("statistics-cookies").checked,
+            marketing: document.getElementById("marketing-cookies").checked
+        };
+        localStorage.setItem("cookieConsent", JSON.stringify(consent));
+        toggleBannerVisibility(false);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({'event': 'cookie_consent', 'consent_status': consent});
+    });
 
-  document.querySelector(".close").addEventListener("click", function() {
-      toggleBannerVisibility(false);
-  });
+    document.querySelector(".close").addEventListener("click", function() {
+        toggleBannerVisibility(false);
+    });
 
-  document.getElementById("manage-consent-btn").addEventListener("click", function() {
-      toggleBannerVisibility(true);
-  });
+    document.getElementById("manage-consent-btn").addEventListener("click", function() {
+        toggleBannerVisibility(true);
+    });
 });

@@ -1798,11 +1798,11 @@ footer nav .link button {
 
 .cookie-title {
     font-size: 1.5em;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .message {
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 .close {
@@ -1849,7 +1849,7 @@ footer nav .link button {
     margin-top: 10px;
 }
 
-.btn {
+.cookie-btn {
     padding: 12px 20px;
     border: none;
     border-radius: 8px;
@@ -1872,37 +1872,34 @@ footer nav .link button {
     font-weight: 500;
 }
 
-.cookie-links {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 10px;
-}
-
 .cookie-link {
     color: black;
     text-decoration: none;
     font-size: 14px;
 }
 
+.cookie-links {
+    margin-bottom: 20px;
+}
+
 .cookie-links a {
     padding: 0;
+    color: #7B9EC4;
+    text-decoration: underline;
 }
 
 .cookie-link:hover {
-    text-decoration: underline;
+    color: #333333;
 }
 
 .manage-consent-btn {
     position: fixed;
     bottom: 20px;
     left: 20px;
+    background: #F7FBFF;
     border: none;
-    border-radius: 99px;
     cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     z-index: 99999;
-    transition: background-color 0.3s ease;
 }
 
 .manage-consent-btn img {

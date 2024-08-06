@@ -21,16 +21,21 @@ a {
     display: inline-block;
     width: max-content;
 }
+
 ul {
     list-style: none;
     padding: 0;
 }
+
 /* title */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-weight: 600;
 }
 
-h1, h2 {
+h1,
+h2 {
     font-size: 34px;
 }
 
@@ -52,6 +57,21 @@ p {
     color: #B0C3D8;
 }
 
+.text_xs {
+    font-size: 14px;
+}
+
+.title_icon {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.title_icon img {
+    height: 15px;
+}
+
 /***** btn *****/
 .btn {
     transition: 0.2s;
@@ -63,7 +83,9 @@ p {
     transition: 0.2s ease;
 }
 
-.btn, .correction_btn, .notation_btn {
+.btn,
+.correction_btn,
+.notation_btn {
     cursor: pointer;
 }
 
@@ -172,6 +194,7 @@ header {
     background-color: #fff;
     width: 100%;
 }
+
 .header_wrapper {
     display: flex;
     justify-content: space-between;
@@ -210,31 +233,38 @@ header .ecos-alpha {
     font-size: 18px;
     font-weight: 600;
 }
+
 .logo_ecos-alpha {
     height: 35px;
     width: 35px;
 }
+
 .header_nav_wrapper {
     display: flex;
     gap: 35px;
 }
+
 .header_nav_link {
     display: flex;
     align-items: center;
     gap: 30px;
 }
+
 .header_link {
     position: relative;
     cursor: pointer;
 }
+
 .header_link p {
     display: flex;
     gap: 5px;
     align-items: center;
 }
+
 .header_link:hover .header_nav_dropdown {
     display: block;
 }
+
 .circle_yellow {
     background-color: #FFCB3D;
     font-family: "SF Pro Display";
@@ -250,6 +280,7 @@ header .ecos-alpha {
     padding-top: 20px;
     right: 0%;
 }
+
 .header_nav_dropdown ul {
     border-radius: 15px;
     background: #FFF;
@@ -257,18 +288,23 @@ header .ecos-alpha {
     padding: 5px;
     min-width: 300px;
 }
+
 .header_nav_dropdown li {
     padding: 15px;
 }
+
 .header_nav_dropdown li:hover {
     border-radius: 10px;
-    background: #F0F4F8;    
+    background: #F0F4F8;
 }
-.dropdown_link, .dropdown_link div {
+
+.dropdown_link,
+.dropdown_link div {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 .dropdown_link {
     padding: 0;
     color: #000;
@@ -277,17 +313,20 @@ header .ecos-alpha {
     font-weight: 500;
     width: 100%;
 }
+
 .dropdown_link div {
     gap: 10px;
 }
+
 .dropdown_link div span {
     padding: 5px 12px;
     border-radius: 999px;
     background: #FFCB3D;
-    box-shadow: 0px 0px 25px 0px rgba(255, 203, 61, 0.50);  
+    box-shadow: 0px 0px 25px 0px rgba(255, 203, 61, 0.50);
     color: #fff;
     font-size: 12px;
 }
+
 .dropdown_title {
     text-transform: uppercase;
     padding: 15px;
@@ -296,10 +335,12 @@ header .ecos-alpha {
     font-size: 12px;
     font-weight: 500;
 }
+
 .dual-iphone-img,
 .dual-iphone-text {
     width: 40%;
 }
+
 /* menu_hamburger_wrapper */
 .menu_hamburger_wrapper {
     position: relative;
@@ -307,40 +348,47 @@ header .ecos-alpha {
     height: 15px;
     display: none;
     cursor: pointer;
-  }
-  [class^="menu_hamburger_lign"] {
-  height: 2px;
-  width: 100%;
-  background-color: #050560;
-  position: absolute; 
-  transition: 0.6s ease;
+}
+
+[class^="menu_hamburger_lign"] {
+    height: 2px;
+    width: 100%;
+    background-color: #050560;
+    position: absolute;
+    transition: 0.6s ease;
 }
 
 .menu_hamburger_lign1 {
-  top: 0;
+    top: 0;
 }
+
 .menu_hamburger_lign2 {
-  top: 50%;
-  transition-delay: 0s;
+    top: 50%;
+    transition-delay: 0s;
 }
+
 .menu_hamburger_lign3 {
-  top: 100%;
+    top: 100%;
 }
+
 .menu_hamburger_lign1.anim {
-  top: 50%;
-  transform: rotate(45deg);
-  background-color: #717171;
+    top: 50%;
+    transform: rotate(45deg);
+    background-color: #717171;
 }
+
 .menu_hamburger_lign2.anim {
-  opacity: 0;
-  transform: translateX(20px);
-  background-color: #717171;
+    opacity: 0;
+    transform: translateX(20px);
+    background-color: #717171;
 }
+
 .menu_hamburger_lign3.anim {
-  top: 50%;
-  transform: rotate(-45deg);
-  background-color: #717171;
+    top: 50%;
+    transform: rotate(-45deg);
+    background-color: #717171;
 }
+
 /* dual-iphone-text */
 .dual-iphone-text {
     display: flex;
@@ -449,19 +497,21 @@ header .ecos-alpha {
 .conception_wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 0 75px;
+    gap: 50px;
 }
 
 [class^="conception_content"] {
     display: flex;
     flex-direction: column;
+    width: 33%;
     gap: 15px;
+    border-radius: 15px;
     font-size: 20px;
     font-weight: 500;
-    padding: 20px 25px;
+    padding: 25px;
     opacity: 0;
     transform: translateX(-50px);
+    background-color: #F0F4F8;
 }
 
 .conception_content_1.anim-x {
@@ -476,7 +526,7 @@ header .ecos-alpha {
     animation-delay: 0.9s;
 }
 
-[class^="conception_content"] p span {
+[class^="conception_content"] p {
     text-align: center;
 }
 
@@ -769,9 +819,6 @@ header .ecos-alpha {
     transform: translate(-100%, -150%);
     height: 504px;
 }
-
-/*********************/
-/***** parcours *****/
 
 /************************/
 /***** communauté ******/
@@ -1133,25 +1180,28 @@ header .ecos-alpha {
 /******************/
 /***** Outil *****/
 .outil {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 64px;
     opacity: 0;
     transform: translateY(50px);
 }
 
 .outil_wrapper {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 45px;
+    padding: 45px;
+}
+
+.tarif_wrapper {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 25px;
-    width: 100%;
-    align-self: stretch;
 }
 
 [class^="outil_content"] {
     display: flex;
-    padding: 35px;
+    padding: 30px;
     flex-direction: column;
     align-items: flex-start;
     align-self: stretch;
@@ -1160,11 +1210,11 @@ header .ecos-alpha {
 }
 
 .outil_content_1 {
-    background-color: #E9F4FF;
+    background-color: #E9F0F7;
 }
 
 .outil_content_2 {
-    background: linear-gradient(88deg, #0A68CF 3.16%, #469EFF 97.03%);
+    background: #02152A;
     color: #fff;
 }
 
@@ -1388,101 +1438,52 @@ header .ecos-alpha {
     cursor: pointer;
 }
 
-/***** Parcours *****/
-.parcours h2 {
-    text-align: center;
+/*********************/
+/***** parcours *****/
+.margin_top {
+    margin-top: 50px;
 }
 
 .parcours_wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
-    padding: 20px 50px;
-    margin-top: 60px;
+    gap: 30px;
 }
 
-.parcours_nav {
-    background: #F2F6FB;
-    border-radius: 150px;
+.parcours_card_wrapper {
     display: flex;
-    position: relative;
-}
-
-.parcours_nav a {
-    flex: 1 0 0;
-    padding: 6px 20px;
-    color: #7B9EC4;
-    font-weight: 300;
-    font-size: 18px;
-    z-index: 10;
-    cursor: pointer;
-}
-
-.parcours_nav a.active {
-    color: white;
-    transition: all 0.3s ease;
-}
-
-.nav-background {
-    position: absolute;
-    height: 100%;
-    width: 0;
-    background: #007AFF;
-    border-radius: 150px;
-    transition: all 0.3s ease;
-    z-index: 0;
-}
-
-.parcours_content {
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-between;
+    gap: 30px;
     width: 100%;
-    position: relative;
+}
+
+.parcours_card {
+    display: flex;
+    gap: 25px;
+    padding: 10px;
+    width: 100%;
 }
 
 .parcours_img_wrapper {
-    width: 300px;
-    height: 300px;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 30%;
-    border-radius: 25px;
-    overflow: hidden;
-}
-
-.parcours_img {
-    position: absolute;
-    width: 100%;
+    width: 50%;
     height: 100%;
+    border-radius: 15px;
     object-fit: cover;
-    transition: all 0.3s ease;
 }
 
-.parcours_img_button {
+.parcours_text_wrapper {
     display: flex;
-    padding: 8px 10px;
-    gap: 10px;
-    background: black;
-    color: white;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    width: max-content;
-}
-
-.absolute {
-    position: absolute;
-    bottom: 5%;
-    right: 5%;
+    flex-direction: column;
+    width: 50%;
+    gap: 15px;
+    padding: 25px 10px;
 }
 
 .parcours_check_wrapper {
     background-color: white;
     border-radius: 999px;
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     filter: drop-shadow(0px 0px 15px rgba(0, 76, 158, 0.20));
     display: flex;
     justify-content: center;
@@ -1490,129 +1491,353 @@ header .ecos-alpha {
     z-index: 20;
 }
 
+.parcours_check.green {
+    background: #60E06F;
+}
+
 .parcours_check {
-    background-color: rgba(123, 158, 196, 0.50);
+    background: #007AFF;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
 }
 
-.blue-color {
-    background: #007AFF !important;
+/******************************/
+/***** Entrainement seul *****/
+.yellow_light {
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: #FFCB3D;
+    box-shadow: 0px 0px 25px 0px rgba(255, 203, 61, 0.50);
+    color: #fff;
+    font-size: 12px;
+    width: max-content;
+    margin: 0 auto 15px auto;
 }
 
-.parcours_progress {
+.entrainement_seul_card {
     display: flex;
     flex-direction: column;
-    gap: 600px;
-    width: 60%;
+    justify-content: space-between;
+    width: 100%;
+    overflow: hidden;
 }
 
-.parcours_phase {
+.entrainement_seul_text {
     display: flex;
+    flex-direction: column;
     gap: 25px;
+    padding: 35px;
 }
 
-.phase_1 {
-    margin-top: 150px;
+.entrainement_seul_img {
+    width: 95%;
+    border-radius: 15px;
+    margin: 0 0 0 auto;
+    transform: translateY(10px);
 }
 
-.phase_3 {
-    margin-bottom: 300px;
+.entrainement_seul_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.parcours_phase_title {
+/**********************/
+/***** Flashcards *****/
+.flashcards_wrapper {
     display: flex;
-    width: 170px;
+    justify-content: space-between;
+    padding: 35px 45px;
+}
+
+.flashcards_content {
+    padding: 35px 0;
+    width: 60%;
+    display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    justify-content: center;
+    gap: 20px;
 }
 
-.parcours_phase_title h3 {
-    font-size: 18px;
-    color: rgba(123, 158, 196, 0.50);
+.flashcards_img_wrapper {
+    position: relative;
+    width: 30%;
+    height: 500px;
 }
 
-.parcours_phase_title p {
-    font-size: 14px;
-    color: rgba(123, 158, 196, 0.50);
+.flashcards_img {
+    position: absolute;
+    width: 400px;
+    object-fit: cover;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transition: all 0.3s ease;
 }
 
-.parcours_phase_text p {
-    color: rgba(123, 158, 196, 0.50);
+.image_1 {
+    transform: translate(-60%, -55%) rotateZ(355deg) scale(0.8);
 }
 
-.parcours_phase_text {
+.image_2 {
+    transform: translate(-40%, -52%) rotateZ(10deg) scale(0.9);
+}
+
+.image_3 {
+    transform: translate(-45%, -55%) rotateZ(0deg) scale(0.9);
+}
+
+.flashcards_card {
+    position: absolute;
+    z-index: 20;
+    width: 300px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 40%;
-    color: #7B9EC4;
+    padding: 10px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0px -10px 25px 0px rgba(0, 76, 158, 0.15);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
 }
 
-.parcours_phase_btn {
+.flashcards_card_head {
     display: flex;
-    padding: 8px 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flashcards_card_question {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
-    background: rgba(123, 158, 196, 0.50);
-    color: white;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
+    padding: 12px;
+    align-items: center;
+    background-color: #F7FBFF;
+    text-align: center;
+}
+
+.purple_light {
+    display: flex;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 3px;
+    background: rgba(143, 0, 255, 0.05);
+    color: #8F00FF;
     width: max-content;
 }
 
-.parcours_fixed_img {
-    width: 40%;
-    position: relative;
-    margin-bottom: 50px;
+.purple_light p {
+    font-size: 10px;
 }
 
-.parcours_progress_bar_wrapper {
+.flashcards_card_photo {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 8px;
+    padding: 4px;
+    border-radius: 7px;
+    background: white;
+    box-shadow: 0px 0px 19.872px 0px rgba(0, 76, 158, 0.12);
+}
+
+.flashcards_text {
+    font-size: 12px;
+}
+
+.text_grey_xs {
+    color: #8E8E93;
+    font-size: 10px;
+}
+
+.flashcards_card_content {
+    display: flex;
+    position: relative;
+    z-index: 20;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 4px;
+    width: 100%;
+    border-radius: 5px;
+    background: #F0F2F4;
+    overflow: hidden;
+}
+
+.flashcards_mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: inherit;
+    background: rgba(240, 242, 244, 0.8);
+    backdrop-filter: blur(3px);
+    transition: all 1s ease;
+    opacity: 1;
+}
+
+.flashcards_btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    z-index: 30;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-start;
+    gap: 5px;
+    padding: 3px 8px;
+    border-radius: 99px;
+    background: white;
+    color: black;
+    font-size: 9px;
+    cursor: pointer;
 }
 
-.parcours_progress_bar {
-    width: 5px;
-    background-color: #DAE7F6;
-    position: absolute;
-    z-index: 10;
+.flashcards_card_content ul {
+    list-style-type: none;
+    padding-left: 12px;
+    text-align: left;
 }
 
-.progress_fill {
-    width: 5px;
-    background-color: #007AFF;
-    position: absolute;
-    z-index: 10;
-    transition: background-color 0.3s ease;
+.flashcards_card_content ul ul {
+    padding-left: 20px;
 }
 
-.phase-active .parcours_phase_title h3 {
+.flashcards_card_content li {
+    font-size: 12px;
+    text-align: left;
+}
+
+.flashcards_card_content ul li {
+    text-align: left;
+}
+
+.flashcards_card_content ul>li::before {
+    content: '•';
     color: #000;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
 }
 
-.phase-active .parcours_phase_title p {
+.flashcards_card_content ul ul>li::before {
+    content: '•';
     color: #000;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
 }
 
-.phase-active .parcours_phase_text p {
-    color: #7B9EC4;
+.margin_bottom {
+    margin-bottom: 15px;
 }
 
-.phase-active .parcours_check {
-    background-color: #007AFF;
+.flashcards_card_evaluation {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
 }
 
-.phase-active .parcours_phase_btn {
-    background: #007AFF;
+.flashcards_card_evaluation a {
+    width: 100%;
+    font-size: 12px;
 }
 
+.humeurs_wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.humeurs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.humeurs img {
+    width: 20px;
+}
+
+.red {
+    background: #F6E0E0;
+}
+
+.orange {
+    background: #F7E6D6;
+}
+
+.yellow {
+    background: #F7EFD1;
+    ;
+}
+
+.grass {
+    background: #F0F7D1;
+}
+
+.green {
+    background: #DEF6D3;
+}
+
+.humeurs.red.enlarged {
+    transform: scale(1.3);
+    border: 1px solid red;
+}
+
+.humeurs.orange.enlarged {
+    transform: scale(1.3);
+    border: 1px solid orange;
+}
+
+.humeurs.yellow.enlarged {
+    transform: scale(1.3);
+    border: 1px solid rgb(255, 208, 0);
+}
+
+.humeurs.grass.enlarged {
+    transform: scale(1.3);
+    border: 1px solid rgb(58, 163, 58);
+}
+
+.humeurs.green.enlarged {
+    transform: scale(1.3);
+    border: 1px solid green;
+}
+
+.flashcards_card:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.flashcards_card:hover~.flashcards_img.image_1 {
+    transform: translate(-60%, -55%) rotateZ(365deg) scale(0.8);
+}
+
+.flashcards_card:hover~.flashcards_img.image_2 {
+    transform: translate(-40%, -52%) rotateZ(-10deg) scale(0.8);
+}
+
+.flashcards_card:hover~.flashcards_img.image_3 {
+    transform: translate(-45%, -55%) rotateZ(-5deg) scale(0.8);
+}
+
+/*****************/
 /***** Popup *****/
 .popup_container {
     position: fixed;
@@ -1822,31 +2047,6 @@ header .ecos-alpha {
 .list_check {
     width: 40px;
     height: 40px;
-}
-
-/***** Parcours mobile *****/
-.parcours_content_mobile {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    position: relative;
-}
-
-.parcours_img_mobile {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    border-radius: 25px;
-    overflow: hidden;
-}
-
-.parcours_text_mobile {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 8px;
 }
 
 /*******************/
@@ -2173,23 +2373,8 @@ footer nav .link button {
 /**************************/
 /***** Media queries *****/
 @media screen and (min-width: 1920px) {
-    .parcours_img_wrapper {
-        width: 500px;
-        height: 500px;
-    }
-}
-
-@media screen and (min-width: 1660px) and (max-width: 1920px) {
-    .parcours_img_wrapper {
-        width: 450px;
-        height: 450px;
-    }
-}
-
-@media screen and (min-width: 1440px) and (max-width: 1660px) {
-    .parcours_img_wrapper {
-        width: 400px;
-        height: 400px;
+    .text_xs {
+        font-size: 16px;
     }
 }
 
@@ -2223,6 +2408,7 @@ footer nav .link button {
     h3 {
         font-size: 24px;
     }
+
     footer {
         width: 90%;
     }
@@ -2243,10 +2429,13 @@ footer nav .link button {
         height: 370px;
     }
 
-    /***** parcours *****/
-    .parcours_img_wrapper {
-        width: 400px;
-        height: 400px;
+    /***** flashcard *****/
+    .flashcards_img_wrapper {
+        width: 35%;
+    }
+
+    .flashcards_content {
+        width: 55%;
     }
 }
 
@@ -2259,6 +2448,10 @@ footer nav .link button {
 
     h3 {
         font-size: 20px;
+    }
+
+    .text_xs {
+        font-size: 16px;
     }
 
     /***** fonctionnement *****/
@@ -2303,6 +2496,29 @@ footer nav .link button {
         display: none;
     }
 
+    /***** parcours *****/
+    .parcours_card_wrapper {
+        flex-direction: column;
+    }
+
+    .parcours_img_wrapper {
+        width: 300px;
+        height: 300px;
+    }
+
+    .parcours_text_wrapper {
+        width: 100%;
+    }
+
+    /***** flashcard *****/
+    .image_1 {
+        transform: translate(-60%, -55%) rotateZ(360deg) scale(0.8);
+    }
+
+    .image_2 {
+        transform: translate(-40%, -52%) rotateZ(5deg) scale(0.9);
+    }
+
     /***** conception *****/
     .conception_wrapper {
         padding: 0;
@@ -2337,12 +2553,6 @@ footer nav .link button {
         height: 65%;
     }
 
-    /***** parcours *****/
-    .parcours_img_wrapper {
-        width: 350px;
-        height: 350px;
-    }
-
     /***** footer *****/
     footer .btn {
         display: none;
@@ -2366,33 +2576,39 @@ footer nav .link button {
     .header_nav .btn {
         margin-bottom: 0 0 5% 5%;
     }
+
     body {
         width: 100%;
     }
+
     .menu_hamburger_wrapper {
         display: block;
     }
+
     .header_nav {
-        display: block;
+        display: none;
         width: 100%;
         overflow: hidden;
         position: absolute;
         top: 100%;
         left: 0%;
-        height: calc(100dvh -  81px);
+        height: calc(100dvh - 81px);
     }
-    .header_nav_wrapper { 
-        background-color:  #fff;
+
+    .header_nav_wrapper {
+        background-color: #fff;
         transform: translate(100%, 0%);
         transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
         height: 100%;
     }
+
     .header_nav_wrapper.show {
         transform: translate(0%, 0%);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
+
     .header_nav_link {
         display: flex;
         align-items: flex-start;
@@ -2401,19 +2617,25 @@ footer nav .link button {
         margin: 0 auto;
         flex-direction: column;
     }
+
     .header_link {
         width: 100%;
     }
+
     .header_link p {
         padding: 15px;
     }
-    .header_link .circle_yellow, .header_link .chevron {
+
+    .header_link .circle_yellow,
+    .header_link .chevron {
         display: none;
     }
+
     .header_nav_dropdown {
         position: inherit;
         display: block;
     }
+
     .header_nav_dropdown ul {
         border-radius: 0;
         background: none;
@@ -2421,9 +2643,11 @@ footer nav .link button {
         padding: 0;
         min-width: none;
     }
+
     .dropdown_title {
         padding: 0;
     }
+
     section,
     footer {
         margin: 125px auto 0;
@@ -2432,6 +2656,14 @@ footer nav .link button {
     #conception {
         padding-top: 125px;
         margin: 0 auto;
+    }
+
+    .conception_wrapper {
+        gap: 30px;
+    }
+
+    [class^="conception_content"] {
+        padding: 15px;
     }
 
     .fonctionnement_content_1 {
@@ -2466,6 +2698,47 @@ footer nav .link button {
 
     .fonctionnement_wrapper_3 .fonctionnement_content:last-of-type {
         display: none;
+    }
+
+    /***** entrainement seul *****/
+    .entrainement_seul_card {
+        flex-direction: row;
+    }
+
+    .flex_mobile {
+        flex-direction: column;
+    }
+
+    .entrainement_seul_text {
+        width: 65%;
+    }
+
+    .entrainement_seul_img {
+        height: 100%;
+        width: 300px;
+        margin: auto 0 0 0;
+    }
+
+    /***** flashcards *****/
+    .flashcards_wrapper {
+        flex-direction: column;
+        padding: 40px 20px 20px 20px;
+    }
+
+    .flashcards_content {
+        width: 100%;
+    }
+
+    .flashcards_img_wrapper {
+        width: 100%;
+    }
+
+    .image_1 {
+        transform: translate(-60%, -55%) rotateZ(355deg) scale(0.8);
+    }
+
+    .image_2 {
+        transform: translate(-40%, -52%) rotateZ(10deg) scale(0.9);
     }
 
     /***** correction_notation *****/
@@ -2507,18 +2780,6 @@ footer nav .link button {
 
     .modal_download {
         width: 90%;
-    }
-
-    .parcours_content {
-        display: none;
-    }
-
-    .parcours_fixed_img {
-        display: none;
-    }
-
-    .text_mobile {
-        color: #7B9EC4;
     }
 
     .popup {
@@ -2580,6 +2841,7 @@ footer nav .link button {
 }
 
 @media screen and (max-width: 900px) {
+
     /***** Entrainement *****/
     .entrainement_content_2,
     .entrainement_content_2 .ellipse-blue {
@@ -2670,6 +2932,14 @@ footer nav .link button {
 
     h5 {
         font-size: 18px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .text_xs {
+        font-size: 14px;
     }
 
     .btn {
@@ -2847,6 +3117,55 @@ footer nav .link button {
         left: 85%;
     }
 
+    /***** parcours *****/
+    .parcours_card_wrapper {
+        flex-direction: row;
+    }
+
+    .parcours_card {
+        flex-direction: column;
+        gap: 10px
+    }
+
+    .parcours_img_wrapper {
+        width: 100%;
+        height: 300px;
+    }
+
+    .parcours_text_wrapper {
+        width: 100%;
+        padding: 10px;
+    }
+
+    /***** entrainement seul *****/
+    .entrainement_seul_card {
+        flex-direction: column;
+    }
+
+    .entrainement_seul_text {
+        width: 100%;
+    }
+
+    .entrainement_seul_img {
+        margin: 0 auto;
+    }
+
+    .entrainement_seul_img::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 10%;
+        background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        pointer-events: none;
+    }
+
+    /***** flashcards *****/
+    .flashcards_btn p {
+        font-size: 10px;
+    }
+
     /***** conception *****/
     .conception_wrapper {
         flex-direction: column;
@@ -2855,6 +3174,11 @@ footer nav .link button {
 
     .conception_wrapper p {
         font-size: 18px;
+    }
+
+    [class^="conception_content"] {
+        width: 100%;
+        background-color: transparent;
     }
 
     /***** correction_notation *****/
@@ -2980,17 +3304,10 @@ footer nav .link button {
         font-size: 14px !important;
     }
 
-    /***** Parcours & popup *****/
-    .parcours_nav a {
-        font-size: 14px;
-    }
+    /***** popup *****/
 
     h3 {
         font-size: 20px;
-    }
-
-    p {
-        font-size: 14px;
     }
 
     .popup {
@@ -3045,11 +3362,53 @@ footer nav .link button {
 
 }
 
+@media screen and (max-width: 560px) {
+
+    /***** parcours *****/
+    .parcours_card_wrapper {
+        flex-direction: column;
+    }
+
+    /***** flashcards *****/
+    .flashcards_card {
+        width: 250px;
+    }
+
+    .image_1 {
+        transform: translate(-60%, -55%) rotateZ(355deg) scale(0.7);
+    }
+
+    .image_2 {
+        transform: translate(-40%, -52%) rotateZ(0deg) scale(0.8);
+    }
+
+    .image_3 {
+        transform: translate(-45%, -55%) rotateZ(0deg) scale(0.8);
+    }
+
+    .humeurs {
+        padding: 2px 6px;
+    }
+
+    .flashcards_card:hover~.flashcards_img.image_1 {
+        transform: translate(-55%, -55%) rotateZ(370deg) scale(0.8);
+    }
+
+    .flashcards_card:hover~.flashcards_img.image_2 {
+        transform: translate(-45%, -52%) rotateZ(-15deg) scale(0.8);
+    }
+
+    .flashcards_card:hover~.flashcards_img.image_3 {
+        transform: translate(-50%, -55%) rotateZ(-5deg) scale(0.8);
+    }
+}
+
 @media screen and (max-width: 425px) {
     .btn {
         width: 90%;
         margin: 0 auto;
     }
+
     h1 span {
         display: inline-block;
         padding-left: 0;
@@ -3112,14 +3471,46 @@ footer nav .link button {
         height: 248px;
     }
 
-    /***** Parcours *****/
-    .parcours_nav a {
-        font-size: 12px;
-        padding: 6px 10px;
+    /***** parcours *****/
+    .parcours_img_wrapper {
+        width: 100%;
+        height: 250px;
     }
 
-    .parcours_wrapper {
-        padding: 20px 20px;
+    .text_xs {
+        font-size: 16px;
+    }
+
+    /***** entrainement seul *****/
+    .entrainement_seul_text {
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .entrainement_seul_img {
+        width: 95%;
+        margin: 0 0 0 auto;
+    }
+
+    /***** flashcards *****/
+    .flashcards_card {
+        gap: 10px;
+    }
+
+    .flashcards_img {
+        width: 200px;
+    }
+
+    .image_1 {
+        transform: translate(-80%, -80%) rotateZ(355deg) scale(1);
+    }
+
+    .image_2 {
+        transform: translate(-20%, -70%) rotateZ(-5deg) scale(1);
+    }
+
+    .image_3 {
+        transform: translate(-30%, -95%) rotateZ(-5deg) scale(1);
     }
 
     /***** correction_notation *****/
@@ -3177,8 +3568,9 @@ footer nav .link button {
 @media screen and (max-width: 375px) {
 
     .header_nav {
-        height: calc( 100dvh - 74px);
+        height: calc(100dvh - 74px);
     }
+
     header .btn {
         font-size: 10px;
     }

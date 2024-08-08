@@ -1757,6 +1757,7 @@ header .ecos-alpha {
     padding: inherit;
     background: rgba(240, 242, 244, 0.8);
     backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     transition: all 1s ease;
     opacity: 1;
 }

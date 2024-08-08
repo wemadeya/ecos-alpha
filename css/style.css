@@ -1192,6 +1192,64 @@ header .ecos-alpha {
     padding: 45px;
 }
 
+.outil_title {
+    text-align: center;
+}
+
+.outil_nav {
+    background: #F2F6FB;
+    border-radius: 150px;
+    display: flex;
+    position: relative;
+    width: 500px;
+}
+
+.outil_nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 6px 20px;
+    color: #95A8BD;
+    font-weight: 300;
+    font-size: 16px;
+    z-index: 10;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+}
+
+.outil_nav a.active {
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.nav-background {
+    position: absolute;
+    height: 100%;
+    width: 0;
+    background: #007AFF;
+    border-radius: 150px;
+    transition: all 0.3s ease;
+    z-index: 0;
+}
+
+.reduction {
+    padding: 5px;
+    border-radius: 99px;
+    font-size: 14px;
+}
+
+.blue {
+    color: #007AFF;
+    background: #C6E1FF;
+}
+
+.purple {
+    color: #9747FF;
+    background: #E1E3FF;
+}
+
 .tarif_wrapper {
     display: flex;
     justify-content: space-between;
@@ -1203,10 +1261,41 @@ header .ecos-alpha {
     display: flex;
     padding: 30px;
     flex-direction: column;
-    align-items: flex-start;
     align-self: stretch;
-    flex: 1 0 0;
     border-radius: 10px;
+    gap: 35px;
+}
+
+.pack_title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon_lightning {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(0, 122, 255, 0.35);
+    width: 35px;
+    height: 35px;
+}
+
+.icon_lightning img {
+    height: 20px;
+}
+
+.pack_title p {
+    font-size: 25px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.starter_title {
+    font-size: 25px;
+    font-weight: 500;
+    text-transform: uppercase;
 }
 
 .outil_content_1 {
@@ -1218,77 +1307,71 @@ header .ecos-alpha {
     color: #fff;
 }
 
-.outil_content_1 .offre,
-.outil_content_2 .offre {
+.offre {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-self: stretch;
-    font-size: 25px;
-    font-weight: 600;
-}
-
-.outil_content_1 .offre {
-    color: #000;
-}
-
-.outil_content_2 .offre {
-    color: #fff;
-}
-
-.outil_content_2 .offre_ecos {
-    display: flex;
-    padding: 8px 10px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 150px;
-    background: #FFF;
-    font-size: 14px;
-    color: #000;
-    font-weight: 500;
-}
-
-.outil_content_1 .tarif,
-.outil_content_2 .tarif {
-    font-weight: 500;
-}
-
-.outil_content_2 .tarif {
-    display: flex;
-    flex-direction: column;
     align-items: flex-end;
+    gap: 5px;
 }
 
-.outil_content_2 .tarif p:first-of-type {
-    line-height: 85%;
+.offre p:last-of-type {
+    color: #95A8BD;
+    font-size: 20px;
 }
 
-.outil_content_2 .tarif p:last-of-type {
-    font-size: 14px;
+.tarif {
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 100%;
 }
 
-.outil_content_2 .premium {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-[class^="outil_content"] {
+.premium {
     display: flex;
     flex-direction: column;
-    gap: 35px;
+    gap: 5px;
+}
+
+.premium_text {
+    font-size: 14px;
+    color: #95A8BD;
 }
 
 [class^="outil_content"] ul {
-    padding-left: 18px;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-bottom: 50px;
 }
 
-.outil_title {
-    text-align: center;
+[class^="outil_content"] ul li {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+}
+
+[class^="outil_content"] ul li:first-of-type {
+    color: #95A8BD;
+}
+
+[class^="outil_content"] ul li img {
+    width: 10px;
+}
+
+.outil_btn {
+    display: flex;
+    padding: 15px 25px;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease;
+    width: 100%;
+    margin: auto auto 0 auto;
+    gap: 10px;
+    cursor: pointer;
+    background: #007AFF;
+}
+
+.btn_grey {
+    color: #000;
+    background: #DBE4EC;
 }
 
 .outil_title.anim-y {
@@ -1305,15 +1388,6 @@ header .ecos-alpha {
 
 .outil_btn.anim-y {
     animation-delay: 1.2s;
-}
-
-.tarif_span {
-    display: inline;
-}
-
-.outil .cta {
-    display: flex;
-    gap: 20px;
 }
 
 /*********************************/
@@ -2586,7 +2660,7 @@ footer nav .link button {
     }
 
     .header_nav {
-        display: none;
+        display: block;
         width: 100%;
         overflow: hidden;
         position: absolute;
@@ -2760,16 +2834,6 @@ footer nav .link button {
     .communaute_content_2 .iphone-3-c {
         left: 55%;
         transform: translate(-50%, 0%);
-    }
-
-    /***** outil *****/
-    .outil_content_2 .offre_ecos {
-        display: none;
-    }
-
-    .outil_content_1,
-    .outil_content_2 {
-        padding: 20px;
     }
 
     @keyframes anim-iphone-3-top {
@@ -3254,12 +3318,13 @@ footer nav .link button {
         gap: 25px;
     }
 
-    .outil_title {
-        margin-bottom: 25px;
+    .tarif_wrapper {
+        flex-direction: column;
+        width: 100%;
     }
 
-    .outil_wrapper {
-        flex-direction: column;
+    [class^="outil_content"] {
+        width: 100%;
     }
 
     .outil_content_1,
@@ -3267,25 +3332,18 @@ footer nav .link button {
         padding: 20px;
     }
 
-    .outil_content_2 .premium {
-        align-items: flex-start;
-        flex-direction: column;
+    .outil_nav {
+        width: 100%;
     }
 
-    .outil_content_2 .premium p:first-of-type {
-        line-height: 85%;
+    .outil_nav a {
+        font-size: 14px;
+        gap: 5px;
+        padding: 6px 10px;
     }
 
-    .outil_content_2 .tarif p:first-of-type {
-        line-height: 100%;
-    }
-
-    [class^="outil_content"] ul li {
-        line-height: 150%;
-    }
-
-    .outil_content_2 .offre_ecos {
-        display: flex;
+    .reduction {
+        font-size: 12px;
     }
 
     /*******************/
@@ -3400,6 +3458,12 @@ footer nav .link button {
 
     .flashcards_card:hover~.flashcards_img.image_3 {
         transform: translate(-50%, -55%) rotateZ(-5deg) scale(0.8);
+    }
+
+    /***** tarifs *****/
+    .outil_wrapper {
+        padding: 20px;
+        gap: 20px;
     }
 }
 
@@ -3525,6 +3589,18 @@ footer nav .link button {
     .communaute_content_2 .iphone-3-c {
         width: 90%;
         object-fit: contain;
+    }
+
+    /***** tarifs *****/
+    .outil_nav a {
+        font-size: 12px;
+        gap: 5px;
+        padding: 6px 10px;
+        flex: auto;
+    }
+
+    .reduction {
+        font-size: 10px;
     }
 
     /***** Footer *****/

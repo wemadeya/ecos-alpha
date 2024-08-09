@@ -28,12 +28,64 @@ window.addEventListener("scroll", () => {
     conceptionContent3,
   ];
 
-  allConceptionContent.map((conceptionContent) => {
-    const conceptionContentTop = conceptionContent.getBoundingClientRect().top;
-    if (scrollTop > scrollTop + conceptionContentTop - clientHeight * 0.8) {
-      conceptionContent.classList.add("anim-x");
+  allConceptionContent.forEach((conceptionContent) => {
+    if (conceptionContent) {
+      const conceptionContentTop = conceptionContent.getBoundingClientRect().top;
+      if (scrollTop > conceptionContentTop - clientHeight * 0.8) {
+        conceptionContent.classList.add("anim-x");
+      }
     }
   });
+
+  // parcours_card
+  const parcoursWrapper = document.querySelector(".parcours_wrapper");
+  const parcoursCard1 = document.querySelector(".parcours_card_1");
+  const parcoursCard2 = document.querySelector(".parcours_card_2");
+  const parcoursCard3 = document.querySelector(".parcours_card_3");
+  const parcoursCard4 = document.querySelector(".parcours_card_4");
+  const parcoursTop = parcoursWrapper.getBoundingClientRect().top;
+
+  if (scrollTop > scrollTop + parcoursTop - clientHeight * 0.8) {
+    parcoursWrapper.classList.add("visible");
+    parcoursCard1.classList.add("anim-y");
+    parcoursCard2.classList.add("anim-y");
+    parcoursCard3.classList.add("anim-y");
+    parcoursCard4.classList.add("anim-y");
+  }
+
+  // entrainement_seul
+  const entrainementWrapper = document.getElementById("entrainement_wrapper");
+  const entrainementCard1 = document.querySelector(".entrainement_seul_card_1");
+  const entrainementCard2 = document.querySelector(".entrainement_seul_card_2");
+  const entrainementCard3 = document.querySelector(".entrainement_seul_card_3");
+  const entrainementImg1 = document.querySelector(".entrainement_seul_img_1");
+  const entrainementImg2 = document.querySelector(".entrainement_seul_img_2");
+  const entrainementImg3 = document.querySelector(".entrainement_seul_img_3");
+  const entrainementWrapperTop = entrainementWrapper.getBoundingClientRect().top;
+
+  if (scrollTop > scrollTop + entrainementWrapperTop - clientHeight * 0.8) {
+    entrainementWrapper.classList.add("visible");
+    entrainementCard1.classList.add("anim-y");
+    entrainementCard2.classList.add("anim-y");
+    entrainementCard3.classList.add("anim-y");
+    entrainementImg1.classList.add("anim-iphone-seul");
+    entrainementImg2.classList.add("anim-iphone-seul");
+    entrainementImg3.classList.add("anim-iphone-seul");
+  }
+
+  // flashcards
+  const flashcardsWrapper = document.querySelector(".flashcards_wrapper");
+  const flashcards_title = document.querySelector(".flashcards_content_title");
+  const flashcards_text = document.querySelector(".flashcards_content_text");
+  const flashcards_btn = document.querySelector(".flashcards_content_btn");
+  const flashcardsWrapperTop = flashcardsWrapper.getBoundingClientRect().top;
+
+  if (scrollTop > scrollTop + flashcardsWrapperTop - clientHeight * 0.8) {
+    flashcardsWrapper.classList.add("anim-y-both");
+    flashcards_title.classList.add("anim-y");
+    flashcards_text.classList.add("anim-y");
+    flashcards_btn.classList.add("anim-y");
+  }
 
   // fonctionnement_wrapper_1
   const fonctionnementWrapper1 = document.querySelector(".fonctionnement_wrapper_1");

@@ -209,7 +209,8 @@ footer {
 
 section,
 footer {
-    margin: 200px auto 0;
+    margin: 0 auto 0;
+    padding-top: 200px;
 }
 
 /***** Header *****/
@@ -259,6 +260,10 @@ header .ecos-alpha {
     display: flex;
     gap: 5px;
     align-items: center;
+}
+
+.header_link a {
+    color: #000;
 }
 
 .header_link:hover .header_nav_dropdown {
@@ -1523,6 +1528,12 @@ header .ecos-alpha {
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    opacity: 0;
+    transition: 0.3s ease;
+}
+
+.parcours_wrapper.visible {
+    opacity: 1;
 }
 
 .parcours_card_wrapper {
@@ -1531,11 +1542,27 @@ header .ecos-alpha {
     width: 100%;
 }
 
-.parcours_card {
+[class^="parcours_card"] {
     display: flex;
     gap: 25px;
     padding: 10px;
     width: 100%;
+}
+
+.parcours_card_1.anim-y {
+    animation-delay: 0.3s;
+}
+
+.parcours_card_2.anim-y {
+    animation-delay: 0.6s;
+}
+
+.parcours_card_3.anim-y {
+    animation-delay: 0.9s;
+}
+
+.parcours_card_4.anim-y {
+    animation-delay: 1.2s;
 }
 
 .parcours_img_wrapper {
@@ -1593,12 +1620,32 @@ header .ecos-alpha {
     margin: 0 auto 15px auto;
 }
 
-.entrainement_seul_card {
+[class^="entrainement_seul_card"] {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
     overflow: hidden;
+}
+
+#entrainement_wrapper {
+    opacity: 0;
+}
+
+#entrainement_wrapper.visible {
+    opacity: 1;
+}
+
+.entrainement_seul_card_1.anim-y {
+    animation-delay: 0.3s;
+}
+
+.entrainement_seul_card_2.anim-y {
+    animation-delay: 0.6s;
+}
+
+.entrainement_seul_card_3.anim-y {
+    animation-delay: 0.9s;
 }
 
 .entrainement_seul_text {
@@ -1608,14 +1655,27 @@ header .ecos-alpha {
     padding: 35px;
 }
 
-.entrainement_seul_img {
+[class^="entrainement_seul_img"] {
     width: 95%;
     border-radius: 15px;
     margin: 0 0 0 auto;
-    transform: translateY(10px);
+    opacity: 0;
+    transform: translateY(350px);
 }
 
-.entrainement_seul_img img {
+.entrainement_seul_img_1.anim-iphone-seul {
+    animation-delay: 0.6s;
+}
+
+.entrainement_seul_img_2.anim-iphone-seul {
+    animation-delay: 0.9s;
+}
+
+.entrainement_seul_img_3.anim-iphone-seul {
+    animation-delay: 1.2s;
+}
+
+[class^="entrainement_seul_img"] img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1627,6 +1687,8 @@ header .ecos-alpha {
     display: flex;
     justify-content: space-between;
     padding: 35px 45px;
+    opacity: 0;
+    transform: translateY(50px);
 }
 
 .flashcards_content {
@@ -1636,6 +1698,24 @@ header .ecos-alpha {
     flex-direction: column;
     justify-content: center;
     gap: 20px;
+}
+
+.flashcards_content_text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.flashcards_content_title.anim-y {
+    animation-delay: 0.3s;
+}
+
+.flashcards_content_text.anim-y {
+    animation-delay: 0.6s;
+}
+
+.flashcards_content_btn.anim-y {
+    animation-delay: 0.9s;
 }
 
 .flashcards_img_wrapper {
@@ -2384,6 +2464,17 @@ footer nav .link button {
     }
 }
 
+.anim-iphone-seul {
+    animation: 1.8s cubic-bezier(0.14, .38, .19, .99) anim-iphone-seul both;
+}
+
+@keyframes anim-iphone-seul {
+    100% {
+        opacity: 1;
+        transform: translateY(10px);
+    }
+}
+
 .anim-x {
     animation: 1s cubic-bezier(0.14, .38, .19, .99) anim-x both;
 }
@@ -2668,6 +2759,10 @@ footer nav .link button {
         top: 100%;
         left: 0%;
         height: calc(100dvh - 81px);
+        /**********************************/
+        /* a enlever quand tu vas arriver */
+        /**********************************/
+        pointer-events: none;
     }
 
     .header_nav_wrapper {
@@ -2725,7 +2820,8 @@ footer nav .link button {
 
     section,
     footer {
-        margin: 125px auto 0;
+        margin: 0 auto 0;
+        padding-top: 125px;
     }
 
     #conception {
@@ -2776,7 +2872,7 @@ footer nav .link button {
     }
 
     /***** entrainement seul *****/
-    .entrainement_seul_card {
+    [class^="entrainement_seul_card"] {
         flex-direction: row;
     }
 
@@ -2788,7 +2884,7 @@ footer nav .link button {
         width: 65%;
     }
 
-    .entrainement_seul_img {
+    [class^="entrainement_seul_img"] {
         height: 100%;
         width: 300px;
         margin: auto 0 0 0;
@@ -2959,7 +3055,8 @@ footer nav .link button {
 
     section,
     footer {
-        margin: 75px auto 0;
+        margin: 0 auto 0;
+        padding-top: 75px;
     }
 
     #conception {
@@ -3014,6 +3111,10 @@ footer nav .link button {
     }
 
     .fonctionnement_btn {
+        width: 100%;
+    }
+
+    .flashcards_content_btn {
         width: 100%;
     }
 
@@ -3187,7 +3288,7 @@ footer nav .link button {
         flex-direction: row;
     }
 
-    .parcours_card {
+    [class^="parcours_card"] {
         flex-direction: column;
         gap: 10px
     }
@@ -3203,7 +3304,7 @@ footer nav .link button {
     }
 
     /***** entrainement seul *****/
-    .entrainement_seul_card {
+    [class^="entrainement_seul_card"] {
         flex-direction: column;
     }
 
@@ -3211,11 +3312,11 @@ footer nav .link button {
         width: 100%;
     }
 
-    .entrainement_seul_img {
+    [class^="entrainement_seul_img"] {
         margin: 0 auto;
     }
 
-    .entrainement_seul_img::after {
+    [class^="entrainement_seul_img"]::after {
         content: "";
         position: absolute;
         top: 0;
@@ -3552,7 +3653,7 @@ footer nav .link button {
         padding: 20px;
     }
 
-    .entrainement_seul_img {
+    [class^="entrainement_seul_img"] {
         width: 95%;
         margin: 0 0 0 auto;
     }

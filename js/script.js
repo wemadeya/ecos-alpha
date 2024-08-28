@@ -3,6 +3,7 @@ const { scrollTop, clientHeight } = document.documentElement;
 ///// menu hamburger /////
 
 const menuHamburger = document.querySelector(".menu_hamburger");
+const headerNav = document.querySelector(".header_nav");
 const headerNavWrapper = document.querySelector(".header_nav_wrapper");
 const menuHamburgerLign1 = document.querySelector(".menu_hamburger_lign1");
 const menuHamburgerLign2 = document.querySelector(".menu_hamburger_lign2");
@@ -10,7 +11,20 @@ const menuHamburgerLign3 = document.querySelector(".menu_hamburger_lign3");
 
 
 menuHamburger.addEventListener('click', () => {
+  headerNav.classList.toggle("show");
   headerNavWrapper.classList.toggle("show");
+  /*
+  if(headerNav.classList.contains("show")) {
+    setTimeout(() => {
+      
+    }, 100);
+  }
+  if(!headerNav.classList.contains("show")) {
+    setTimeout(() => {
+      headerNav.style.display="none";
+    }, 350);
+  }
+  */
   menuHamburgerLign1.classList.toggle("anim");
   menuHamburgerLign2.classList.toggle("anim");
   menuHamburgerLign3.classList.toggle("anim");

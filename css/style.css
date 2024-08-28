@@ -2740,7 +2740,7 @@ footer nav .link button {
 
 @media screen and (max-width: 1024px) {
     .header_nav .btn {
-        margin-bottom: 0 0 5% 5%;
+        margin: 0 0 5% 5%;
     }
 
     body {
@@ -2750,7 +2750,9 @@ footer nav .link button {
     .menu_hamburger_wrapper {
         display: block;
     }
-
+  /*  header {
+        overflow: hidden;
+    }*/
     .header_nav {
         display: block;
         width: 100%;
@@ -2758,13 +2760,12 @@ footer nav .link button {
         position: absolute;
         top: 100%;
         left: 0%;
-        height: calc(100dvh - 81px);
-        /**********************************/
-        /* a enlever quand tu vas arriver */
-        /**********************************/
+        height: calc(100dvh - 81px);       
         pointer-events: none;
     }
-
+    .header_nav.show {
+        pointer-events: inherit;
+    }
     .header_nav_wrapper {
         background-color: #fff;
         transform: translate(100%, 0%);
@@ -2792,8 +2793,8 @@ footer nav .link button {
         width: 100%;
     }
 
-    .header_link p {
-        padding: 15px;
+    .tarifs {
+       padding: 0;
     }
 
     .header_link .circle_yellow,

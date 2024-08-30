@@ -1,7 +1,6 @@
 const { scrollTop, clientHeight } = document.documentElement;
 ///////////////////////////
 ///// menu hamburger /////
-
 const menuHamburger = document.querySelector(".menu_hamburger");
 const headerNav = document.querySelector(".header_nav");
 const headerNavWrapper = document.querySelector(".header_nav_wrapper");
@@ -30,7 +29,31 @@ menuHamburger.addEventListener('click', () => {
   menuHamburgerLign3.classList.toggle("anim");
 });
 
+////////////////////
+///// carousel /////
+document.addEventListener('DOMContentLoaded', function () {
+  new Splide('#avis_carousel', {
+      type: 'loop',
+      perPage: 2,
+      perMove: 1,
+      autoplay: true,
+      interval: 3000, 
+      gap    : '20px', 
+      trimSpace: false,
+      pagination: false,
+      breakpoints: {
+          1024: {
+              perPage: 1,
+              focus  : 'center',
+              
 
+          }
+      }
+  }).mount();
+});
+
+////////////////////////
+///// scroll event /////
 window.addEventListener("scroll", () => {
   // conception_content
   const conceptionContent1 = document.querySelector(".conception_content_1");
@@ -558,12 +581,22 @@ function toggleSize(element) {
 
 document.getElementById('flashcards_card').addEventListener('mouseleave', function() {
   var flashcard = document.getElementById('flashcards_mask');
+  var text = document.getElementById('flashcards_btn_text');
   flashcard.style.opacity = 1;
+  text.innerHTML = 'Afficher la réponse';
 });
 
-function removeBlur() {
+function toggleBlur() {
   var flashcard = document.getElementById('flashcards_mask');
-  flashcard.style.opacity = 0;
+  var text = document.getElementById('flashcards_btn_text');
+
+  if (flashcard.style.opacity == 0) {
+      flashcard.style.opacity = 1;
+      text.innerHTML = 'Afficher la réponse';
+  } else {
+      flashcard.style.opacity = 0;
+      text.innerHTML = 'Masquer la réponse';
+  }
 }
 
 //////////////////

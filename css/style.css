@@ -406,6 +406,121 @@ header .ecos-alpha {
     font-size: 36px;
 }
 
+/***** Avis Hero *****/
+.splide {
+    width: 600px;
+    margin-left: -10px;
+}
+
+.splide::before,
+.splide::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.splide::after {
+    right: 0;
+    background: linear-gradient(to right,
+            transparent 0%,
+            rgba(247, 251, 255, .6) 10%,
+            rgba(247, 251, 255, .9) 40%,
+            #F7FBFF 80%);
+}
+
+.splide__track {
+    padding: 10px;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.splide__list {
+    align-items: stretch;
+}
+
+.splide__slide {
+    min-width: 350px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+#avis_carousel .splide__arrow {
+    background-color: #EBEFF4;
+    border: none;
+    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+}
+
+#avis_carousel .splide__arrow--prev {
+    left: -50px;
+}
+
+#avis_carousel .splide__arrow--next {
+    right: -50px;
+}
+
+#avis_carousel .splide__arrow:hover {
+    cursor: pointer;
+}
+
+.carousel_header_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.carousel_header {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 122, 255, 0.15);
+    color: #007AFF;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.carousel_title_wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel_title_wrapper p:last-child {
+    font-size: 12px;
+    color: #A0AEBE;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.rating {
+    color: #ffcc00;
+    font-size: 12px;
+}
+
+.comment {
+    font-size: 12px;
+    color: #333;
+}
+
 /***** Entrainement *****/
 .entrainement_wrapper {
     display: flex;
@@ -423,7 +538,8 @@ header .ecos-alpha {
 
 .entrainement_text,
 .entrainement_title,
-.entrainement_btn {
+.entrainement_btn,
+#avis_carousel {
     animation: 1s cubic-bezier(0.14, .38, .19, .99) anim-y both;
 }
 
@@ -445,6 +561,10 @@ header .ecos-alpha {
     display: flex;
     gap: 10px;
     animation-delay: 0.9s;
+}
+
+#avis_carousel {
+    animation-delay: 1.2s;
 }
 
 /* Entrainement_content_2 */
@@ -1441,6 +1561,20 @@ header .ecos-alpha {
     transition: 0.3s ease;
 }
 
+.modal_download {
+    padding: 50px 75px;
+}
+
+.download_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.download_wrapper a {
+    font-size: 16px;
+}
+
 .popup_correction,
 .popup_notation {
     width: 60%;
@@ -1494,7 +1628,7 @@ header .ecos-alpha {
     gap: 50px;
 }
 
-.modal_download_content div {
+.modal_download_content a {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -1504,8 +1638,10 @@ header .ecos-alpha {
 }
 
 .download_mobile {
-    height: 350px;
+    height: 180px;
     object-fit: contain;
+    border-radius: 5px;
+    box-shadow: 0px 0px 25px 0px rgba(0, 76, 158, 0.20);
 }
 
 .modal_close,
@@ -2583,6 +2719,15 @@ footer nav .link button {
         width: 90%;
     }
 
+    /***** Avis hero *****/
+    #avis_carousel .splide__arrow--prev {
+        left: -40px;
+    }
+
+    #avis_carousel .splide__arrow--next {
+        right: -40px;
+    }
+
     /*****  entrainement *****/
     .entrainement_content_2,
     .entrainement_content_2 .ellipse-blue {
@@ -2618,6 +2763,15 @@ footer nav .link button {
 
     .text_xs {
         font-size: 16px;
+    }
+
+    /***** Avis Hero *****/
+    .splide {
+        width: 500px;
+    }
+
+    .splide__slide {
+        min-width: 300px;
     }
 
     /***** fonctionnement *****/
@@ -2730,6 +2884,16 @@ footer nav .link button {
         align-items: flex-start;
         width: 110px;
     }
+
+    #avis_carousel .splide__arrow--prev {
+        top: 110%;
+        left: 10px;
+    }
+
+    #avis_carousel .splide__arrow--next {
+        top: 110%;
+        left: 50px;
+    }
 }
 
 @media screen and (min-width: 1025px) {
@@ -2750,7 +2914,8 @@ footer nav .link button {
     .menu_hamburger_wrapper {
         display: block;
     }
-  /*  header {
+
+    /*  header {
         overflow: hidden;
     }*/
     .header_nav {
@@ -2760,12 +2925,14 @@ footer nav .link button {
         position: absolute;
         top: 100%;
         left: 0%;
-        height: calc(100dvh - 81px);       
+        height: calc(100dvh - 81px);
         pointer-events: none;
     }
+
     .header_nav.show {
         pointer-events: inherit;
     }
+
     .header_nav_wrapper {
         background-color: #fff;
         transform: translate(100%, 0%);
@@ -2794,7 +2961,7 @@ footer nav .link button {
     }
 
     .tarifs {
-       padding: 0;
+        padding: 0;
     }
 
     .header_link .circle_yellow,
@@ -2825,6 +2992,36 @@ footer nav .link button {
         padding-top: 125px;
     }
 
+    /***** Avis Hero *****/
+    .splide {
+        width: 400px;
+    }
+
+    .splide::before,
+    .splide::after {
+        width: 0px;
+    }
+
+    .splide__list {
+        align-items: stretch;
+    }
+
+    .splide__slide {
+        min-width: 380px;
+        padding: 15px;
+    }
+
+    .avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .title {
+        font-size: 12px;
+    }
+
+    /***** conception *****/
     #conception {
         padding-top: 125px;
         margin: 0 auto;
@@ -2940,10 +3137,6 @@ footer nav .link button {
         }
     }
 
-    .modal_download {
-        width: 90%;
-    }
-
     .popup {
         padding: 20px;
         gap: 20px;
@@ -3038,11 +3231,15 @@ footer nav .link button {
 
     .modal_download_content {
         gap: 25px;
-        flex-direction: column;
+    }
+
+    .modal_download {
+        padding: 25px;
+        gap: 25px;
     }
 
     .download_mobile {
-        display: none;
+        height: 120px;
     }
 
     /***** main *****/
@@ -3123,6 +3320,46 @@ footer nav .link button {
     .communaute_btn,
     .outil_btn {
         width: 100%;
+    }
+
+    /***** Avis Hero *****/
+    .splide {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .splide::before,
+    .splide::after {
+        width: 0px;
+    }
+
+    .splide__list {
+        align-items: stretch;
+    }
+
+    .splide__slide {
+        min-width: 100%;
+        padding: 15px;
+    }
+
+    #avis_carousel .splide__arrow--prev {
+        top: 115%;
+        left: 10px;
+    }
+
+    #avis_carousel .splide__arrow--next {
+        top: 115%;
+        left: 50px;
+    }
+
+    .avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .title {
+        font-size: 12px;
     }
 
     /***** entrainement *****/
@@ -3741,6 +3978,30 @@ footer nav .link button {
         width: 90%;
         left: 50%;
         transform: translateX(-50%);
+    }
+
+    /***** Modal download *****/
+    .modal_download_content {
+        flex-direction: column;
+        width: 100%;
+
+    }
+
+    .modal_download {
+        width: 90%;
+    }
+
+    .download_mobile {
+        display: none;
+    }
+
+    .modal_download_content a {
+        width: 100%;
+    }
+
+    .modal_close {
+        top: 15px;
+        right: 15px;
     }
 }
 

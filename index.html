@@ -8,6 +8,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css">
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNDKED65MC"></script>
         <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-NNDKED65MC'); </script>
@@ -97,9 +98,60 @@
                             <a class="btn btn_blue">Essayer gratuitement<img
                                     src="img/icons/icon_arrow_top-right.svg"
                                     alt="icon d'une flèche pointant en haut à droite" /></a>
-                            <a class="btn btn_transparent" href="#conception">Simulateur<img class="arrow-right"
+                            <a class="btn btn_transparent" href="#conception">En savoir plus<img class="arrow-right"
                                 src="img/icons/icon_arrow-right.svg" alt="icon d'une flèche pointant à droite" />
                             </a>
+                        </div>
+                        <div id="avis_carousel" class="splide">
+                            <div class="splide__track">
+                                <ul class="splide__list">
+                                    <li class="splide__slide">
+                                        <div class="carousel_header_wrapper">
+                                            <div class="carousel_header">
+                                                <div class="avatar">MC</div>
+                                                <div class="carousel_title_wrapper">
+                                                    <p>Faculté Lyon Sud</p>
+                                                    <p>Top 400 ECOS 2024</p>
+                                                </div>
+                                            </div>
+                                            <div class="rating">★★★★★</div>
+                                        </div>
+                                        <p class="comment">
+                                            J'ai utilisé ECOS Alpha pendant toutes mes révisions et elle m'a permis de gagner 1000 places. Les corrections sont complètes avec des cas de qualité et pertinents au vu de ce qui est tombable aux ECOS. En plus, l'application est très ergonomique !
+                                        </p>
+                                    </li>
+                                    <li class="splide__slide">
+                                        <div class="carousel_header_wrapper">
+                                            <div class="carousel_header">
+                                                <div class="avatar">AH</div>
+                                                <div class="carousel_title_wrapper">
+                                                    <p>Faculté Lyon Nord</p>
+                                                    <p>Top 400 ECOS 2024</p>
+                                                </div>
+                                            </div>
+                                            <div class="rating">★★★★★</div>
+                                        </div>
+                                        <p class="comment">
+                                            Les cas pratiques sont très proches de ceux que j'ai rencontrés lors des ECOS, et les explications sont claires et précises. Grâce à cette plateforme, j'ai gagné 800 places dans le classement. 
+                                        </p>
+                                    </li>
+                                    <li class="splide__slide">
+                                        <div class="carousel_header_wrapper">
+                                            <div class="carousel_header">
+                                                <div class="avatar">AH</div>
+                                                <div class="carousel_title_wrapper">
+                                                    <p>Faculté Lyon Nord</p>
+                                                    <p>Top 400 ECOS 2024</p>
+                                                </div>
+                                            </div>
+                                            <div class="rating">★★★★★</div>
+                                        </div>
+                                        <p class="comment">
+                                            ECOS Alpha a été un véritable soutien pendant mes révisions. J'ai adoré la diversité des cas et la possibilité de revoir mes erreurs en détail. 
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="entrainement_content_2">
@@ -505,8 +557,8 @@
                                         <p class="text_grey_xs">Réponses</p>
                                         <div class="flashcards_card_content">
                                             <div class="flashcards_mask" id="flashcards_mask"></div>
-                                            <div class="flashcards_btn" id="flashcards_btn" onclick="removeBlur()">
-                                                <p>Afficher la réponse</p>
+                                            <div class="flashcards_btn" id="flashcards_btn" onclick="toggleBlur()">
+                                                <p id="flashcards_btn_text">Afficher la réponse</p>
                                                 <img src="img/icons/icon_oeil.svg" alt="icone oeil">
                                             </div>
                                             <ul>
@@ -674,14 +726,20 @@
                 <div class="modal_download">
                     <h3>Choisis la plateforme</h3>
                     <div class="modal_download_content">
-                        <div>
-                            <img class="download_mobile" src="img/mobile_ios.webp" alt="mobile ios" />
-                            <a href="https://apps.apple.com/fr/app/ecos-alpha/id6477926660?l=en-GB" class="btn btn_black">Télécharger pour IOS<img src="img/icons/icon_ios.svg"></a>
-                        </div>
-                        <div>
-                            <img class="download_mobile" src="img/mobile_android.webp" alt="mobile android" />
-                            <a href="https://play.google.com/store/apps/details?id=com.ecosalpha.app&pcampaignid=web_share" class="btn btn_black">Télécharger pour Android<img src="img/icons/icon_android.svg"></a>
-                        </div>
+                        <a href="https://apps.apple.com/fr/app/ecos-alpha/id6477926660?l=en-GB" class="download_wrapper">
+                            <img class="download_mobile" src="img/qr_apple.png" alt="mobile ios" />
+                            <p>
+                                IOS
+                                <img src="img/icons/icon_ios.svg" alt="icone ios">
+                            </p>
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.ecosalpha.app&pcampaignid=web_share" class="download_wrapper">
+                            <img class="download_mobile" src="img/qr_android.png" alt="mobile android" />
+                            <p>
+                                Android
+                                <img src="img/icons/icon_android.svg" alt="icone android">
+                            </p>
+                        </a>
                     </div>
                     <div class="modal_close"><img src="img/icons/icon_close.svg" alt="icon d'une croix" /></div>           
                 </div>
@@ -1011,5 +1069,6 @@
         <!-- End Google Tag Manager (noscript) -->
         <script src="//embed.typeform.com/next/embed.js"></script>
         <script src="js/script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"></script>
     </body>
 </html>

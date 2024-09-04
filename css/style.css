@@ -406,9 +406,149 @@ header .ecos-alpha {
     font-size: 36px;
 }
 
-/***** Avis Hero *****/
+/***** Entrainement *****/
+.entrainement_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Entrainement_content_1 */
+.entrainement_content_1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 35px;
+    width: 50%;
+}
+
+.entrainement_title span {
+    text-align: left;
+}
+
+/* Entrainement_content_2 */
+.entrainement_content_2 {
+    position: relative;
+    height: 480px;
+    width: 480px;
+}
+
+.ellipse-blue,
+.iphone-1,
+.iphone-2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+    transform: translate(-50%, -50%);
+}
+
+.iphone-1 {
+    z-index: 2;
+    animation: 1.8s cubic-bezier(0.14, .38, .19, .99) 0.5s anim-iphone-1 both;
+    transform-origin: center;
+    transform: translate(-62.5%, -50%) rotate(0deg) scale(0.8);
+    height: 412px;
+}
+
+.iphone-2 {
+    z-index: 1;
+    animation: 1.8s cubic-bezier(0.14, .38, .19, .99) 0.5s anim-iphone-2 both;
+    transform-origin: center;
+    transform: translate(-37.5%, -50%) rotate(0deg) scale(0.8);
+    height: 412px;
+}
+
+.ellipse-blue {
+    z-index: 0;
+    animation: 1.8s cubic-bezier(0.14, .38, .19, .99) 0.5s anim-ellipse-blue both;
+    background: linear-gradient(88deg, #0A68CF 3.16%, #469EFF 97.03%);
+    opacity: 0.4;
+    height: 480px;
+    width: 480px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    top: 0%;
+    left: 0%;
+}
+
+/* Conception */
+.conception_wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+}
+
+[class^="conception_content"] {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    border-radius: 15px;
+    font-size: 13px;
+    padding: 25px;
+    opacity: 0;
+    background-color: #F0F4F8;
+}
+
+[class^="conception_content"] p {
+    text-align: center;
+}
+
+[class^="conception_content"] img {
+    height: 30px;
+}
+
+/* Anim entrainement */
+.entrainement_title,
+.entrainement_btn,
+#entrainement_text {
+    animation: 1s cubic-bezier(0.14, .38, .19, .99) anim-y both;
+}
+
+.entrainement_title {
+    animation-delay: 0.3s;
+}
+
+#entrainement_text {
+    animation-delay: 0.6s;
+}
+
+.entrainement_btn {
+    display: flex;
+    gap: 10px;
+    animation-delay: 0.9s;
+}
+
+.conception_content_1.anim-x {
+    animation-delay: 1.2s;
+}
+
+.conception_content_2.anim-x {
+    animation-delay: 1.5s;
+}
+
+.conception_content_3.anim-x {
+    animation-delay: 1.8s;
+}
+
+/***** Avis *****/
+#avis {
+    padding-top: 200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 75px;
+    align-items: center;
+}
+
+#avis h2 {
+    font-size: 26px;
+    width: 30%;
+}
+
 .splide {
-    width: 600px;
+    width: 70%;
     margin-left: -10px;
 }
 
@@ -519,144 +659,6 @@ header .ecos-alpha {
 .comment {
     font-size: 12px;
     color: #333;
-}
-
-/***** Entrainement *****/
-.entrainement_wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Entrainement_content_1 */
-.entrainement_content_1 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 35px;
-}
-
-.entrainement_text,
-.entrainement_title,
-.entrainement_btn,
-#avis_carousel {
-    animation: 1s cubic-bezier(0.14, .38, .19, .99) anim-y both;
-}
-
-.entrainement_text {
-    display: flex;
-    gap: 8px;
-    animation-delay: 0.3s;
-}
-
-.entrainement_title {
-    animation-delay: 0.6s;
-}
-
-.entrainement_title span {
-    text-align: left;
-}
-
-.entrainement_btn {
-    display: flex;
-    gap: 10px;
-    animation-delay: 0.9s;
-}
-
-#avis_carousel {
-    animation-delay: 1.2s;
-}
-
-/* Entrainement_content_2 */
-.entrainement_content_2 {
-    position: relative;
-    height: 480px;
-    width: 480px;
-}
-
-.ellipse-blue,
-.iphone-1,
-.iphone-2 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform-origin: center;
-    transform: translate(-50%, -50%);
-}
-
-.iphone-1 {
-    z-index: 2;
-    animation: 1.8s cubic-bezier(0.14, .38, .19, .99) 0.5s anim-iphone-1 both;
-    transform-origin: center;
-    transform: translate(-62.5%, -50%) rotate(0deg) scale(0.8);
-    height: 412px;
-}
-
-.iphone-2 {
-    z-index: 1;
-    animation: 1.8s cubic-bezier(0.14, .38, .19, .99) 0.5s anim-iphone-2 both;
-    transform-origin: center;
-    transform: translate(-37.5%, -50%) rotate(0deg) scale(0.8);
-    height: 412px;
-}
-
-.ellipse-blue {
-    z-index: 0;
-    animation: 1.8s cubic-bezier(0.14, .38, .19, .99) 0.5s anim-ellipse-blue both;
-    background: linear-gradient(88deg, #0A68CF 3.16%, #469EFF 97.03%);
-    opacity: 0.4;
-    height: 480px;
-    width: 480px;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) rotate(0deg);
-    top: 0%;
-    left: 0%;
-}
-
-/***** Conception *****/
-#conception {
-    padding-top: 200px;
-    margin: 0 auto;
-}
-
-.conception_wrapper {
-    display: flex;
-    justify-content: space-between;
-    gap: 50px;
-}
-
-[class^="conception_content"] {
-    display: flex;
-    flex-direction: column;
-    width: 33%;
-    gap: 15px;
-    border-radius: 15px;
-    font-size: 20px;
-    font-weight: 500;
-    padding: 25px;
-    opacity: 0;
-    transform: translateX(-50px);
-    background-color: #F0F4F8;
-}
-
-.conception_content_1.anim-x {
-    animation-delay: 0.3s;
-}
-
-.conception_content_2.anim-x {
-    animation-delay: 0.6s;
-}
-
-.conception_content_3.anim-x {
-    animation-delay: 0.9s;
-}
-
-[class^="conception_content"] p {
-    text-align: center;
-}
-
-[class^="conception_content"] img {
-    height: 30px;
 }
 
 /***** Fonctionnement *****/
@@ -2842,10 +2844,6 @@ footer nav .link button {
         padding: 0;
     }
 
-    .conception_wrapper p {
-        font-size: 16px;
-    }
-
     /***** correction_notation *****/
     .correction_notation {
         gap: 75px;
@@ -3205,11 +3203,6 @@ footer nav .link button {
     .entrainement_content_2 .iphone-1,
     .entrainement_content_2 .iphone-2 {
         height: 198px;
-    }
-
-    /***** conception *****/
-    .conception_wrapper p {
-        font-size: 14px;
     }
 }
 
@@ -3572,10 +3565,6 @@ footer nav .link button {
     .conception_wrapper {
         flex-direction: column;
         padding: 0px;
-    }
-
-    .conception_wrapper p {
-        font-size: 18px;
     }
 
     [class^="conception_content"] {

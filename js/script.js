@@ -55,25 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
 ////////////////////////
 ///// scroll event /////
 window.addEventListener("scroll", () => {
-  // conception_content
-  const conceptionContent1 = document.querySelector(".conception_content_1");
-  const conceptionContent2 = document.querySelector(".conception_content_2");
-  const conceptionContent3 = document.querySelector(".conception_content_3");
-  const allConceptionContent = [
-    conceptionContent1,
-    conceptionContent2,
-    conceptionContent3,
-  ];
-
-  allConceptionContent.forEach((conceptionContent) => {
-    if (conceptionContent) {
-      const conceptionContentTop = conceptionContent.getBoundingClientRect().top;
-      if (scrollTop > conceptionContentTop - clientHeight * 0.8) {
-        conceptionContent.classList.add("anim-x");
-      }
-    }
-  });
-
   // parcours_card
   const parcoursWrapper = document.querySelector(".parcours_wrapper");
   const parcoursCard1 = document.querySelector(".parcours_card_1");
@@ -231,6 +212,26 @@ window.addEventListener("scroll", () => {
 
 ///////////////////////////////////////////////////////////////
 ///// Animation: Il vous reste des questions - accordeon /////
+
+///////////////////////////////
+///// conception_content /////
+const conceptionContent1 = document.querySelector(".conception_content_1");
+const conceptionContent2 = document.querySelector(".conception_content_2");
+const conceptionContent3 = document.querySelector(".conception_content_3");
+const allConceptionContent = [
+  conceptionContent1,
+  conceptionContent2,
+  conceptionContent3,
+];
+
+allConceptionContent.forEach((conceptionContent) => {
+  if (conceptionContent) {
+    const conceptionContentTop = conceptionContent.getBoundingClientRect().top;
+    if (scrollTop > conceptionContentTop - clientHeight * 0.8) {
+      conceptionContent.classList.add("anim-x");
+    }
+  }
+});
 
 ///////////////////////////////
 ///// accordeon checkbox /////

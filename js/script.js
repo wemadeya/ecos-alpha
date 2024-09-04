@@ -30,6 +30,60 @@ menuHamburger.addEventListener('click', () => {
 });
 
 ////////////////////
+///// Tuto /////
+const allTitle = document.querySelectorAll(".title");
+const allDescription = document.querySelectorAll(".description");
+
+let currentIndex = 0;
+let interval;
+
+// Fonction pour activer un titre et sa description correspondante
+function activateTitle(index) {
+  // Supprimer la classe 'active' de tous les titres et timer_bars
+  allTitle.forEach(title => {
+    title.classList.remove("active");
+    const timerBar = title.querySelector(".timer_bar");
+    if (timerBar) {
+      timerBar.classList.remove("active");
+    }
+  });
+
+  // Ajouter la classe 'active' au titre et au timer_bar du nouvel index
+  allTitle[index].classList.add("active");
+  const timerBar = allTitle[index].querySelector(".timer_bar");
+  if (timerBar) {
+    timerBar.classList.add("active");
+  }
+
+  // Gérer l'affichage des descriptions correspondantes
+  allDescription.forEach(description => description.classList.remove("active"));
+  allDescription[index].classList.add("active");
+}
+
+// Fonction pour passer à l'élément suivant
+function nextTitle() {
+  currentIndex = (currentIndex + 1) % allTitle.length; // Pour boucler à partir du début
+  activateTitle(currentIndex);
+}
+
+// Ajouter l'événement de clic à chaque titre
+allTitle.forEach((title, index) => {
+  title.addEventListener('click', () => {
+    clearInterval(interval); // Arrêter le cycle automatique en cas de clic manuel
+    currentIndex = index; // Mettre à jour l'index courant
+    activateTitle(currentIndex);
+    interval = setInterval(nextTitle, 5000); // Redémarrer le cycle automatique
+  });
+});
+
+// Initialiser la première activation
+activateTitle(currentIndex);
+
+// Démarrer le cycle automatique
+interval = setInterval(nextTitle, 5000);
+
+
+////////////////////
 ///// carousel /////
 document.addEventListener('DOMContentLoaded', function () {
   new Splide('#avis_carousel', {
@@ -629,8 +683,7 @@ function changeCard() {
       navBackground.style.width = `${linkWidth}px`;
       navBackground.style.transform = `translateX(${linkLeftOffset}px)`;
 
-      document
-        .querySelector(".outil_nav a.active")
+      document.querySelector(".outil_nav a.active")
         ?.classList.remove("active");
       this.classList.add("active");
 

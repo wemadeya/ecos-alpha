@@ -113,6 +113,82 @@ handleResize();
 window.addEventListener('resize', handleResize);
 
 
+const accordionItems = document.querySelectorAll(".accordion-item");
+const accordionItemTitles = document.querySelectorAll(".accordion_item_title");
+let currentAccordionIndex = 0;
+//let interval; // Pour stocker l'intervalle global
+
+// Fonction pour activer un élément d'accordéon et son texte
+function activateAccordionItem(index) {
+  // Supprimer la classe 'active' de tous les items, timer_bars et fermer les textes
+  accordionItems.forEach(item => {
+    const title = item.querySelector(".accordion_item_title");
+    const text = item.querySelector(".accordion-item-text");
+    const timerBar = item.querySelector(".timer_bar");
+
+    title.classList.remove("active");
+    text.style.maxHeight = 0; // Fermer le texte
+    if (timerBar) {
+      timerBar.classList.remove("active"); // Désactiver le timer_bar
+    }
+  });
+
+  // Ajouter la classe 'active' au nouvel item, ouvrir le texte et activer le timer_bar
+  const currentItem = accordionItems[index];
+  const currentTitle = currentItem.querySelector(".accordion_item_title");
+  const currentText = currentItem.querySelector(".accordion-item-text");
+  const currentTimerBar = currentItem.querySelector(".timer_bar");
+
+  currentTitle.classList.add("active");
+  currentText.style.maxHeight = currentText.scrollHeight + "px"; // Ouvrir le texte
+  if (currentTimerBar) {
+    currentTimerBar.classList.add("active"); // Activer le timer_bar
+  }
+}
+
+// Fonction pour passer à l'élément suivant avec le timer
+function nextAccordionItem() {
+  currentAccordionIndex = (currentAccordionIndex + 1) % accordionItems.length; // Boucle au début
+  activateAccordionItem(currentAccordionIndex);
+}
+
+// Ajouter l'événement de clic à chaque titre pour ouvrir/fermer manuellement
+accordionItemTitles.forEach((accordionItemTitle, index) => {
+  accordionItemTitle.addEventListener("click", () => {
+    clearInterval(interval); // Arrêter le cycle automatique en cas de clic manuel
+    currentAccordionIndex = index; // Mettre à jour l'index courant
+    activateAccordionItem(currentAccordionIndex); // Activer l'élément cliqué
+    interval = setInterval(nextAccordionItem, 5000); // Redémarrer le cycle automatique après clic
+  });
+});
+
+// Initialiser la première activation avec timer_bar
+activateAccordionItem(currentAccordionIndex);
+
+// Démarrer le cycle automatique avec un intervalle
+interval = setInterval(nextAccordionItem, 5000);
+
+
+
+///////////////////////////
+///// menu hamburger /////
+/*
+const hamburger = document.querySelector(".hamburger");
+const headerNavMobile = document.querySelector(".header_nav_mobile");
+const hamburgerLign1 = document.querySelector(".hamburger_lign1");
+const hamburgerLign2 = document.querySelector(".hamburger_lign2");
+const hamburgerLign3 = document.querySelector(".hamburger_lign3");
+
+hamburger.addEventListener('click', () => {
+  headerNavMobile.classList.toggle("show");
+  hamburgerLign1.classList.toggle("anim");
+  hamburgerLign2.classList.toggle("anim");
+  hamburgerLign3.classList.toggle("anim");
+});
+
+*/
+
+
 
 ////////////////////
 ///// carousel /////
@@ -142,16 +218,29 @@ document.addEventListener('DOMContentLoaded', function () {
 window.addEventListener("scroll", () => {
 
 
-  allDescription.forEach((description) => {
-    if (description) {
-      const descriptionTop = description.getBoundingClientRect().top;
-      if (scrollTop > descriptionTop - clientHeight * 0.8) {
-        description.classList.add("anim-y-both");
+
+const tuto = document.querySelector(".tuto");
+const tutoTop = tuto.getBoundingClientRect().top;
+
+if (scrollTop > scrollTop + tutoTop - clientHeight * 0.8) {
+  tuto.classList.add("anim-y-both");
+}
+
+
+
+const allAccordionItem = document.querySelectorAll(".accordion-item");
+
+allAccordionItem.forEach((accordionItem) => {
+    if (accordionItem) {
+      const accordionItemTop = accordionItem.getBoundingClientRect().top;
+      if (scrollTop > accordionItemTop - clientHeight * 0.8) {
+        accordionItem.classList.add("anim-y-both");
       }
     }
   });
 
-  // parcours_card
+
+  /* parcours_card */
   const parcoursWrapper = document.querySelector(".parcours_wrapper");
   const parcoursCard1 = document.querySelector(".parcours_card_1");
   const parcoursCard2 = document.querySelector(".parcours_card_2");

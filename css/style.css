@@ -567,11 +567,27 @@ header .ecos-alpha {
     border: 1px solid var(--Blue, #007AFF);
     opacity: 1;
 }
-.timer_bar {
-    height: 5px;
+.tuto .title.active .timer_bar_grey {
+    width: 100%;
+}
+.timer_bar_wrapper {
+    position: relative;
+}
+.timer_bar, .timer_bar_grey {
+    position: absolute;
+    background-color: #D6DEE8;
     width: 0%;
-    background-color: #007AFF;
+    height: 5px;
+    top: 50%;
+    left: 0%;
+    z-index: 0;
+    transform: translate(0%, -50%);
     border-radius: 50px;
+}
+
+.timer_bar {
+    background-color: #007AFF;
+    z-index: 1;
 }
 
 .timer_bar.active {
@@ -606,6 +622,8 @@ header .ecos-alpha {
     opacity: 0;
     transform: translateY(50px);
 }
+
+
 .tuto .description p {
     color: #7B9EC4;
     font-size: 20px;
@@ -3335,11 +3353,12 @@ footer nav .link button {
             box-shadow: 0px -10px 25px 0px rgba(0, 76, 158, 0.06);
             font-size: 18px;
             padding: 30px;
-            transform: translateY(0);
-        }
-        .tuto .description.active {
+            transform: translateY(50px);
+            opacity: 0;
             animation: none;
-            opacity: 1;
+        }
+        .tuto .description.anim-y-both {
+            animation: 1s cubic-bezier(0.14, .38, .19, .99) anim-y-both both;
         }
 
     /***** @keyframes *****/

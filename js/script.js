@@ -31,17 +31,62 @@ menuHamburger.addEventListener('click', () => {
 
 ////////////////////
 ///// Tuto /////
+const allTitle = document.querySelectorAll(".title");
+const allDescription = document.querySelectorAll(".description");
+let interval; // Pour stocker l'intervalle global
 
-if (window.innerWidth >= 768) {
-  const allTitle = document.querySelectorAll(".title");
-  const allDescription = document.querySelectorAll(".description");
-  
-  let currentIndex = 0;
-  let interval;
-  
-  // Fonction pour activer un titre et sa description correspondante
-  function activateTitle(index) {
-    // Supprimer la classe 'active' de tous les titres et timer_bars
+// Fonction principale pour gérer les titres et descriptions
+function handleResize() {
+  if (window.innerWidth >= 768) {
+    let currentIndex = 0;
+
+    // Fonction pour activer un titre et sa description correspondante
+    function activateTitle(index) {
+      // Supprimer la classe 'active' de tous les titres et timer_bars
+      allTitle.forEach(title => {
+        title.classList.remove("active");
+        const timerBar = title.querySelector(".timer_bar");
+        if (timerBar) {
+          timerBar.classList.remove("active");
+        }
+      });
+
+      // Ajouter la classe 'active' au titre et au timer_bar du nouvel index
+      allTitle[index].classList.add("active");
+      const timerBar = allTitle[index].querySelector(".timer_bar");
+      if (timerBar) {
+        timerBar.classList.add("active");
+      }
+
+      // Gérer l'affichage des descriptions correspondantes
+      allDescription.forEach(description => description.classList.remove("active"));
+      allDescription[index].classList.add("active");
+    }
+
+    // Fonction pour passer à l'élément suivant
+    function nextTitle() {
+      currentIndex = (currentIndex + 1) % allTitle.length; // Pour boucler à partir du début
+      activateTitle(currentIndex);
+    }
+
+    // Ajouter l'événement de clic à chaque titre
+    allTitle.forEach((title, index) => {
+      title.addEventListener('click', () => {
+        clearInterval(interval); // Arrêter le cycle automatique en cas de clic manuel
+        currentIndex = index; // Mettre à jour l'index courant
+        activateTitle(currentIndex);
+        interval = setInterval(nextTitle, 5000); // Redémarrer le cycle automatique
+      });
+    });
+
+    // Initialiser la première activation
+    activateTitle(currentIndex);
+
+    // Démarrer le cycle automatique
+    interval = setInterval(nextTitle, 5000);
+  } 
+  else {
+    // Si la largeur est inférieure à 768px, retirer toutes les classes 'active'
     allTitle.forEach(title => {
       title.classList.remove("active");
       const timerBar = title.querySelector(".timer_bar");
@@ -49,42 +94,23 @@ if (window.innerWidth >= 768) {
         timerBar.classList.remove("active");
       }
     });
-  
-    // Ajouter la classe 'active' au titre et au timer_bar du nouvel index
-    allTitle[index].classList.add("active");
-    const timerBar = allTitle[index].querySelector(".timer_bar");
-    if (timerBar) {
-      timerBar.classList.add("active");
-    }
-  
-    // Gérer l'affichage des descriptions correspondantes
     allDescription.forEach(description => description.classList.remove("active"));
-    allDescription[index].classList.add("active");
+
+    // Arrêter le cycle si nécessaire
+    if (interval) {
+      clearInterval(interval);
+      interval = null;
+    }
+
   }
-  
-  // Fonction pour passer à l'élément suivant
-  function nextTitle() {
-    currentIndex = (currentIndex + 1) % allTitle.length; // Pour boucler à partir du début
-    activateTitle(currentIndex);
-  }
-  
-  // Ajouter l'événement de clic à chaque titre
-  allTitle.forEach((title, index) => {
-    title.addEventListener('click', () => {
-      clearInterval(interval); // Arrêter le cycle automatique en cas de clic manuel
-      currentIndex = index; // Mettre à jour l'index courant
-      activateTitle(currentIndex);
-      interval = setInterval(nextTitle, 5000); // Redémarrer le cycle automatique
-    });
-  });
-  
-  // Initialiser la première activation
-  activateTitle(currentIndex);
-  
-  // Démarrer le cycle automatique
-  interval = setInterval(nextTitle, 5000);
-  
+
 }
+
+// Exécuter la fonction au chargement initial
+handleResize();
+
+// Réécouter sur le redimensionnement de la fenêtre
+window.addEventListener('resize', handleResize);
 
 
 
@@ -116,7 +142,14 @@ document.addEventListener('DOMContentLoaded', function () {
 window.addEventListener("scroll", () => {
 
 
-
+  allDescription.forEach((description) => {
+    if (description) {
+      const descriptionTop = description.getBoundingClientRect().top;
+      if (scrollTop > descriptionTop - clientHeight * 0.8) {
+        description.classList.add("anim-y-both");
+      }
+    }
+  });
 
   // parcours_card
   const parcoursWrapper = document.querySelector(".parcours_wrapper");

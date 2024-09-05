@@ -138,11 +138,13 @@ function activateAccordionItem(index) {
   const currentTitle = currentItem.querySelector(".accordion_item_title");
   const currentText = currentItem.querySelector(".accordion-item-text");
   const currentTimerBar = currentItem.querySelector(".timer_bar");
+  const currentTimerBarGrey = currentItem.querySelector(".timer_bar_grey");
 
   currentTitle.classList.add("active");
   currentText.style.maxHeight = currentText.scrollHeight + "px"; // Ouvrir le texte
   if (currentTimerBar) {
     currentTimerBar.classList.add("active"); // Activer le timer_bar
+    currentTimerBarGrey.classList.add("active");
   }
 }
 
@@ -159,6 +161,7 @@ accordionItemTitles.forEach((accordionItemTitle, index) => {
     currentAccordionIndex = index; // Mettre à jour l'index courant
     activateAccordionItem(currentAccordionIndex); // Activer l'élément cliqué
     interval = setInterval(nextAccordionItem, 5000); // Redémarrer le cycle automatique après clic
+
   });
 });
 
@@ -233,7 +236,7 @@ const allAccordionItem = document.querySelectorAll(".accordion-item");
 allAccordionItem.forEach((accordionItem) => {
     if (accordionItem) {
       const accordionItemTop = accordionItem.getBoundingClientRect().top;
-      if (scrollTop > accordionItemTop - clientHeight * 0.8) {
+      if (scrollTop > accordionItemTop - clientHeight * 1) {
         accordionItem.classList.add("anim-y-both");
       }
     }

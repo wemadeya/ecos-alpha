@@ -550,9 +550,11 @@ document.querySelectorAll('.notation_range_wrapper input[type="range"]').forEach
 ///////////////////////////////////////
 ///// Evénements sur btnDownload /////
 const allBtnDownload = document.querySelectorAll(".btn_blue");
+const allOutilBtn = document.querySelectorAll(".outil_btn");
+const parcoursBtnDownload = document.querySelectorAll(".parcours_phase_btn");
 const modalDownloadWrapper = document.querySelector(".modal_download_wrapper");
 const modal = document.querySelector(".modal_download");
-const body =document.querySelector("body");
+const body = document.querySelector("body");
 
 allBtnDownload.forEach((btnDownload) => {
   btnDownload.addEventListener("click", () => {
@@ -560,10 +562,17 @@ allBtnDownload.forEach((btnDownload) => {
     modalDownloadWrapper.classList.add("display");
     modal.classList.add("anim_download");
     body.style.overflow = "hidden";
-
   });
 });
 
+allOutilBtn.forEach((outilBtn) => {
+  outilBtn.addEventListener("click", () => {
+    modalDownloadWrapper.style.visibility = "visible";
+    modalDownloadWrapper.classList.add("display");
+    modal.classList.add("anim_download");
+    body.style.overflow = "hidden";
+  });
+});
 ///////////////////////////////////////////////////////
 ///// Écouter les événements sur btn modal_close /////
 const closeModal = document.querySelector(".modal_close");

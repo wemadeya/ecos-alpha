@@ -501,6 +501,30 @@ header .ecos-alpha {
     height: 30px;
 }
 
+[class^="conception_mobile_content"] {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    border-radius: 15px;
+    font-size: 13px;
+    padding: 25px;
+    opacity: 0;
+    background-color: #F0F4F8;
+}
+
+[class^="conception_mobile_content"] p {
+    text-align: center;
+}
+
+[class^="conception_mobile_content"] img {
+    height: 30px;
+}
+
+.mobile {
+    display: none;
+}
+
 /* Anim entrainement */
 .entrainement_title,
 .entrainement_btn,
@@ -534,6 +558,18 @@ header .ecos-alpha {
     animation-delay: 1.8s;
 }
 
+.conception_mobile_content_1.anim-x {
+    animation-delay: 0.3s;
+}
+
+.conception_mobile_content_2.anim-x {
+    animation-delay: 0.6s;
+}
+
+.conception_mobile_content_3.anim-x {
+    animation-delay: 0.9s;
+}
+
 /**** Tuto *****/
 .tuto {
     display: flex;
@@ -543,6 +579,7 @@ header .ecos-alpha {
     opacity: 0;
     transform: translateY(50px);
 }
+
 .tuto .title_wrapper {
     display: flex;
     flex-direction: column;
@@ -550,6 +587,7 @@ header .ecos-alpha {
     align-self: stretch;
     width: 30%;
 }
+
 .tuto .title {
     display: flex;
     justify-content: center;
@@ -567,6 +605,7 @@ header .ecos-alpha {
     opacity: 0.5;
     transition: 0.4s cubic-bezier(0.14, .38, .19, .99);
 }
+
 .tuto .title.active {
     border: 1px solid var(--Blue, #007AFF);
     opacity: 1;
@@ -576,7 +615,9 @@ header .ecos-alpha {
 .timer_bar_wrapper {
     position: relative;
 }
-.timer_bar, .timer_bar_grey {
+
+.timer_bar,
+.timer_bar_grey {
     position: absolute;
     background-color: #D6DEE8;
     width: 0%;
@@ -587,12 +628,15 @@ header .ecos-alpha {
     transform: translate(0%, -50%);
     border-radius: 50px;
 }
-.title.active  .timer_bar_grey {
+
+.title.active .timer_bar_grey {
     width: 100%;
 }
+
 .timer_bar_grey.active {
     width: 100%;
 }
+
 .timer_bar {
     background-color: #007AFF;
     z-index: 1;
@@ -602,66 +646,77 @@ header .ecos-alpha {
     animation: 5s linear anim_timer_bar;
 }
 
-  /* accordion */
- 
-  .accordion_item_title, .header_nav_mobile_wrapper a {
+/* accordion */
+
+.accordion_item_title,
+.header_nav_mobile_wrapper a {
     display: flex;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
     font-size: 20px;
-  }
-  
-  li.accordion .accordion-item p.accordion_item_title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-  }
-  li.accordion .accordion-item p.accordion_item_title:hover {    
-      color: rgba(255, 255, 255, 0.65);
-  }
+}
 
-  .chevron {
+li.accordion .accordion-item p.accordion_item_title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+li.accordion .accordion-item p.accordion_item_title:hover {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.chevron {
     transition: 0.3s ease-in-out;
     width: 20px;
-  }
-  .chevron.rotate {
+}
+
+.chevron.rotate {
     transform: rotate(-180deg);
-  }
-  .accordion-item-text {
+}
+
+.accordion-item-text {
     color: #7B9EC4;
     max-height: 0;
     overflow: hidden;
     scrollbar-width: none;
     transition: max-height 0.3s ease-out;
     width: 90%;
-  }
-  .accordion-item-text ul {
+}
+
+.accordion-item-text ul {
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding-left: 20px;
     margin-top: 10px;
-  }
-  .accordion-item-text li a {
-      color: rgba(255, 255, 255, 0.60);
-  }
-  .accordion-item-text li a:hover {
+}
+
+.accordion-item-text li a {
+    color: rgba(255, 255, 255, 0.60);
+}
+
+.accordion-item-text li a:hover {
     color: #fff;
-  }
+}
+
 @keyframes anim_timer_bar {
     0% {
         width: 0%;
     }
+
     100% {
         width: 100%;
     }
 }
+
 .tuto .description_wrapper {
     width: 70%;
     position: relative;
     height: 300px;
 }
+
 .tuto .description {
     padding: 35px 100px;
     position: absolute;
@@ -687,9 +742,11 @@ header .ecos-alpha {
     font-weight: 400;
     line-height: 35px;
 }
+
 .description {
     z-index: -1;
 }
+
 .description.active {
     z-index: 1;
     animation: 1s cubic-bezier(0.14, .38, .19, .99) anim-y-both both;
@@ -698,13 +755,16 @@ header .ecos-alpha {
 .description_wrapper_mobile {
     display: none;
 }
+
 /***** Avis *****/
 #avis {
     padding-top: 200px;
     margin: 0 auto;
     display: flex;
     gap: 75px;
+    opacity: 0;
     align-items: center;
+    transform: translateY(50px);
 }
 
 #avis h2 {
@@ -748,7 +808,11 @@ header .ecos-alpha {
 }
 
 .splide__slide {
-    min-width: 350px;
+    min-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
     padding: 20px;
     border-radius: 10px;
     background: #fff;
@@ -774,6 +838,12 @@ header .ecos-alpha {
 
 #avis_carousel .splide__arrow:hover {
     cursor: pointer;
+}
+
+.carousel_content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .carousel_header_wrapper {
@@ -817,13 +887,26 @@ header .ecos-alpha {
 }
 
 .rating {
+    display: flex;
+    gap: 10px;
+    align-items: center;
     color: #ffcc00;
     font-size: 12px;
+}
+
+.rating p {
+    margin-top: 2px;
+    color: black;
+    font-weight: 600;
 }
 
 .comment {
     font-size: 12px;
     color: #333;
+}
+
+#avis.anim-y-both {
+    animation-delay: 0.3s;
 }
 
 /***** Fonctionnement *****/
@@ -2920,12 +3003,15 @@ footer nav .link button {
     .tuto .title {
         font-size: 14px;
     }
+
     .tuto .description h2 {
         font-size: 24px;
     }
+
     .tuto .description p {
         font-size: 18px;
     }
+
     h1,
     h2 {
         font-size: 28px;
@@ -2939,13 +3025,50 @@ footer nav .link button {
         font-size: 16px;
     }
 
-    /***** Avis Hero *****/
-    .splide {
-        width: 500px;
+    /***** Avis *****/
+    .splide__slide {
+        min-width: 450px;
     }
 
-    .splide__slide {
-        min-width: 300px;
+    #avis {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    #avis h2 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .splide {
+        width: 100%;
+    }
+
+    #avis_carousel .splide__arrow--prev {
+        top: 110%;
+        left: 10px;
+    }
+
+    #avis_carousel .splide__arrow--next {
+        top: 110%;
+        left: 50px;
+    }
+
+    .splide::before {
+        left: 0;
+        background: linear-gradient(to left,
+                transparent 0%,
+                rgba(247, 251, 255, .6) 20%,
+                rgba(247, 251, 255, .9) 60%,
+                #F7FBFF 90%);
+    }
+
+    .splide::after {
+        background: linear-gradient(to right,
+                transparent 0%,
+                rgba(247, 251, 255, .6) 20%,
+                rgba(247, 251, 255, .9) 60%,
+                #F7FBFF 90%);
     }
 
     /***** fonctionnement *****/
@@ -3049,23 +3172,6 @@ footer nav .link button {
     }
 }
 
-@media screen and (max-width: 1100px) {
-    .parcours_phase_title {
-        align-items: flex-start;
-        width: 110px;
-    }
-
-    #avis_carousel .splide__arrow--prev {
-        top: 110%;
-        left: 10px;
-    }
-
-    #avis_carousel .splide__arrow--next {
-        top: 110%;
-        left: 50px;
-    }
-}
-
 @media screen and (min-width: 1025px) {
     .parcours_content_mobile {
         display: none;
@@ -3160,31 +3266,27 @@ footer nav .link button {
         margin: 0 auto 0;
         padding-top: 125px;
     }
+
     /***** Tuto *****/
     .tuto .description {
         padding: 30px;
         gap: 20px;
     }
-    
-    /***** Avis Hero *****/
-    .splide {
-        width: 400px;
+
+    /***** conception *****/
+    .conception_wrapper.mobile {
+        display: flex;
     }
 
-    .splide::before,
-    .splide::after {
-        width: 0px;
+    .mobile {
+        display: flex;
     }
 
-    .splide__list {
-        align-items: stretch;
+    .conception_wrapper {
+        display: none;
     }
 
-    .splide__slide {
-        min-width: 380px;
-        padding: 15px;
-    }
-
+    /***** Avis *****/
     .avatar {
         width: 35px;
         height: 35px;
@@ -3206,6 +3308,10 @@ footer nav .link button {
     }
 
     [class^="conception_content"] {
+        padding: 15px;
+    }
+
+    [class^="conception_mobile_content"] {
         padding: 15px;
     }
 
@@ -3386,73 +3492,85 @@ footer nav .link button {
 
 
 @media screen and (max-width: 768px) {
-        /***** Tuto ******/
-        .tuto {
-            padding: 0;
-        }
-        .tuto.bg_white {
-            border-radius: 0;
-            background: transparent;
-            box-shadow: none;
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .tuto.bg_white.anim-y-both {
-            animation: none;
-        }
-        .tuto .title_wrapper {
-            display: none;
-        }
-        .tuto .description_wrapper {
-            height: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            height: 100%;
-            width: 100%;
-            display: none;
-        }
-        .tuto .description {
-            position: inherit;
-            transform: translate(-50%, 0%);
-            border-radius: 25px;
-            background: #FFF;
-            box-shadow: 0px -10px 25px 0px rgba(0, 76, 158, 0.06);
-            font-size: 18px;
-            padding: 30px;
-            transform: translateY(50px);
-            opacity: 0;
-            animation: none;
-        }
-        .tuto .description.anim-y-both {
-            animation: 1s cubic-bezier(0.14, .38, .19, .99) anim-y-both both;
-        }
 
-        .description_wrapper {
-            display: none;
-        }
-        .description_wrapper_mobile {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-        .accordion-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            border-radius: 25px;
-            background: #FFF;
-            box-shadow: 0px -10px 25px 0px rgba(0, 76, 158, 0.06);
-            padding: 20px;
-            transform: translateY(50px);
-            opacity: 0;           
-        }
-        .accordion-item.active {
-            gap: 20px;
-        }
-        .accordion_item_title {
-            font-size: 18px;
-        }
+    /***** Tuto ******/
+    .tuto {
+        padding: 0;
+    }
+
+    .tuto.bg_white {
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .tuto.bg_white.anim-y-both {
+        animation: none;
+    }
+
+    .tuto .title_wrapper {
+        display: none;
+    }
+
+    .tuto .description_wrapper {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        height: 100%;
+        width: 100%;
+        display: none;
+    }
+
+    .tuto .description {
+        position: inherit;
+        transform: translate(-50%, 0%);
+        border-radius: 25px;
+        background: #FFF;
+        box-shadow: 0px -10px 25px 0px rgba(0, 76, 158, 0.06);
+        font-size: 18px;
+        padding: 30px;
+        transform: translateY(50px);
+        opacity: 0;
+        animation: none;
+    }
+
+    .tuto .description.anim-y-both {
+        animation: 1s cubic-bezier(0.14, .38, .19, .99) anim-y-both both;
+    }
+
+    .description_wrapper {
+        display: none;
+    }
+
+    .description_wrapper_mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .accordion-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border-radius: 25px;
+        background: #FFF;
+        box-shadow: 0px -10px 25px 0px rgba(0, 76, 158, 0.06);
+        padding: 20px;
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    .accordion-item.active {
+        gap: 20px;
+    }
+
+    .accordion_item_title {
+        font-size: 18px;
+    }
+
     /***** @keyframes *****/
     @keyframes anim-iphone-3-top {
         100% {
@@ -3812,6 +3930,11 @@ footer nav .link button {
     }
 
     [class^="conception_content"] {
+        width: 100%;
+        background-color: transparent;
+    }
+
+    [class^="conception_mobile_content"] {
         width: 100%;
         background-color: transparent;
     }

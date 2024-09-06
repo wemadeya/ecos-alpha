@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
       trimSpace: false,
       pagination: false,
       breakpoints: {
-          1024: {
+          1280: {
               perPage: 1,
               focus  : 'center',
               
@@ -169,21 +169,42 @@ document.addEventListener('DOMContentLoaded', function () {
 ////////////////////////
 ///// scroll event /////
 window.addEventListener("scroll", () => {
+  /* conception */
+  const conceptionContentMobile1 = document.querySelector(".conception_mobile_content_1");
+  const conceptionContentMobile2 = document.querySelector(".conception_mobile_content_2");
+  const conceptionContentMobile3 = document.querySelector(".conception_mobile_content_3");
+  const allConceptionContent = [
+    conceptionContentMobile1,
+    conceptionContentMobile2,
+    conceptionContentMobile3
+  ];
+
+  allConceptionContent.forEach((conceptionContent) => {
+    if (conceptionContent) {
+      const conceptionContentTop = conceptionContent.getBoundingClientRect().top;
+      if (scrollTop > conceptionContentTop - clientHeight * 0.8) {
+        conceptionContent.classList.add("anim-x");
+      }
+    }
+  });
+
+  /* avis */
+  const avis = document.getElementById("avis");
+  const avisTop = avis.getBoundingClientRect().top;
+  if (scrollTop > scrollTop + avisTop - clientHeight * 0.8) {
+    avis.classList.add("anim-y-both");
+  }
 
 
+  /* tuto */
+  const tuto = document.querySelector(".tuto");
+  const tutoTop = tuto.getBoundingClientRect().top;
+  if (scrollTop > scrollTop + tutoTop - clientHeight * 0.8) {
+    tuto.classList.add("anim-y-both");
+  }
 
-const tuto = document.querySelector(".tuto");
-const tutoTop = tuto.getBoundingClientRect().top;
-
-if (scrollTop > scrollTop + tutoTop - clientHeight * 0.8) {
-  tuto.classList.add("anim-y-both");
-}
-
-
-
-const allAccordionItem = document.querySelectorAll(".accordion-item");
-
-allAccordionItem.forEach((accordionItem) => {
+  const allAccordionItem = document.querySelectorAll(".accordion-item");
+  allAccordionItem.forEach((accordionItem) => {
     if (accordionItem) {
       const accordionItemTop = accordionItem.getBoundingClientRect().top;
       if (scrollTop > accordionItemTop - clientHeight * 1) {
@@ -191,7 +212,6 @@ allAccordionItem.forEach((accordionItem) => {
       }
     }
   });
-
 
   /* parcours_card */
   const parcoursWrapper = document.querySelector(".parcours_wrapper");

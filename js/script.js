@@ -12,28 +12,17 @@ const menuHamburgerLign3 = document.querySelector(".menu_hamburger_lign3");
 menuHamburger.addEventListener('click', () => {
   headerNav.classList.toggle("show");
   headerNavWrapper.classList.toggle("show");
-  /*
-  if(headerNav.classList.contains("show")) {
-    setTimeout(() => {
-      
-    }, 100);
-  }
-  if(!headerNav.classList.contains("show")) {
-    setTimeout(() => {
-      headerNav.style.display="none";
-    }, 350);
-  }
-  */
+
   menuHamburgerLign1.classList.toggle("anim");
   menuHamburgerLign2.classList.toggle("anim");
   menuHamburgerLign3.classList.toggle("anim");
 });
 
 ////////////////////
-///// Tuto /////
+///// Tuto ////////
 const allTitle = document.querySelectorAll(".title");
 const allDescription = document.querySelectorAll(".description");
-let interval; // Pour stocker l'intervalle global
+let interval; 
 
 // Fonction principale pour gérer les titres et descriptions
 function handleResize() {
@@ -72,10 +61,9 @@ function handleResize() {
     // Ajouter l'événement de clic à chaque titre
     allTitle.forEach((title, index) => {
       title.addEventListener('click', () => {
-        clearInterval(interval); // Arrêter le cycle automatique en cas de clic manuel
         currentIndex = index; // Mettre à jour l'index courant
         activateTitle(currentIndex);
-        interval = setInterval(nextTitle, 5000); // Redémarrer le cycle automatique
+        // Ne pas toucher à l'intervalle pour garder le cycle bien calé
       });
     });
 
@@ -101,9 +89,7 @@ function handleResize() {
       clearInterval(interval);
       interval = null;
     }
-
   }
-
 }
 
 // Exécuter la fonction au chargement initial
@@ -112,6 +98,8 @@ handleResize();
 // Réécouter sur le redimensionnement de la fenêtre
 window.addEventListener('resize', handleResize);
 
+/////////////////////////////////////
+///////// accordion mobile /////////
 
 const accordionItems = document.querySelectorAll(".accordion-item");
 const accordionItemTitles = document.querySelectorAll(".accordion_item_title");
@@ -120,16 +108,20 @@ let currentAccordionIndex = 0;
 
 // Fonction pour activer un élément d'accordéon et son texte
 function activateAccordionItem(index) {
+
   // Supprimer la classe 'active' de tous les items, timer_bars et fermer les textes
   accordionItems.forEach(item => {
     const title = item.querySelector(".accordion_item_title");
     const text = item.querySelector(".accordion-item-text");
     const timerBar = item.querySelector(".timer_bar");
+    const TimerBarGrey = item.querySelector(".timer_bar_grey");
 
     title.classList.remove("active");
     text.style.maxHeight = 0; // Fermer le texte
     if (timerBar) {
       timerBar.classList.remove("active"); // Désactiver le timer_bar
+      TimerBarGrey.classList.remove("active");
+      item.classList.remove("active");
     }
   });
 
@@ -145,6 +137,7 @@ function activateAccordionItem(index) {
   if (currentTimerBar) {
     currentTimerBar.classList.add("active"); // Activer le timer_bar
     currentTimerBarGrey.classList.add("active");
+    currentItem.classList.add("active");
   }
 }
 
@@ -170,26 +163,6 @@ activateAccordionItem(currentAccordionIndex);
 
 // Démarrer le cycle automatique avec un intervalle
 interval = setInterval(nextAccordionItem, 5000);
-
-
-
-///////////////////////////
-///// menu hamburger /////
-/*
-const hamburger = document.querySelector(".hamburger");
-const headerNavMobile = document.querySelector(".header_nav_mobile");
-const hamburgerLign1 = document.querySelector(".hamburger_lign1");
-const hamburgerLign2 = document.querySelector(".hamburger_lign2");
-const hamburgerLign3 = document.querySelector(".hamburger_lign3");
-
-hamburger.addEventListener('click', () => {
-  headerNavMobile.classList.toggle("show");
-  hamburgerLign1.classList.toggle("anim");
-  hamburgerLign2.classList.toggle("anim");
-  hamburgerLign3.classList.toggle("anim");
-});
-
-*/
 
 
 

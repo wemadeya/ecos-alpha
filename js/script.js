@@ -8,6 +8,17 @@ const menuHamburgerLign1 = document.querySelector(".menu_hamburger_lign1");
 const menuHamburgerLign2 = document.querySelector(".menu_hamburger_lign2");
 const menuHamburgerLign3 = document.querySelector(".menu_hamburger_lign3");
 
+const plusieurs = document.querySelector(".plusieurs");
+plusieurs.addEventListener('click', () => {
+  headerNav.classList.remove("show");
+  headerNavWrapper.classList.remove("show");
+
+  menuHamburgerLign1.classList.remove("anim");
+  menuHamburgerLign2.classList.remove("anim");
+  menuHamburgerLign3.classList.remove("anim");
+
+})
+
 
 menuHamburger.addEventListener('click', () => {
   headerNav.classList.toggle("show");
@@ -17,6 +28,10 @@ menuHamburger.addEventListener('click', () => {
   menuHamburgerLign2.classList.toggle("anim");
   menuHamburgerLign3.classList.toggle("anim");
 });
+
+
+
+
 
 ////////////////////
 ///// Tuto ////////

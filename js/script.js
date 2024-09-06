@@ -22,81 +22,58 @@ menuHamburger.addEventListener('click', () => {
 ///// Tuto ////////
 const allTitle = document.querySelectorAll(".title");
 const allDescription = document.querySelectorAll(".description");
-let interval; 
+let interval = null; // Stocke l'intervalle pour le cycle automatique
+let currentIndex = 0; // Index global de l'élément actif
 
-// Fonction principale pour gérer les titres et descriptions
-function handleResize() {
-  if (window.innerWidth >= 768) {
-    let currentIndex = 0;
-
-    // Fonction pour activer un titre et sa description correspondante
-    function activateTitle(index) {
-      // Supprimer la classe 'active' de tous les titres et timer_bars
-      allTitle.forEach(title => {
-        title.classList.remove("active");
-        const timerBar = title.querySelector(".timer_bar");
-        if (timerBar) {
-          timerBar.classList.remove("active");
-        }
-      });
-
-      // Ajouter la classe 'active' au titre et au timer_bar du nouvel index
-      allTitle[index].classList.add("active");
-      const timerBar = allTitle[index].querySelector(".timer_bar");
-      if (timerBar) {
-        timerBar.classList.add("active");
-      }
-
-      // Gérer l'affichage des descriptions correspondantes
-      allDescription.forEach(description => description.classList.remove("active"));
-      allDescription[index].classList.add("active");
+// Fonction pour activer un titre et sa description correspondante
+function activateTitle(index) {
+  allTitle.forEach(title => {
+    title.classList.remove("active");
+    const timerBar = title.querySelector(".timer_bar");
+    if (timerBar) {
+      timerBar.classList.remove("active");
     }
+  });
+  allDescription.forEach(description => description.classList.remove("active"));
 
-    // Fonction pour passer à l'élément suivant
-    function nextTitle() {
-      currentIndex = (currentIndex + 1) % allTitle.length; // Pour boucler à partir du début
-      activateTitle(currentIndex);
-    }
-
-    // Ajouter l'événement de clic à chaque titre
-    allTitle.forEach((title, index) => {
-      title.addEventListener('click', () => {
-        currentIndex = index; // Mettre à jour l'index courant
-        activateTitle(currentIndex);
-        // Ne pas toucher à l'intervalle pour garder le cycle bien calé
-      });
-    });
-
-    // Initialiser la première activation
-    activateTitle(currentIndex);
-
-    // Démarrer le cycle automatique
-    interval = setInterval(nextTitle, 5000);
-  } 
-  else {
-    // Si la largeur est inférieure à 768px, retirer toutes les classes 'active'
-    allTitle.forEach(title => {
-      title.classList.remove("active");
-      const timerBar = title.querySelector(".timer_bar");
-      if (timerBar) {
-        timerBar.classList.remove("active");
-      }
-    });
-    allDescription.forEach(description => description.classList.remove("active"));
-
-    // Arrêter le cycle si nécessaire
-    if (interval) {
-      clearInterval(interval);
-      interval = null;
-    }
+  allTitle[index].classList.add("active");
+  const timerBar = allTitle[index].querySelector(".timer_bar");
+  if (timerBar) {
+    timerBar.classList.add("active");
   }
+  allDescription[index].classList.add("active");
 }
 
-// Exécuter la fonction au chargement initial
-handleResize();
+// Fonction pour passer à l'élément suivant
+function nextTitle() {
+  currentIndex = (currentIndex + 1) % allTitle.length;
+  activateTitle(currentIndex);
+}
 
-// Réécouter sur le redimensionnement de la fenêtre
-window.addEventListener('resize', handleResize);
+// Fonction pour démarrer ou redémarrer le cycle automatique
+function startAutoCycle() {
+  clearInterval(interval); // Assurez-vous qu'aucun intervalle précédent ne soit actif
+  interval = setInterval(nextTitle, 5000); // Démarrer un intervalle de 5 secondes
+}
+
+// Fonction pour gérer le clic manuel
+function handleTitleClick(index) {
+  clearInterval(interval); // Arrêter le cycle automatique en cas de clic manuel
+  currentIndex = index; // Mettre à jour l'index courant
+  activateTitle(currentIndex); // Activer l'élément cliqué
+
+  // Démarrer un nouvel intervalle de 5 secondes après le clic
+  interval = setInterval(nextTitle, 5000);
+}
+
+// Ajouter l'événement de clic à chaque titre
+allTitle.forEach((title, index) => {
+  title.addEventListener('click', () => handleTitleClick(index));
+});
+
+// Initialiser la première activation et démarrer le cycle automatique
+activateTitle(currentIndex);
+startAutoCycle();
 
 /////////////////////////////////////
 ///////// accordion mobile /////////

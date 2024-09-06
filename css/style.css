@@ -758,7 +758,6 @@ li.accordion .accordion-item p.accordion_item_title:hover {
 
 /***** Avis *****/
 #avis {
-    padding-top: 200px;
     margin: 0 auto;
     display: flex;
     gap: 75px;
@@ -3696,12 +3695,10 @@ footer nav .link button {
     }
 
     #avis_carousel .splide__arrow--prev {
-        top: 115%;
         left: 10px;
     }
 
     #avis_carousel .splide__arrow--next {
-        top: 115%;
         left: 50px;
     }
 
@@ -3756,10 +3753,6 @@ footer nav .link button {
     }
 
     /***** fonctionnement *****/
-    .fonctionnement {
-        gap: 75px;
-    }
-
     [class^="fonctionnement_wrapper"] {
         padding: 20px;
         flex-direction: column;

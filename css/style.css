@@ -2981,6 +2981,28 @@ footer nav .link button {
 }
 
 @media screen and (max-width: 1024px) {
+    .tuto.bg_white {
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+    .tuto .title_wrapper {
+        display: none;
+    }
+    .tuto .description_wrapper {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+    .tuto .description {
+        position: inherit;
+        transform: translate(-50%, 0%);
+        border-radius: 25px;
+        background: #FFF;
+        box-shadow: 0px -10px 25px 0px rgba(0, 76, 158, 0.06);
+        padding: 25px;
+    }
     .header_nav .btn {
         margin: 0 0 5% 5%;
     }

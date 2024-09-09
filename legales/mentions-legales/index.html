@@ -24,11 +24,70 @@
     <body>
         <!-- Header -->
         <header>
-            <a href="../../index.html" class="ecos-alpha">
-                <img class="logo_ecos-alpha" src="../../img/logo_ecos-alpha.svg">
-                <p>ECOS Alpha</p>
-            </a>
-            <a class="btn btn_blue">Essayer gratuitement<img src="../../img/icons/icon_arrow_top-right.svg" alt="icon d'une flèche pointant en haut à droite"/></a>
+            <div class="header_wrapper">
+                <a href="../index.html" class="ecos-alpha">
+                    <img class="logo_ecos-alpha" src="../img/logo_ecos-alpha.svg">
+                    <p>ECOS Alpha</p>
+                </a>
+                <nav class="header_nav">
+                    <div class="header_nav_wrapper">
+                        <ul class="header_nav_link">
+                            <li class="header_link">
+                                <p>Mode d'entraînement <span class="circle_yellow"></span> <img class="chevron" src="../img/chevron.svg" alt="chevron"></p>                  
+                                <div class="header_nav_dropdown">
+                                    <ul>
+                                        <span class="dropdown_title">Ecos Classique</span>
+                                        <li>
+                                            <a class="dropdown_link ancre" href="../index.html#plusieurs" title="Ecos - A plusieurs">
+                                                <div>
+                                                    <img class="icon" src="../img/multi_user.png" alt="icon user"/>À plusieurs
+                                                </div>
+                                                <img class="arrow" src="../img/arrow.svg" alt="arrow"/>                                       
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown_link ancre" href="../index.html#seul" title="Ecos - Seul">
+                                                <div>
+                                                    <img class="icon" src="../img/user.png" alt="icon document"/>Solo <span>Bientôt</span>
+                                                </div>
+                                                <img class="arrow" src="../img/arrow.svg" alt="arrow"/>
+                                            </a>
+                                        </li>
+                                        <span class="dropdown_title">Autres modes de jeu</span>
+                                        <li>
+                                            <a class="dropdown_link ancre" href="../index.html#flashcards" title="Ecos - Flashcards">
+                                                <div>
+                                                    <img class="icon" src="../img/card.png" alt="icon document"/>Flashcards <span>Bientôt</span>
+                                                </div>
+                                                <img class="arrow" src="../img/arrow.svg" alt="arrow"/>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="header_link">
+                                <a class="tarifs" href="#" title="tarifs">
+                                    <p>Tarifs</p>
+                                </a>
+                            </li>
+                            <li class="header_link">
+                                <a class="tarifs" href="../a-propos/" title="Les ECOS">
+                                    <p>Les ECOS</p>
+                                </a>
+                            </li>
+                        </ul>                   
+                        <a class="btn btn_blue">Essayer gratuitement<img src="../img/icons/icon_arrow_top-right.svg" alt="icon d'une flèche pointant en haut à droite" /></a>
+                    </div>
+                </nav>
+                <!-- menu_hamburger_wrapper -->
+                <div class="menu_hamburger_wrapper">
+                    <div class="menu_hamburger">
+                        <div class="menu_hamburger_lign1"></div>
+                        <div class="menu_hamburger_lign2"></div>
+                        <div class="menu_hamburger_lign3"></div>
+                    </div> 
+                </div> 
+            </div>       
         </header>
         <!-- Main -->
         <main>
@@ -247,6 +306,7 @@
         </noscript>
         <!-- End Google Tag Manager (noscript) -->
         <script src="//embed.typeform.com/next/embed.js"></script>
-        <script src="../../js/modal.js"></script>
+        <script src="../js/modal.js"></script>
+        <script src="../js/header.js"></script>
     </body>
 </html>

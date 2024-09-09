@@ -6,10 +6,10 @@ const headerNavWrapper = document.querySelector(".header_nav_wrapper");
 const menuHamburgerLign1 = document.querySelector(".menu_hamburger_lign1");
 const menuHamburgerLign2 = document.querySelector(".menu_hamburger_lign2");
 const menuHamburgerLign3 = document.querySelector(".menu_hamburger_lign3");
-const plusieurs = document.querySelectorAll(".plusieurs");
+const ancres = document.querySelectorAll(".ancre");
 
-plusieurs.forEach((plusieurs) => {
-  plusieurs.addEventListener('click', () => {
+ancres.forEach((ancre) => {
+  ancre.addEventListener('click', () => {
     headerNav.classList.remove("show");
     headerNavWrapper.classList.remove("show");
 

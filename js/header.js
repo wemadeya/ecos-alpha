@@ -26,4 +26,5 @@ menuHamburger.addEventListener('click', () => {
   menuHamburgerLign1.classList.toggle("anim");
   menuHamburgerLign2.classList.toggle("anim");
   menuHamburgerLign3.classList.toggle("anim");
+  body.classList.toggle("hidden");
 });

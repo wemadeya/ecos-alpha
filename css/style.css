@@ -11,6 +11,9 @@ body {
     background-color: #F7FBFF;
     font-family: 'Inter', sans-serif;
 }
+body.hidden {
+    overflow-y: hidden;
+}
 
 a {
     text-decoration: none;
@@ -2999,6 +3002,12 @@ footer nav .link button {
 
 @media screen and (max-width: 1280px) {
 
+    section,
+    footer {
+        margin: 0 auto 0;
+        padding-top: 125px;
+    }
+
     .tuto .title {
         font-size: 14px;
     }
@@ -3282,12 +3291,6 @@ footer nav .link button {
 
     .dropdown_title {
         padding: 0;
-    }
-
-    section,
-    footer {
-        margin: 0 auto 0;
-        padding-top: 125px;
     }
 
     /***** Tuto *****/

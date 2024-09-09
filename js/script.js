@@ -1,86 +1,130 @@
 const { scrollTop, clientHeight } = document.documentElement;
-///////////////////////////
-///// menu hamburger /////
-const menuHamburger = document.querySelector(".menu_hamburger");
-const headerNav = document.querySelector(".header_nav");
-const headerNavWrapper = document.querySelector(".header_nav_wrapper");
-const menuHamburgerLign1 = document.querySelector(".menu_hamburger_lign1");
-const menuHamburgerLign2 = document.querySelector(".menu_hamburger_lign2");
-const menuHamburgerLign3 = document.querySelector(".menu_hamburger_lign3");
+////////////////////
+///// Tuto ////////
+document.addEventListener('DOMContentLoaded', function() { 
+  const allTitle = document.querySelectorAll(".title");
+  const allDescription = document.querySelectorAll(".description");
+  let interval = null; // Stocke l'intervalle pour le cycle automatique
+  let currentIndex = 0; // Index global de l'élément actif
 
 
-menuHamburger.addEventListener('click', () => {
-  headerNav.classList.toggle("show");
-  headerNavWrapper.classList.toggle("show");
-  /*
-  if(headerNav.classList.contains("show")) {
-    setTimeout(() => {
-      
-    }, 100);
+  // Fonction pour activer un titre et sa description correspondante
+  function activateTitle(index) {
+    allTitle.forEach((title, i) => {
+      title.classList.remove("active");
+      const timerBar = title.querySelector(".timer_bar");
+      if (timerBar) {
+        timerBar.classList.remove("active");
+      }
+    });
+    allDescription.forEach(description => description.classList.remove("active"));
+
+    allTitle[index].classList.add("active");
+    const timerBar = allTitle[index].querySelector(".timer_bar");
+    if (timerBar) {
+      timerBar.classList.add("active");
+    }
+    allDescription[index].classList.add("active");
   }
-  if(!headerNav.classList.contains("show")) {
-    setTimeout(() => {
-      headerNav.style.display="none";
-    }, 350);
+
+  // Fonction pour passer à l'élément suivant
+  function nextTitle() {
+    currentIndex = (currentIndex + 1) % allTitle.length;
+    activateTitle(currentIndex);
   }
-  */
-  menuHamburgerLign1.classList.toggle("anim");
-  menuHamburgerLign2.classList.toggle("anim");
-  menuHamburgerLign3.classList.toggle("anim");
+
+  // Fonction pour démarrer ou redémarrer le cycle automatique
+  function startAutoCycle() {
+    clearInterval(interval); // Assurez-vous qu'aucun intervalle précédent ne soit actif
+    interval = setInterval(nextTitle, 5000); // Démarrer un intervalle de 5 secondes
+  }
+
+  // Fonction pour gérer le clic manuel
+  function handleTitleClick(index) {
+    clearInterval(interval); // Arrêter le cycle automatique en cas de clic manuel
+    currentIndex = index; // Mettre à jour l'index courant
+    activateTitle(currentIndex); // Activer l'élément cliqué
+
+    // Redémarrer un nouvel intervalle de 5 secondes après le clic
+    startAutoCycle();
+  }
+
+  // Ajouter l'événement de clic à chaque titre
+  allTitle.forEach((title, index) => {
+    title.addEventListener('click', () => handleTitleClick(index));
+  });
+
+  // Initialiser la première activation et démarrer le cycle automatique
+  activateTitle(currentIndex);
+  startAutoCycle();
 });
 
-////////////////////
-///// Tuto /////
-const allTitle = document.querySelectorAll(".title");
-const allDescription = document.querySelectorAll(".description");
+/////////////////////////////////////
+///////// accordion mobile /////////
 
-let currentIndex = 0;
-let interval;
+const accordionItems = document.querySelectorAll(".accordion-item");
+const accordionItemTitles = document.querySelectorAll(".accordion_item_title");
+let currentAccordionIndex = 0;
+//let interval; // Pour stocker l'intervalle global
 
-// Fonction pour activer un titre et sa description correspondante
-function activateTitle(index) {
-  // Supprimer la classe 'active' de tous les titres et timer_bars
-  allTitle.forEach(title => {
+// Fonction pour activer un élément d'accordéon et son texte
+function activateAccordionItem(index) {
+
+  // Supprimer la classe 'active' de tous les items, timer_bars et fermer les textes
+  accordionItems.forEach(item => {
+    const title = item.querySelector(".accordion_item_title");
+    const text = item.querySelector(".accordion-item-text");
+    const timerBar = item.querySelector(".timer_bar");
+    const TimerBarGrey = item.querySelector(".timer_bar_grey");
+
     title.classList.remove("active");
-    const timerBar = title.querySelector(".timer_bar");
+    text.style.maxHeight = 0; // Fermer le texte
     if (timerBar) {
-      timerBar.classList.remove("active");
+      timerBar.classList.remove("active"); // Désactiver le timer_bar
+      TimerBarGrey.classList.remove("active");
+      item.classList.remove("active");
     }
   });
 
-  // Ajouter la classe 'active' au titre et au timer_bar du nouvel index
-  allTitle[index].classList.add("active");
-  const timerBar = allTitle[index].querySelector(".timer_bar");
-  if (timerBar) {
-    timerBar.classList.add("active");
+  // Ajouter la classe 'active' au nouvel item, ouvrir le texte et activer le timer_bar
+  const currentItem = accordionItems[index];
+  const currentTitle = currentItem.querySelector(".accordion_item_title");
+  const currentText = currentItem.querySelector(".accordion-item-text");
+  const currentTimerBar = currentItem.querySelector(".timer_bar");
+  const currentTimerBarGrey = currentItem.querySelector(".timer_bar_grey");
+
+  currentTitle.classList.add("active");
+  currentText.style.maxHeight = currentText.scrollHeight + "px"; // Ouvrir le texte
+  if (currentTimerBar) {
+    currentTimerBar.classList.add("active"); // Activer le timer_bar
+    currentTimerBarGrey.classList.add("active");
+    currentItem.classList.add("active");
   }
-
-  // Gérer l'affichage des descriptions correspondantes
-  allDescription.forEach(description => description.classList.remove("active"));
-  allDescription[index].classList.add("active");
 }
 
-// Fonction pour passer à l'élément suivant
-function nextTitle() {
-  currentIndex = (currentIndex + 1) % allTitle.length; // Pour boucler à partir du début
-  activateTitle(currentIndex);
+// Fonction pour passer à l'élément suivant avec le timer
+function nextAccordionItem() {
+  currentAccordionIndex = (currentAccordionIndex + 1) % accordionItems.length; // Boucle au début
+  activateAccordionItem(currentAccordionIndex);
 }
 
-// Ajouter l'événement de clic à chaque titre
-allTitle.forEach((title, index) => {
-  title.addEventListener('click', () => {
+// Ajouter l'événement de clic à chaque titre pour ouvrir/fermer manuellement
+accordionItemTitles.forEach((accordionItemTitle, index) => {
+  accordionItemTitle.addEventListener("click", () => {
     clearInterval(interval); // Arrêter le cycle automatique en cas de clic manuel
-    currentIndex = index; // Mettre à jour l'index courant
-    activateTitle(currentIndex);
-    interval = setInterval(nextTitle, 5000); // Redémarrer le cycle automatique
+    currentAccordionIndex = index; // Mettre à jour l'index courant
+    activateAccordionItem(currentAccordionIndex); // Activer l'élément cliqué
+    interval = setInterval(nextAccordionItem, 5000); // Redémarrer le cycle automatique après clic
+
   });
 });
 
-// Initialiser la première activation
-activateTitle(currentIndex);
+// Initialiser la première activation avec timer_bar
+activateAccordionItem(currentAccordionIndex);
 
-// Démarrer le cycle automatique
-interval = setInterval(nextTitle, 5000);
+// Démarrer le cycle automatique avec un intervalle
+interval = setInterval(nextAccordionItem, 5000);
+
 
 
 ////////////////////
@@ -96,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
       trimSpace: false,
       pagination: false,
       breakpoints: {
-          1024: {
+          1280: {
               perPage: 1,
               focus  : 'center',
               
@@ -109,7 +153,51 @@ document.addEventListener('DOMContentLoaded', function () {
 ////////////////////////
 ///// scroll event /////
 window.addEventListener("scroll", () => {
-  // parcours_card
+  /* conception */
+  const conceptionContentMobile1 = document.querySelector(".conception_mobile_content_1");
+  const conceptionContentMobile2 = document.querySelector(".conception_mobile_content_2");
+  const conceptionContentMobile3 = document.querySelector(".conception_mobile_content_3");
+  const allConceptionContent = [
+    conceptionContentMobile1,
+    conceptionContentMobile2,
+    conceptionContentMobile3
+  ];
+
+  allConceptionContent.forEach((conceptionContent) => {
+    if (conceptionContent) {
+      const conceptionContentTop = conceptionContent.getBoundingClientRect().top;
+      if (scrollTop > conceptionContentTop - clientHeight * 0.8) {
+        conceptionContent.classList.add("anim-x");
+      }
+    }
+  });
+
+  /* avis */
+  const avis = document.getElementById("avis");
+  const avisTop = avis.getBoundingClientRect().top;
+  if (scrollTop > scrollTop + avisTop - clientHeight * 0.8) {
+    avis.classList.add("anim-y-both");
+  }
+
+
+  /* tuto */
+  const tuto = document.querySelector(".tuto");
+  const tutoTop = tuto.getBoundingClientRect().top;
+  if (scrollTop > scrollTop + tutoTop - clientHeight * 0.8) {
+    tuto.classList.add("anim-y-both");
+  }
+
+  const allAccordionItem = document.querySelectorAll(".accordion-item");
+  allAccordionItem.forEach((accordionItem) => {
+    if (accordionItem) {
+      const accordionItemTop = accordionItem.getBoundingClientRect().top;
+      if (scrollTop > accordionItemTop - clientHeight * 1) {
+        accordionItem.classList.add("anim-y-both");
+      }
+    }
+  });
+
+  /* parcours_card */
   const parcoursWrapper = document.querySelector(".parcours_wrapper");
   const parcoursCard1 = document.querySelector(".parcours_card_1");
   const parcoursCard2 = document.querySelector(".parcours_card_2");
@@ -446,9 +534,11 @@ document.querySelectorAll('.notation_range_wrapper input[type="range"]').forEach
 ///////////////////////////////////////
 ///// Evénements sur btnDownload /////
 const allBtnDownload = document.querySelectorAll(".btn_blue");
+const allOutilBtn = document.querySelectorAll(".outil_btn");
+const parcoursBtnDownload = document.querySelectorAll(".parcours_phase_btn");
 const modalDownloadWrapper = document.querySelector(".modal_download_wrapper");
 const modal = document.querySelector(".modal_download");
-const body =document.querySelector("body");
+const body = document.querySelector("body");
 
 allBtnDownload.forEach((btnDownload) => {
   btnDownload.addEventListener("click", () => {
@@ -456,10 +546,17 @@ allBtnDownload.forEach((btnDownload) => {
     modalDownloadWrapper.classList.add("display");
     modal.classList.add("anim_download");
     body.style.overflow = "hidden";
-
   });
 });
 
+allOutilBtn.forEach((outilBtn) => {
+  outilBtn.addEventListener("click", () => {
+    modalDownloadWrapper.style.visibility = "visible";
+    modalDownloadWrapper.classList.add("display");
+    modal.classList.add("anim_download");
+    body.style.overflow = "hidden";
+  });
+});
 ///////////////////////////////////////////////////////
 ///// Écouter les événements sur btn modal_close /////
 const closeModal = document.querySelector(".modal_close");

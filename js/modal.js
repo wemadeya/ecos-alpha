@@ -1,6 +1,7 @@
 ///////////////////////////////////////
 ///// Evénements sur btnDownload /////
 const allBtnDownload = document.querySelectorAll(".btn_blue");
+const allOutilBtn = document.querySelectorAll(".outil_btn");
 const parcoursBtnDownload = document.querySelectorAll(".parcours_phase_btn");
 const modalDownloadWrapper = document.querySelector(".modal_download_wrapper");
 const modal = document.querySelector(".modal_download");
@@ -15,6 +16,14 @@ allBtnDownload.forEach((btnDownload) => {
   });
 });
 
+allOutilBtn.forEach((outilBtn) => {
+  outilBtn.addEventListener("click", () => {
+    modalDownloadWrapper.style.visibility = "visible";
+    modalDownloadWrapper.classList.add("display");
+    modal.classList.add("anim_download");
+    body.style.overflow = "hidden";
+  });
+});
 
 ///////////////////////////////////////////////////////
 ///// Écouter les événements sur btn modal_close /////

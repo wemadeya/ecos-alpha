@@ -40,7 +40,7 @@
                                     <ul>
                                         <span class="dropdown_title">Ecos Classique</span>
                                         <li>
-                                            <a class="dropdown_link" href="#plusieurs" title="Ecos - A plusieurs">
+                                            <a class="dropdown_link plusieurs" href="#plusieurs" title="Ecos - A plusieurs">
                                                 <div>
                                                     <img class="icon" src="img/multi_user.png" alt="icon user"/>À plusieurs
                                                 </div>
@@ -48,7 +48,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown_link" href="#seul" title="Ecos - Seul">
+                                            <a class="dropdown_link plusieurs" href="#seul" title="Ecos - Seul">
                                                 <div>
                                                     <img class="icon" src="img/user.png" alt="icon document"/>Solo <span>Bientôt</span>
                                                 </div>
@@ -57,7 +57,7 @@
                                         </li>
                                         <span class="dropdown_title">Autres modes de jeu</span>
                                         <li>
-                                            <a class="dropdown_link" href="#flashcards" title="Ecos - Flashcards">
+                                            <a class="dropdown_link plusieurs" href="#flashcards" title="Ecos - Flashcards">
                                                 <div>
                                                     <img class="icon" src="img/card.png" alt="icon document"/>Flashcards <span>Bientôt</span>
                                                 </div>
@@ -68,8 +68,13 @@
                                 </div>
                             </li>
                             <li class="header_link">
-                                <a class="tarifs" href="#tarifs" title="tarifs">
-                                    <p>Tarifs<img class="arrow" src="img/arrow.svg" alt="arrow"></p>
+                                <a class="tarifs" href="tarifs/" title="tarifs">
+                                    <p>Tarifs</p>
+                                </a>
+                            </li>
+                            <li class="header_link">
+                                <a class="tarifs" href="a-propos/" title="Les ECOS">
+                                    <p>Les ECOS</p>
                                 </a>
                             </li>
                         </ul>                   
@@ -92,14 +97,14 @@
             <section>
                 <article class="entrainement_wrapper">
                     <div class="entrainement_content_1">
-                        <h1 class="entrainement_title">ECOS Alpha, la&nbsp;plateforme <span>unique de formation aux ECOS</span>
+                        <h1 class="entrainement_title">Tous les ECOS, &nbsp;<span>une seule application.</span>
                         </h1>
                         <p id="entrainement_text" class="text_grey">C’était pas facile. Mais maintenant, tu peux réviser les 367 connaissances exigibles, dans les 356 situations cliniques. N’importe où, n’importe quand !</p>
                         <div class="entrainement_btn">
                             <a class="btn btn_blue">Commence tes révisions<img
                                     src="img/icons/icon_arrow_top-right.svg"
                                     alt="icon d'une flèche pointant en haut à droite" /></a>
-                            <a class="btn btn_transparent" href="#conception">En savoir plus<img class="arrow-right"
+                            <a class="btn btn_transparent" href="#tuto">En savoir plus<img class="arrow-right"
                                 src="img/icons/icon_arrow-right.svg" alt="icon d'une flèche pointant à droite" />
                             </a>
                         </div>
@@ -125,28 +130,52 @@
                     </div>
                 </article>
             </section>
+            <!-- Conception mobile -->
+            <section id="conception" class="conception_wrapper mobile">
+                <div class="conception_mobile_content_1">
+                    <img src="img/icons/icon-conforme.svg" alt="icon de stéthoscope" />
+                    <p>Conçu avec des médecins</p>
+                </div>
+                <div class="conception_mobile_content_2">
+                    <img src="img/icons/icon-mortarboard.svg" alt="icon de mortarboard" />
+                    <p>+ 1000 téléchargements</p>
+                </div>
+                <div class="conception_mobile_content_3">
+                    <img src="img/icons/icon_star.svg" alt="icon de conformité" />
+                    <p>5/5 sur les stores</p>
+                </div>
+            </section>
             <!-- Tuto -->
-            <section>
+            <section id="tuto">
                 <div  class="tuto bg_white">         
                     <div class="title_wrapper">
                         <div class="title active">
                             <p>Tous les cas ECOS, au même endroit</p>
-                            <div class="timer_bar"></div>
+                            <div class="timer_bar_wrapper">
+                                <div class="timer_bar"></div>
+                                <div class="timer_bar_grey"></div>
+                            </div>
                         </div>
                         <div class="title">
                             <p>Une bonne façon d'apprendre</p>
-                            <div class="timer_bar"></div>
+                            <div class="timer_bar_wrapper">
+                                <div class="timer_bar"></div>
+                                <div class="timer_bar_grey"></div>
+                            </div>
                         </div>
                         <div class="title">
                             <p>Joue seul ou à plusieurs</p>
-                            <div class="timer_bar"></div>
+                            <div class="timer_bar_wrapper">
+                                <div class="timer_bar"></div>
+                                <div class="timer_bar_grey"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="description_wrapper">
                         <div class="description active">
                             <h2>Tous les cas ECOS, au même endroit</h2>
                             <div>
-                                <p>Les étudiants qui utilisent des flashcards ont de meilleurs résultats que les autres. Et grâce à nos corrections détaillées, tu retiens facilement chacune des 356 situations cliniques.</p>
+                                <p>Plus besoin de chercher dans 40 collèges pour trouver chacune des 367 connaissances exigibles : on l’a fait pour toi. Grâce à plus de 400 cas intégrés, nos cartes FlashECOS te permettent de réviser facilement le programme.</p>
                             </div>
                         </div>
                         <div class="description">
@@ -158,7 +187,45 @@
                         <div class="description">
                             <h2>Joue seul ou à plusieurs</h2>
                             <div>
-                                <p>Les étudiants qui utilisent des flashcards ont de meilleurs résultats que les autres. Et grâce à nos corrections détaillées, tu retiens facilement chacune des 356 situations cliniques.</p>
+                                <p>La seule application ECOS qui te permet aussi de jouer à plusieurs, comme en situation d’examen. Invite tes amis ! Ils joueront le rôle de médecin, de patient ou d’évaluateur.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description_wrapper_mobile">
+                        <div class="accordion-item">
+                            <h2 class="accordion_item_title">Tous les cas ECOS, au même endroit</h2>
+                            <div class="accordion-item-text">
+                                <div>
+                                    <p>Plus besoin de chercher dans 40 collèges pour trouver chacune des 367 connaissances exigibles : on l’a fait pour toi. Grâce à plus de 400 cas intégrés, nos cartes FlashECOS te permettent de réviser facilement le programme.</p>
+                                </div>
+                            </div>
+                            <div class="timer_bar_wrapper">
+                                <div class="timer_bar"></div>
+                                <div class="timer_bar_grey"></div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion_item_title">Une bonne façon d'apprendre</h2>
+                            <div class="accordion-item-text">
+                                <div>
+                                    <p>Les étudiants qui utilisent des flashcards ont de meilleurs résultats que les autres. Et grâce à nos corrections détaillées, tu retiens facilement chacune des 356 situations cliniques.</p>
+                                </div>
+                            </div>
+                            <div class="timer_bar_wrapper">
+                                <div class="timer_bar"></div>
+                                <div class="timer_bar_grey"></div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion_item_title">Joue seul ou à plusieurs</h2>
+                            <div class="accordion-item-text">
+                                <div>
+                                    <p>La seule application ECOS qui te permet aussi de jouer à plusieurs, comme en situation d’examen. Invite tes amis ! Ils joueront le rôle de médecin, de patient ou d’évaluateur.</p>
+                                </div>
+                            </div>
+                            <div class="timer_bar_wrapper">
+                                <div class="timer_bar"></div>
+                                <div class="timer_bar_grey"></div>
                             </div>
                         </div>
                     </div>
@@ -171,49 +238,67 @@
                     <div class="splide__track">
                         <ul class="splide__list">
                             <li class="splide__slide">
+                                <div class="carousel_content">
+                                    <p class="comment">
+                                        J'ai été bluffé par l'interface qui est plutôt bien fait et assez ludique.
+                                    </p>
+                                    <div class="rating">
+                                        ★★★★★
+                                        <p>5,0</p>
+                                    </div>
+                                </div>
                                 <div class="carousel_header_wrapper">
                                     <div class="carousel_header">
-                                        <div class="avatar">MC</div>
+                                        <div class="avatar">RB</div>
                                         <div class="carousel_title_wrapper">
-                                            <p>Faculté Lyon Sud</p>
-                                            <p>Top 400 ECOS 2024</p>
+                                            <p>Rachid B.</p>
+                                            <p>Top 350 ECOS 2024</p>
                                         </div>
                                     </div>
-                                    <div class="rating">★★★★★</div>
+                                    <img src="img/icons/icon_guillemets.png" alt="icone guillemets">
                                 </div>
-                                <p class="comment">
-                                    J'ai utilisé ECOS Alpha pendant toutes mes révisions et elle m'a permis de gagner 1000 places. Les corrections sont complètes avec des cas de qualité et pertinents au vu de ce qui est tombable aux ECOS. En plus, l'application est très ergonomique !
-                                </p>
                             </li>
                             <li class="splide__slide">
+                                <div class="carousel_content">
+                                    <p class="comment">
+                                        ECOS Alpha a complètement transformé ma manière d’apprendre mes ECOS. Déjà, j'ai pu réviser plus souvent, dans les transports par exemple. Mais surtout, les flashcards m'ont aidée à retenir les informations clés et à améliorer ma rapidité de réponse. Ça m’a vraiment donné confiance pour aborder chaque station. Je recommande cette appli à tous les étudiants en médecine !
+                                    </p>
+                                    <div class="rating">
+                                        ★★★★★
+                                        <p>4,8</p>
+                                    </div>
+                                </div>
                                 <div class="carousel_header_wrapper">
                                     <div class="carousel_header">
-                                        <div class="avatar">AH</div>
+                                        <div class="avatar">UD</div>
                                         <div class="carousel_title_wrapper">
-                                            <p>Faculté Lyon Nord</p>
+                                            <p>Ulysse D.</p>
                                             <p>Top 400 ECOS 2024</p>
                                         </div>
                                     </div>
-                                    <div class="rating">★★★★★</div>
+                                    <img src="img/icons/icon_guillemets.png" alt="icone guillemets">
                                 </div>
-                                <p class="comment">
-                                    Les cas pratiques sont très proches de ceux que j'ai rencontrés lors des ECOS, et les explications sont claires et précises. Grâce à cette plateforme, j'ai gagné 800 places dans le classement. 
-                                </p>
                             </li>
                             <li class="splide__slide">
+                                <div class="carousel_content">
+                                    <p class="comment">
+                                        L’hôpital où je fais mes gardes captait très mal. Mais grâce aux flashcards disponibles hors ligne sur ECOS Alpha, je peux réviser vite fait entre deux consultations, sans avoir besoin de connexion. C’est super pratique de pouvoir m'entraîner dans les moments creux de la garde. C’est devenu mon outil indispensable pour réviser, où que je sois.
+                                    </p>
+                                    <div class="rating">
+                                        ★★★★★
+                                        <p>4,9</p>
+                                    </div>
+                                </div>
                                 <div class="carousel_header_wrapper">
                                     <div class="carousel_header">
-                                        <div class="avatar">AH</div>
+                                        <div class="avatar">CC</div>
                                         <div class="carousel_title_wrapper">
-                                            <p>Faculté Lyon Nord</p>
-                                            <p>Top 400 ECOS 2024</p>
+                                            <p>Colombe C.</p>
+                                            <p>Top 100 ECOS 2024</p>
                                         </div>
                                     </div>
-                                    <div class="rating">★★★★★</div>
+                                    <img src="img/icons/icon_guillemets.png" alt="icone guillemets">
                                 </div>
-                                <p class="comment">
-                                    ECOS Alpha a été un véritable soutien pendant mes révisions. J'ai adoré la diversité des cas et la possibilité de revoir mes erreurs en détail. 
-                                </p>
                             </li>
                         </ul>
                     </div>
@@ -1028,9 +1113,9 @@
             </a>
             <nav>
                 <div class="link" data-tf-live="01HRSPHBENDNAFH4VHSRE0FS8D">Contact</div>
-                <a class="link" href="../a-propos/">A propos</a>
-                <a class="link" href="../legales/mentions-legales/">Mentions légales</a>
-                <a class="link" href="../legales/CGU-CGV/">CGU-CGV</a>
+                <a class="link" href="a-propos/">A propos</a>
+                <a class="link" href="legales/mentions-legales/">Mentions légales</a>
+                <a class="link" href="legales/CGU-CGV/">CGU-CGV</a>
                 <a class="btn btn_blue">
                     Essayer gratuitement
                     <img src="img/icons/icon_arrow_top-right.svg" alt="icon d'une flèche pointant en haut à droite" />
@@ -1111,6 +1196,7 @@
         <!-- End Google Tag Manager (noscript) -->
         <script src="//embed.typeform.com/next/embed.js"></script>
         <script src="js/script.js"></script>
+        <script src="js/header.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"></script>
     </body>
 </html>

@@ -11,9 +11,6 @@ body {
     background-color: #F7FBFF;
     font-family: 'Inter', sans-serif;
 }
-body.hidden {
-    overflow-y: hidden;
-}
 
 a {
     text-decoration: none;
@@ -2463,8 +2460,15 @@ li.accordion .accordion-item p.accordion_item_title:hover {
     gap: 15px;
 }
 
+.paragraph_content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
 .paragraph a {
     padding: 0;
+    display: inline;
+    color: #007AFF;
 }
 
 .paragraph h2 {
@@ -2595,7 +2599,7 @@ li.accordion .accordion-item p.accordion_item_title:hover {
 footer nav {
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 40px;
 }
 
 footer nav .link {
@@ -3002,12 +3006,6 @@ footer nav .link button {
 
 @media screen and (max-width: 1280px) {
 
-    section,
-    footer {
-        margin: 0 auto 0;
-        padding-top: 125px;
-    }
-
     .tuto .title {
         font-size: 14px;
     }
@@ -3192,15 +3190,18 @@ footer nav .link button {
         background: transparent;
         box-shadow: none;
     }
+
     .tuto .title_wrapper {
         display: none;
     }
+
     .tuto .description_wrapper {
         height: auto;
         display: flex;
         flex-direction: column;
         gap: 25px;
     }
+
     .tuto .description {
         position: inherit;
         transform: translate(-50%, 0%);
@@ -3209,6 +3210,7 @@ footer nav .link button {
         box-shadow: 0px -10px 25px 0px rgba(0, 76, 158, 0.06);
         padding: 25px;
     }
+
     .header_nav .btn {
         margin: 0 0 5% 5%;
     }
@@ -3291,6 +3293,12 @@ footer nav .link button {
 
     .dropdown_title {
         padding: 0;
+    }
+
+    section,
+    footer {
+        margin: 0 auto 0;
+        padding-top: 125px;
     }
 
     /***** Tuto *****/
@@ -3498,6 +3506,11 @@ footer nav .link button {
     .popup_img {
         object-fit: cover;
         vertical-align: top;
+    }
+
+    /***** footer *****/
+    footer nav {
+        gap: 20px;
     }
 }
 
@@ -4073,6 +4086,7 @@ footer nav .link button {
 
     footer nav {
         gap: 25px;
+        flex-direction: column;
     }
 
     footer nav .link,
@@ -4319,17 +4333,6 @@ footer nav .link button {
 
     .reduction {
         font-size: 10px;
-    }
-
-    /***** Footer *****/
-    footer {
-        flex-direction: column;
-        gap: 25px;
-    }
-
-    footer nav {
-        gap: 25px;
-        flex-direction: column;
     }
 
     /***** Popup *****/

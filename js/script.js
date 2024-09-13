@@ -764,10 +764,10 @@ function changeCard() {
         case "5_mois":
           lightning_bg.style.background = "rgba(255, 203, 61, 0.35)";
           lightning_img.src = "img/icons/icon_lightning_yellow.svg";
-          card_title.textContent = "Urgence ☕️";
+          card_title.textContent = "Urgence 💉";
           tarif.textContent = "19.58€";
           facturation.textContent = "Sans engagement";
-          list_title.textContent = "Tout du pack CAPPUCCINO ☕, plus :";
+          list_title.textContent = "Tout du pack PERFUSION ☕, plus :";
           icon_check.forEach((icon) => {
             icon.src = "img/icons/icon_check_yellow.svg";
           });

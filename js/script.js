@@ -247,56 +247,6 @@ window.addEventListener("scroll", () => {
     flashcards_btn.classList.add("anim-y");
   }
 
-  // fonctionnement_wrapper_1
-  const fonctionnementWrapper1 = document.querySelector(".fonctionnement_wrapper_1");
-  const iphoneA = document.querySelector(".iphone-3-a");
-  const iphoneB = document.querySelector(".iphone-3-b");
-  const fonctionnementTitle = document.querySelector(".fonctionnement_title_1");
-  const fonctionnementText = document.querySelector(".fonctionnement_text");
-  const fonctionnementBtn = document.querySelector(".fonctionnement_btn");
-  const fonctionnementWrapper1Top = fonctionnementWrapper1.getBoundingClientRect().top;
-
-  if (scrollTop > scrollTop + fonctionnementWrapper1Top - clientHeight * 0.8) {
-    iphoneA.classList.add("anim-iphone-3-top");
-    iphoneB.classList.add("anim-iphone-3-down");
-    fonctionnementWrapper1.classList.add("anim-y-both");
-    fonctionnementTitle.classList.add("anim-y");
-    fonctionnementText.classList.add("anim-y");
-    fonctionnementBtn.classList.add("anim-y");
-  }
-
-  // fonctionnement_wrapper_2 & fonctionnement_wrapper_3
-  const fonctionnementWrapper2 = document.querySelector(".fonctionnement_wrapper_2");
-  const fonctionnementWrapper3 = document.querySelector(".fonctionnement_wrapper_3");
-  const fonctionnementTitle2 = document.querySelector(".fonctionnement_title_2");
-  const fonctionnementTitle3 = document.querySelector(".fonctionnement_title_3");
-  const fonctionnementIphone1 = document.querySelector(".fonctionnement_iphone_1");
-  const fonctionnementIphone2 = document.querySelector(".fonctionnement_iphone_2");
-  const fonctionnementIphone3 = document.querySelector(".fonctionnement_iphone_3");
-  const progressbar = document.querySelector(".progress_bar");
-  const check1 = document.querySelector(".check_1");
-  const check2 = document.querySelector(".check_2");
-  const checkwrapper1Text = document.querySelector(".check_wrapper_1_text");
-  const checkwrapper2Text = document.querySelector(".check_wrapper_2_text");
-  const fonctionnementWrapper2Top = fonctionnementWrapper2.getBoundingClientRect().top;
-
-  if (scrollTop > scrollTop + fonctionnementWrapper2Top - clientHeight * 0.8) {
-    // fonctionnement_wrapper_2
-    fonctionnementWrapper2.classList.add("anim-y-both");
-    fonctionnementTitle2.classList.add("anim-y");
-    fonctionnementIphone1.classList.add("anim-top-20");
-    fonctionnementIphone2.classList.add("anim-bottom-20");
-    // fonctionnement_wrapper_3
-    fonctionnementWrapper3.classList.add("anim-y-both");
-    fonctionnementTitle3.classList.add("anim-y");
-    fonctionnementIphone3.classList.add("anim-y-both");
-    progressbar.classList.add("anim-x");
-    check1.classList.add("anim_scale_100");
-    checkwrapper1Text.classList.add("anim-y-both");
-    check2.classList.add("anim_scale_100");
-    checkwrapper2Text.classList.add("anim-y-both");
-  }
-
   // outil
   const outil = document.querySelector(".outil");
   const outilTitle = document.querySelector(".outil_title");
@@ -722,19 +672,18 @@ document.addEventListener("DOMContentLoaded", function() {
 ///////////////////// 
 ///// Flachcard /////
 function toggleSize(element) {
-
   var buttons = document.querySelectorAll('.humeurs');
   buttons.forEach(function(btn) {
       btn.classList.remove('enlarged');
+      removeBlur();
   });
-
   element.classList.toggle('enlarged');
 }
 
 document.getElementById('flashcards_card').addEventListener('mouseleave', function() {
   var flashcard = document.getElementById('flashcards_mask');
   var text = document.getElementById('flashcards_btn_text');
-  flashcard.style.opacity = 1;
+  flashcard.classList.remove('opacity');
   text.innerHTML = 'Afficher la réponse';
 });
 
@@ -742,13 +691,20 @@ function toggleBlur() {
   var flashcard = document.getElementById('flashcards_mask');
   var text = document.getElementById('flashcards_btn_text');
 
-  if (flashcard.style.opacity == 0) {
-      flashcard.style.opacity = 1;
+  if (flashcard.classList.contains('opacity')) {
+      flashcard.classList.remove('opacity');
       text.innerHTML = 'Afficher la réponse';
   } else {
-      flashcard.style.opacity = 0;
+      flashcard.classList.add('opacity');
       text.innerHTML = 'Masquer la réponse';
   }
+}
+
+function removeBlur() {
+  var flashcard = document.getElementById('flashcards_mask');
+  var text = document.getElementById('flashcards_btn_text');
+  flashcard.classList.add('opacity');
+  text.innerHTML = 'Masquer la réponse';
 }
 
 //////////////////
@@ -805,31 +761,12 @@ function changeCard() {
           outil_btn.style.color = "#fff"; 
           outil_btn_img.src = "img/icons/icon_arrow_top-right.svg";
           break;
-        case "7_mois":
-          lightning_bg.style.background = "rgba(151, 71, 255, 0.35)";
-          lightning_img.src = "img/icons/icon_lightning_purple.svg";
-          card_title.textContent = "Cappuccino ☕";
-          tarif.textContent = "15.5€";
-          facturation.textContent = "Facturé pour 7 mois";
-          list_title.textContent = "Tout du pack PERFUSION 💉, plus :";
-          icon_check.forEach((icon) => {
-            icon.src = "img/icons/icon_check_purple.svg";
-          });
-          list_1.textContent = "300+ cas conformes aux modalités officielles";
-          list_2.textContent = "Accède à des corrections détaillées";
-          list_3.textContent = "Crée des parties en tant que médecin";
-          list_4.textContent = "Nouveaux cas ajoutés régulièrement";
-          list_5.textContent = "Suis ton évolution";
-          outil_btn.style.background = "#9747FF";
-          outil_btn.style.color = "#fff"; 
-          outil_btn_img.src = "img/icons/icon_arrow_top-right.svg";
-          break;
         case "5_mois":
           lightning_bg.style.background = "rgba(255, 203, 61, 0.35)";
           lightning_img.src = "img/icons/icon_lightning_yellow.svg";
-          card_title.textContent = "Ristretto ☕️";
-          tarif.textContent = "19.5€";
-          facturation.textContent = "Facturé pour 5 mois";
+          card_title.textContent = "Urgence ☕️";
+          tarif.textContent = "19.58€";
+          facturation.textContent = "Sans engagement";
           list_title.textContent = "Tout du pack CAPPUCCINO ☕, plus :";
           icon_check.forEach((icon) => {
             icon.src = "img/icons/icon_check_yellow.svg";

@@ -11,12 +11,14 @@ body {
     background-color: #F7FBFF;
     font-family: 'Inter', sans-serif;
 }
+
 body.hidden {
     overflow: hidden;
 }
+
 a {
     text-decoration: none;
-    padding: 15px 25px;
+    padding: 5px 10px;
     border-radius: 10px;
     font-weight: 500;
     font-size: 16px;
@@ -267,6 +269,23 @@ header .ecos-alpha {
 
 .header_link a {
     color: #000;
+}
+
+.tarifs:hover {
+    border-radius: 5px;
+    background: #F0F4F8;
+}
+
+.tarifs:active {
+    background: #E3E9EF;
+}
+
+#informations {
+    display: none;
+}
+
+.informations_arrow {
+    display: none;
 }
 
 .header_link:hover .header_nav_dropdown {
@@ -1555,6 +1574,10 @@ li.accordion .accordion-item p.accordion_item_title:hover {
 
 /******************/
 /***** Outil *****/
+#tarifs {
+    padding-top: 100px;
+}
+
 .outil {
     opacity: 0;
     transform: translateY(50px);
@@ -1565,7 +1588,6 @@ li.accordion .accordion-item p.accordion_item_title:hover {
     flex-direction: column;
     align-items: center;
     gap: 45px;
-    padding: 45px;
 }
 
 .outil_title {
@@ -1639,7 +1661,8 @@ li.accordion .accordion-item p.accordion_item_title:hover {
     flex-direction: column;
     align-self: stretch;
     border-radius: 10px;
-    gap: 35px;
+    gap: 20px;
+    flex: 1;
 }
 
 .pack_title {
@@ -1745,6 +1768,10 @@ li.accordion .accordion-item p.accordion_item_title:hover {
     background: #007AFF;
 }
 
+.outil_btn:hover {
+    transform: translateY(-3px);
+}
+
 .btn_grey {
     color: #000;
     background: #DBE4EC;
@@ -1760,10 +1787,6 @@ li.accordion .accordion-item p.accordion_item_title:hover {
 
 .outil_content_2.anim-y {
     animation-delay: 0.9s;
-}
-
-.outil_btn.anim-y {
-    animation-delay: 1.2s;
 }
 
 /*********************************/
@@ -3266,7 +3289,7 @@ footer nav .link button {
     .header_nav_link {
         display: flex;
         align-items: flex-start;
-        gap: 30px;
+        gap: 20px;
         width: 90%;
         margin: 0 auto;
         flex-direction: column;
@@ -3277,7 +3300,18 @@ footer nav .link button {
     }
 
     .tarifs {
-        padding: 0;
+        padding: 10px 10px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #informations {
+        display: block;
+    }
+
+    .informations_arrow {
+        display: block;
     }
 
     .header_link .circle_yellow,
@@ -3296,6 +3330,9 @@ footer nav .link button {
         box-shadow: none;
         padding: 0;
         min-width: none;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
 
     .dropdown_title {

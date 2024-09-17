@@ -11,13 +11,14 @@ body {
     background-color: #F7FBFF;
     font-family: 'Inter', sans-serif;
 }
+
 body.hidden {
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 a {
     text-decoration: none;
-    padding: 15px 25px;
+    padding: 5px 10px;
     border-radius: 10px;
     font-weight: 500;
     font-size: 16px;
@@ -268,6 +269,23 @@ header .ecos-alpha {
 
 .header_link a {
     color: #000;
+}
+
+.tarifs:hover {
+    border-radius: 5px;
+    background: #F0F4F8;
+}
+
+.tarifs:active {
+    background: #E3E9EF;
+}
+
+#informations {
+    display: none;
+}
+
+.informations_arrow {
+    display: none;
 }
 
 .header_link:hover .header_nav_dropdown {
@@ -1556,6 +1574,10 @@ li.accordion .accordion-item p.accordion_item_title:hover {
 
 /******************/
 /***** Outil *****/
+#tarifs {
+    padding-top: 100px;
+}
+
 .outil {
     opacity: 0;
     transform: translateY(50px);
@@ -1566,7 +1588,6 @@ li.accordion .accordion-item p.accordion_item_title:hover {
     flex-direction: column;
     align-items: center;
     gap: 45px;
-    padding: 45px;
 }
 
 .outil_title {
@@ -1578,7 +1599,7 @@ li.accordion .accordion-item p.accordion_item_title:hover {
     border-radius: 150px;
     display: flex;
     position: relative;
-    width: 500px;
+    width: 300px;
 }
 
 .outil_nav a {
@@ -1640,7 +1661,8 @@ li.accordion .accordion-item p.accordion_item_title:hover {
     flex-direction: column;
     align-self: stretch;
     border-radius: 10px;
-    gap: 35px;
+    gap: 20px;
+    flex: 1;
 }
 
 .pack_title {
@@ -1746,6 +1768,10 @@ li.accordion .accordion-item p.accordion_item_title:hover {
     background: #007AFF;
 }
 
+.outil_btn:hover {
+    transform: translateY(-3px);
+}
+
 .btn_grey {
     color: #000;
     background: #DBE4EC;
@@ -1761,10 +1787,6 @@ li.accordion .accordion-item p.accordion_item_title:hover {
 
 .outil_content_2.anim-y {
     animation-delay: 0.9s;
-}
-
-.outil_btn.anim-y {
-    animation-delay: 1.2s;
 }
 
 /*********************************/
@@ -2378,6 +2400,11 @@ li.accordion .accordion-item p.accordion_item_title:hover {
     transform: translate(-45%, -55%) rotateZ(-5deg) scale(0.8);
 }
 
+.opacity {
+    opacity: 0;
+    transition: all 1s ease;
+}
+
 /*****************/
 /***** Popup *****/
 .popup_container {
@@ -2463,8 +2490,15 @@ li.accordion .accordion-item p.accordion_item_title:hover {
     gap: 15px;
 }
 
+.paragraph_content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
 .paragraph a {
     padding: 0;
+    display: inline;
+    color: #007AFF;
 }
 
 .paragraph h2 {
@@ -2595,7 +2629,7 @@ li.accordion .accordion-item p.accordion_item_title:hover {
 footer nav {
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 40px;
 }
 
 footer nav .link {
@@ -3002,12 +3036,6 @@ footer nav .link button {
 
 @media screen and (max-width: 1280px) {
 
-    section,
-    footer {
-        margin: 0 auto 0;
-        padding-top: 125px;
-    }
-
     .tuto .title {
         font-size: 14px;
     }
@@ -3192,15 +3220,18 @@ footer nav .link button {
         background: transparent;
         box-shadow: none;
     }
+
     .tuto .title_wrapper {
         display: none;
     }
+
     .tuto .description_wrapper {
         height: auto;
         display: flex;
         flex-direction: column;
         gap: 25px;
     }
+
     .tuto .description {
         position: inherit;
         transform: translate(-50%, 0%);
@@ -3209,6 +3240,7 @@ footer nav .link button {
         box-shadow: 0px -10px 25px 0px rgba(0, 76, 158, 0.06);
         padding: 25px;
     }
+
     .header_nav .btn {
         margin: 0 0 5% 5%;
     }
@@ -3257,7 +3289,7 @@ footer nav .link button {
     .header_nav_link {
         display: flex;
         align-items: flex-start;
-        gap: 30px;
+        gap: 20px;
         width: 90%;
         margin: 0 auto;
         flex-direction: column;
@@ -3268,7 +3300,18 @@ footer nav .link button {
     }
 
     .tarifs {
-        padding: 0;
+        padding: 10px 10px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #informations {
+        display: block;
+    }
+
+    .informations_arrow {
+        display: block;
     }
 
     .header_link .circle_yellow,
@@ -3287,10 +3330,19 @@ footer nav .link button {
         box-shadow: none;
         padding: 0;
         min-width: none;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
 
     .dropdown_title {
         padding: 0;
+    }
+
+    section,
+    footer {
+        margin: 0 auto 0;
+        padding-top: 125px;
     }
 
     /***** Tuto *****/
@@ -3498,6 +3550,11 @@ footer nav .link button {
     .popup_img {
         object-fit: cover;
         vertical-align: top;
+    }
+
+    /***** footer *****/
+    footer nav {
+        gap: 20px;
     }
 }
 
@@ -4050,10 +4107,6 @@ footer nav .link button {
         padding: 20px;
     }
 
-    .outil_nav {
-        width: 100%;
-    }
-
     .outil_nav a {
         font-size: 14px;
         gap: 5px;
@@ -4073,6 +4126,7 @@ footer nav .link button {
 
     footer nav {
         gap: 25px;
+        flex-direction: column;
     }
 
     footer nav .link,
@@ -4310,6 +4364,10 @@ footer nav .link button {
     }
 
     /***** tarifs *****/
+    .outil_nav {
+        width: 100%;
+    }
+
     .outil_nav a {
         font-size: 12px;
         gap: 5px;
@@ -4319,17 +4377,6 @@ footer nav .link button {
 
     .reduction {
         font-size: 10px;
-    }
-
-    /***** Footer *****/
-    footer {
-        flex-direction: column;
-        gap: 25px;
-    }
-
-    footer nav {
-        gap: 25px;
-        flex-direction: column;
     }
 
     /***** Popup *****/

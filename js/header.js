@@ -16,6 +16,7 @@ ancres.forEach((ancre) => {
     menuHamburgerLign1.classList.remove("anim");
     menuHamburgerLign2.classList.remove("anim");
     menuHamburgerLign3.classList.remove("anim");
+    body.classList.remove("hidden");
   })
 })
 

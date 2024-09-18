@@ -3428,6 +3428,10 @@ footer nav .link button {
     }
 
     /***** entrainement seul *****/
+    #entrainement_wrapper {
+        display: flex;
+    }
+
     [class^="entrainement_seul_card"] {
         flex-direction: row;
     }

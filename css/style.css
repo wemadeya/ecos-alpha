@@ -292,8 +292,9 @@ header .ecos-alpha {
     display: block;
 }
 
-.circle_yellow {
-    background-color: #FFCB3D;
+.circle {
+    background-color: #FF4747;
+    ;
     font-family: "SF Pro Display";
     font-size: 5px;
     height: 6px;
@@ -348,8 +349,7 @@ header .ecos-alpha {
 .dropdown_link div span {
     padding: 5px 12px;
     border-radius: 999px;
-    background: #FFCB3D;
-    box-shadow: 0px 0px 25px 0px rgba(255, 203, 61, 0.50);
+    background: #FF4747;
     color: #fff;
     font-size: 12px;
 }
@@ -3314,7 +3314,7 @@ footer nav .link button {
         display: block;
     }
 
-    .header_link .circle_yellow,
+    .header_link .circle,
     .header_link .chevron {
         display: none;
     }

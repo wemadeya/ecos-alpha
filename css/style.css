@@ -2017,11 +2017,10 @@ li.accordion .accordion-item p.accordion_item_title:hover {
 
 /******************************/
 /***** Entrainement seul *****/
-.yellow_light {
+.light {
     padding: 5px 12px;
     border-radius: 999px;
-    background: #FFCB3D;
-    box-shadow: 0px 0px 25px 0px rgba(255, 203, 61, 0.50);
+    background: #FF4747;
     color: #fff;
     font-size: 12px;
     width: max-content;

@@ -3214,6 +3214,9 @@ footer nav .link button {
 }
 
 @media screen and (max-width: 1024px) {
+    .ecos-alpha p {
+        font-size: 15px;
+    }
     .tuto.bg_white {
         border-radius: 0;
         background: transparent;
@@ -3578,16 +3581,13 @@ footer nav .link button {
 
 
 @media screen and (max-width: 768px) {
-
     #avis {
         padding-bottom: 40px;
     }
-
     /***** Tuto ******/
     .tuto {
         padding: 0;
     }
-
     .tuto.bg_white {
         border-radius: 0;
         background: transparent;
@@ -3595,15 +3595,12 @@ footer nav .link button {
         opacity: 1;
         transform: translateY(0);
     }
-
     .tuto.bg_white.anim-y-both {
         animation: none;
     }
-
     .tuto .title_wrapper {
         display: none;
     }
-
     .tuto .description_wrapper {
         height: auto;
         display: flex;
@@ -3613,7 +3610,6 @@ footer nav .link button {
         width: 100%;
         display: none;
     }
-
     .tuto .description {
         position: inherit;
         transform: translate(-50%, 0%);
@@ -3626,21 +3622,17 @@ footer nav .link button {
         opacity: 0;
         animation: none;
     }
-
     .tuto .description.anim-y-both {
         animation: 1s cubic-bezier(0.14, .38, .19, .99) anim-y-both both;
     }
-
     .description_wrapper {
         display: none;
     }
-
     .description_wrapper_mobile {
         display: flex;
         flex-direction: column;
         gap: 25px;
     }
-
     .accordion-item {
         display: flex;
         flex-direction: column;
@@ -3652,39 +3644,31 @@ footer nav .link button {
         transform: translateY(50px);
         opacity: 0;
     }
-
     .accordion-item.active {
         gap: 20px;
     }
-
     .accordion_item_title {
         font-size: 18px;
     }
-
     /***** @keyframes *****/
     @keyframes anim-iphone-3-top {
         100% {
             transform: translate(-50%, -30%);
         }
     }
-
     ul {
         font-size: 14px;
     }
-
     .modal_download_content {
         gap: 25px;
     }
-
     .modal_download {
         padding: 25px;
         gap: 25px;
     }
-
     .download_mobile {
         height: 120px;
     }
-
     /***** main *****/
     main {
         width: 90%;
@@ -4125,10 +4109,11 @@ footer nav .link button {
     footer {
         align-items: center;
         flex-direction: column;
+        gap: 25px;
     }
 
     footer nav {
-        gap: 25px;
+        gap: 10px;
         flex-direction: column;
     }
 
@@ -4447,33 +4432,22 @@ footer nav .link button {
         height: 28px;
         width: 28px;
     }
-
-    .ecos-alpha p {
-        font-size: 12px;
-    }
-
-    h1,
-    h2 {
+    h1, h2 {
         font-size: 20px;
     }
-
     h3 {
         font-size: 20px;
     }
-
     h4 {
         font-size: 16px;
     }
-
     .correction_container h4,
     .notation_container h4 {
         font-size: 18px;
         font-weight: 600;
     }
 
-    .correction_content p,
-    p,
-    li {
+    .correction_content p, p, li {
         font-size: 14px;
     }
 

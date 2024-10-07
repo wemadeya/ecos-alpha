@@ -127,9 +127,10 @@ function createChart(matiere, notes, classements, limite) {
         {
           label: `Rang limite pour ${matiere}`,
           data: Array(sortedNotes.length).fill(limite), // La limite à afficher comme ligne
-          fill: "start",
-          borderColor: "rgba(255, 0, 0, 0.5)",
-          borderDash: [5, 5], // Ligne pointillée
+          fill: true,
+          borderColor: "rgba(72, 222, 90, 1)",
+          backgroundColor: "rgba(72, 222, 90, 0.1)",
+          //borderDash: [10, 10], // Ligne pointillée
           pointRadius: 0, // Pas de points
         },
         {

@@ -99,10 +99,19 @@ p {
     background-color: #007AFF;
     gap: 10px;
 }
-
+.btn_blue_light {
+    background: rgba(0, 122, 255, 0.10);
+    color: #007AFF;
+    gap: 5px;
+}
+.btn_blue:hover, .btn_blue_light:hover {
+    transform: translateY(-3px);
+}
 .btn_blue:hover {
     background-color: #268EFF;
-    transform: translateY(-3px);
+}
+.btn_blue_light:hover {
+    background: rgba(0, 122, 255, 0.15);
 }
 
 /***** btn_white *****/
@@ -191,29 +200,74 @@ footer {
 
 /***** header *****/
 header {
-    padding: 15px 0;
     position: sticky;
     top: 0;
     z-index: 999;
     background-color: #fff;
     width: 100%;
     box-shadow: 0px -10px 25px 0px rgba(0, 76, 158, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+.liseret {
+    background-color: #FF4747;
+    padding: 10px 0;
+    position: relative;
 }
 
+.liseret_close {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translate(0%, -50%);
+    cursor: pointer;
+}
+.liseret_content {
+    display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    gap: 15px;
+}
+.liseret a {
+    color: rgba(255, 255, 255, 0.75);
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0;
+}
+.liseret a::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.75); 
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    transform: translate(-50%, -50%);
+}
+.liseret a img{
+    height: 20px;
+}
 .header_wrapper {
     display: flex;
     justify-content: space-between;
     width: 90%;
     margin: auto;
     align-items: center;
+    padding: 15px 0;
 }
-
+.header_wrapper .cta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 footer {
     padding: 35px 0;
 }
 
-section,
-footer {
+section, footer {
     margin: 0 auto 0;
     padding-top: 200px;
 }
@@ -269,6 +323,7 @@ header .ecos-alpha {
 
 .header_link a {
     color: #000;
+    padding: 0;
 }
 
 .tarifs:hover {
@@ -350,6 +405,7 @@ header .ecos-alpha {
     font-size: 15px;
     font-weight: 500;
     width: 100%;
+    gap: 10px;
 }
 
 .dropdown_link div {
@@ -3036,7 +3092,30 @@ footer nav .link button {
 }
 
 @media screen and (max-width: 1280px) {
-
+    .header_nav_wrapper {
+        gap: 30px;
+    }
+    .header_nav_link {
+        gap: 20px;
+    }
+    header a, .header_link {
+        font-size: 14px;
+    }
+    .header_link .chevron {
+        width: 15px;
+    }
+    .header_wrapper {
+        width: 95%;
+    }
+    .liseret p, .liseret a {
+        font-size: 12px;
+    }
+    .liseret a img {
+        height: 15px;
+    }
+    .liseret_close {
+        height: 12px;
+    }
     .tuto .title {
         font-size: 14px;
     }
@@ -3216,6 +3295,15 @@ footer nav .link button {
 }
 
 @media screen and (max-width: 1024px) {
+    .header_wrapper {
+        width: 90%;
+    }
+    .liseret p, .liseret a {
+        font-size: 10px;
+    }
+    .liseret p {
+        text-align: center;
+    }
     .ecos-alpha p {
         font-size: 15px;
     }
@@ -3244,11 +3332,11 @@ footer nav .link button {
         box-shadow: 0px -10px 25px 0px rgba(0, 76, 158, 0.06);
         padding: 25px;
     }
-
+/*
     .header_nav .btn {
         margin: 0 0 5% 0%;
     }
-
+*/
     body {
         width: 100%;
     }
@@ -3264,7 +3352,7 @@ footer nav .link button {
         position: absolute;
         top: 100%;
         left: 0%;
-        height: calc(100dvh - 81px);
+        height: calc(100dvh - 116px);
         pointer-events: none;
     }
 
@@ -3583,6 +3671,11 @@ footer nav .link button {
 
 
 @media screen and (max-width: 768px) {
+    .liseret_content {
+        gap: 5px;
+        flex-direction: column;
+        padding: 0 30px;
+    }
     #avis {
         padding-bottom: 40px;
     }
@@ -4183,7 +4276,13 @@ footer nav .link button {
 }
 
 @media screen and (max-width: 560px) {
-
+    .header_wrapper .cta {
+        width: 100%;
+        flex-direction: column;
+    }
+    .header_wrapper .cta .btn{
+        width: 100%;
+    }
     /***** parcours *****/
     .parcours_card_wrapper {
         flex-direction: column;

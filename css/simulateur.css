@@ -1,3 +1,6 @@
+.simulateur_main {
+    width: 90%;
+}
 #simulateur {
     padding-top: 50px;
     text-align: center;
@@ -98,4 +101,88 @@ canvas {
 
 .form_container {
     margin-bottom: 20px;
+}
+
+/* Rejoignez une communauté d’étudiants investis */
+.simulateur_text_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+}
+.simulateur_content_1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 45px 10px 45px 45px;
+    gap: 50px;
+}
+.simulateur_content_1_title  {
+    font-size: 20px;
+}
+.simulateur_text_1 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 65%;
+}
+.simulateur_iphone {
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    width: 225px;
+    position: relative;
+}
+.simulateur_iphone img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.simulateur_content_2 {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.simulateur_content_2_title  {
+    font-size: 25px;
+}
+.simulateur_content_2 div {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.simulateur_content_2 div p {
+    color: #7A8795;
+}
+
+@media screen and (max-width: 1440px)  {
+    .simulateur_text_wrapper {
+        gap: 50px;
+    }
+    .simulateur_content_1 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 25px;
+    }
+}
+@media screen and (max-width: 1280px)  {
+    .simulateur_text_wrapper {
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 1280px) {
+    .simulateur_content_1 {
+        flex-direction: column;
+    }
+    .simulateur_text_1 {
+        width: 100%;
+    }
+    .simulateur_iphone {
+        width: 100%;
+    }
 }

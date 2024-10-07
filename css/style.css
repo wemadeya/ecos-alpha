@@ -224,7 +224,6 @@ header {
 }
 .liseret_content {
     display: flex;
-    display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
@@ -3093,7 +3092,7 @@ footer nav .link button {
 
 @media screen and (max-width: 1280px) {
     .header_nav_wrapper {
-        gap: 30px;
+        gap: 20px;
     }
     .header_nav_link {
         gap: 20px;
@@ -3298,11 +3297,14 @@ footer nav .link button {
     .header_wrapper {
         width: 90%;
     }
+    .header_link a {
+        padding: 10px;
+    }
+    .header_nav_dropdown li {
+        padding: 0px;
+    }
     .liseret p, .liseret a {
         font-size: 10px;
-    }
-    .liseret p {
-        text-align: center;
     }
     .ecos-alpha p {
         font-size: 15px;
@@ -3332,11 +3334,7 @@ footer nav .link button {
         box-shadow: 0px -10px 25px 0px rgba(0, 76, 158, 0.06);
         padding: 25px;
     }
-/*
-    .header_nav .btn {
-        margin: 0 0 5% 0%;
-    }
-*/
+
     body {
         width: 100%;
     }
@@ -3669,12 +3667,17 @@ footer nav .link button {
     }
 }
 
-
 @media screen and (max-width: 768px) {
+    .header_nav {
+        height: calc(100dvh - 130px);
+    }
     .liseret_content {
-        gap: 5px;
+        padding: 0 10px;
         flex-direction: column;
-        padding: 0 30px;
+        gap: 0;
+    }
+    .liseret_content p {
+        text-align: center;
     }
     #avis {
         padding-bottom: 40px;
@@ -4276,6 +4279,9 @@ footer nav .link button {
 }
 
 @media screen and (max-width: 560px) {
+    .header_nav {
+        height: calc(100dvh - 144px);
+    }
     .header_wrapper .cta {
         width: 100%;
         flex-direction: column;
@@ -4522,7 +4528,7 @@ footer nav .link button {
 @media screen and (max-width: 375px) {
 
     .header_nav {
-        height: calc(100dvh - 74px);
+        height: calc(100dvh - 137px);
     }
 
     header .btn {

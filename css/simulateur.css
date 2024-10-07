@@ -170,13 +170,27 @@ canvas {
         gap: 25px;
     }
 }
-@media screen and (max-width: 1280px)  {
+
+@media screen and (max-width: 1280px) {
     .simulateur_text_wrapper {
         flex-direction: column;
+     }
+     .simulateur_content_1 {
+        padding: 25px 10px 25px 25px;
     }
 }
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 768px) {
+
+    .simulateur_text_1 {
+        width: 65%;
+    }
+    .simulateur_iphone {
+        height: 350px;
+    }
+}
+@media screen and (max-width: 560px) {
     .simulateur_content_1 {
+        padding: 25px;
         flex-direction: column;
     }
     .simulateur_text_1 {
@@ -184,5 +198,14 @@ canvas {
     }
     .simulateur_iphone {
         width: 100%;
+    }
+    .simulateur_iphone img {
+        height: auto;
+        width: 110%;
+        object-fit: contain;
+        position: absolute;
+        top: 0%;
+        left: 55%;
+        transform: translate(-50%, 0%);
     }
 }

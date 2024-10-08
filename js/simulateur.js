@@ -1,3 +1,6 @@
+let graphiqueEcos;
+let sortedData = [];
+
 // Liste des matières
 const matieres = [
   "Allergologie",
@@ -64,42 +67,32 @@ async function fetchLimitesData() {
   return data.limites;
 }
 
-// Fonction pour calculer la régression linéaire
-function calculateLinearRegression(xValues, yValues) {
-  const n = xValues.length;
-  const sumX = xValues.reduce((a, b) => a + b, 0);
-  const sumY = yValues.reduce((a, b) => a + b, 0);
-  const sumXY = xValues.reduce((sum, x, i) => sum + x * yValues[i], 0);
-  const sumX2 = xValues.reduce((sum, x) => sum + x * x, 0);
-
-  // Calculer la pente (m) et l'ordonnée à l'origine (b)
-  const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
-  const intercept = (sumY - slope * sumX) / n;
-
-  return { slope, intercept };
+// Fonction pour initialiser sortedData
+function initializeSortedData(notes, classements) {
+  sortedData = notes
+    .map((note, i) => ({ note, classement: classements[i] }))
+    .sort((a, b) => a.note - b.note);
 }
 
-// Fonction pour générer les points de la ligne de régression
-function getRegressionLine(xValues, slope, intercept) {
-  return xValues.map((x) => slope * x + intercept);
+// Fonction pour mettre à jour la valeur affichée du slider
+function updateSliderValue(spanId, value) {
+  document.getElementById(spanId).innerText = value;
+  updateMarker(parseFloat(document.getElementById('noteEDN').value), parseFloat(document.getElementById('noteECOS').value));
 }
 
 // Fonction pour créer un graphique avec Chart.js
 function createChart(matiere, notes, classements, limite) {
-  // Trier les notes et classements par ordre croissant
-  const sortedData = notes
-    .map((note, i) => ({ note, classement: classements[i] }))
-    .sort((a, b) => a.note - b.note);
+  
+  initializeSortedData(notes, classements);
 
   const sortedNotes = sortedData.map((d) => d.note);
-  const sortedClassements = sortedData.map((d) => d.classement);
 
-  // Calculer la régression linéaire
-  const { slope, intercept } = calculateLinearRegression(
-    sortedNotes,
-    sortedClassements
+  // Calculer la régression polynomiale de degré 3
+  const result = regression.polynomial(
+    sortedData.map((d) => [d.note, d.classement]),
+    { order: 3 }
   );
-  const regressionLine = getRegressionLine(sortedNotes, slope, intercept);
+  const regressionLine = result.points;
 
   // Créer un nouvel élément canvas pour chaque graphique
   const canvas = document.createElement("canvas");
@@ -110,14 +103,14 @@ function createChart(matiere, notes, classements, limite) {
   container.appendChild(canvas);
 
   // Configurer le graphique Chart.js
-  new Chart(canvas, {
+  graphiqueEcos = new Chart(canvas, {
     type: "line",
     data: {
       labels: sortedNotes, // Les notes sur l'axe X, triées
       datasets: [
         {
           label: `Classement pour ${matiere}`,
-          data: sortedClassements, // Les classements sur l'axe Y, triés
+          data: sortedData.map((d) => [d.note, d.classement]), // Les classements sur l'axe Y, triés
           borderColor: "transparent",
           tension: 0,
           showLine: false,
@@ -128,18 +121,20 @@ function createChart(matiere, notes, classements, limite) {
           label: `Rang limite pour ${matiere}`,
           data: Array(sortedNotes.length).fill(limite), // La limite à afficher comme ligne
           fill: true,
-          borderColor: "rgba(72, 222, 90, 1)",
-          backgroundColor: "rgba(72, 222, 90, 0.1)",
-          //borderDash: [10, 10], // Ligne pointillée
+          borderColor: "#48DE5A",
+          backgroundColor: "rgba(72, 222, 90, 0.10)",
           pointRadius: 0, // Pas de points
         },
         {
-          label: "Régression linéaire",
-          data: regressionLine, // Points de la régression linéaire
-          fill: false,
-          borderColor: "rgba(0, 0, 255, 0.8)", // Couleur de la régression linéaire
-          pointRadius: 0, // Pas de points
+          label: "Régression lisse",
+          data: regressionLine.map((point) => ({ x: point[0], y: point[1] })),
+          borderColor: "rgba(0, 0, 255, 0.8)",
+          pointRadius: 0,
           borderWidth: 2,
+          showLine: true,
+          tension: 0.4,
+          fill: true,
+          backgroundColor: "rgba(0, 115, 250, 0.25)",
         },
       ],
     },
@@ -164,6 +159,36 @@ function createChart(matiere, notes, classements, limite) {
       },
     },
   });
+}
+
+function updateMarker(noteEDN, noteECOS) {
+  const noteTotale = Math.round((2 / 3 * noteEDN + 1 / 3 * noteECOS) * 100) / 100; 
+
+  // Trouver le point le plus proche dans les données
+  const pointGraphique = sortedData.reduce((prev, curr) => {
+    return (Math.abs(curr.note - noteTotale) < Math.abs(prev.note - noteTotale) ? curr : prev);
+  });
+
+  const marker = {
+    label: 'Note totale',
+    data: [{ x: pointGraphique.note, y: pointGraphique.classement }],
+    borderColor: 'rgba(0, 123, 255, 1)',
+    backgroundColor: 'rgba(0, 123, 255, 1)',
+    pointRadius: 5,
+    showLine: false,
+    fill: false,
+  };
+
+  // Mettre à jour ou ajouter le marqueur au graphique
+  const markerIndex = graphiqueEcos.data.datasets.findIndex(dataset => dataset.label === 'Note totale');
+  if (markerIndex >= 0) {
+    graphiqueEcos.data.datasets[markerIndex].data = [{ x: pointGraphique.note, y: pointGraphique.classement }];
+  } else {
+    graphiqueEcos.data.datasets.push(marker);
+  }
+
+  // Rafraîchir le graphique pour refléter les changements
+  graphiqueEcos.update();
 }
 
 // Initialiser le formulaire avec les matières et villes

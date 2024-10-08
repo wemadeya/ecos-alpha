@@ -87,7 +87,7 @@ input[type="range"] {
     background: #F0F0F0;
     border-radius: 5px;
     outline: none;
-    transition: background 0.3s;
+    transition: 0.3s;
     position: relative;
     z-index: 1;
 }
@@ -220,7 +220,6 @@ canvas {
     flex-direction: column;
     gap: 50px;
 }
-<<<<<<< HEAD
 .simulateur_content_1, .simulateur_content_2, .simulateur_content_2_text1, .simulateur_content_2_text2  {
     opacity: 0;
     transform: translateY(40px);
@@ -234,11 +233,7 @@ canvas {
 .simulateur_content_2_text2 {
     animation-delay: 1s;
 }
-.simulateur_content_2_title  {
-=======
-
 .simulateur_content_2_title {
->>>>>>> c457fa6f0d2425ad49298761a046867286193556
     font-size: 25px;
 }
 
@@ -252,7 +247,6 @@ canvas {
     color: #7A8795;
 }
 
-<<<<<<< HEAD
 @keyframes anim-iphone-simulateur {
     100% {
         opacity: 1;
@@ -261,9 +255,6 @@ canvas {
 }
 
 @media screen and (max-width: 1440px)  {
-=======
-@media screen and (max-width: 1440px) {
->>>>>>> c457fa6f0d2425ad49298761a046867286193556
     .simulateur_text_wrapper {
         gap: 50px;
     }

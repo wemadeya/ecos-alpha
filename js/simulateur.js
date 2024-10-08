@@ -110,12 +110,12 @@ function createChart(matiere, notes, classements, limite) {
       datasets: [
         {
           label: `Classement pour ${matiere}`,
-          data: sortedData.map((d) => [d.note, d.classement]), // Les classements sur l'axe Y, triés
+          data: sortedData.map((d) => [d.note, d.classement]), 
           borderColor: "transparent",
           tension: 0,
           showLine: false,
           pointBackgroundColor: "black",
-          pointRadius: 2,
+          pointRadius: 2
         },
         {
           label: `Rang limite pour ${matiere}`,
@@ -133,7 +133,7 @@ function createChart(matiere, notes, classements, limite) {
           borderWidth: 2,
           showLine: true,
           tension: 0.4,
-          fill: true,
+          fill: false,
           backgroundColor: "rgba(0, 115, 250, 0.25)",
         },
       ],
@@ -143,14 +143,20 @@ function createChart(matiere, notes, classements, limite) {
         y: {
           reverse: true, // Inverser l'axe des Y (de 10000 à 0)
           min: 0, // Minimum sur l'axe Y
-          max: 10000, // Maximum sur l'axe Y
+          max: 10500, // Maximum sur l'axe Y
           title: {
             display: true,
             text: "Classement",
           },
         },
         x: {
+          type: 'linear',
           reverse: false, // Abscisse croissante, donc on désactive l'inversion ici
+          min: 9.5,
+          max: 17,
+          ticks: {
+            stepSize: 1, 
+          },
           title: {
             display: true,
             text: "Note Totale",
@@ -170,17 +176,17 @@ function updateMarker(noteEDN, noteECOS) {
   });
 
   const marker = {
-    label: 'Note totale',
+    label: 'Classement estimé',
     data: [{ x: pointGraphique.note, y: pointGraphique.classement }],
     borderColor: 'rgba(0, 123, 255, 1)',
     backgroundColor: 'rgba(0, 123, 255, 1)',
     pointRadius: 5,
     showLine: false,
-    fill: false,
+    fill: false
   };
 
   // Mettre à jour ou ajouter le marqueur au graphique
-  const markerIndex = graphiqueEcos.data.datasets.findIndex(dataset => dataset.label === 'Note totale');
+  const markerIndex = graphiqueEcos.data.datasets.findIndex(dataset => dataset.label === 'Classement estimé');
   if (markerIndex >= 0) {
     graphiqueEcos.data.datasets[markerIndex].data = [{ x: pointGraphique.note, y: pointGraphique.classement }];
   } else {
@@ -273,7 +279,11 @@ async function initApp() {
   // Générer le graphique par défaut
   generateChart();
 }
+const btnChart = document.querySelector(".btn_chart");
 
+btnChart.addEventListener("click", () => {
+
+})
 // Démarrer l'application
 initApp();
 

@@ -3429,8 +3429,7 @@ footer nav .link button {
         padding: 0;
     }
 
-    section,
-    footer {
+    section, footer {
         margin: 0 auto 0;
         padding-top: 125px;
     }
@@ -3478,7 +3477,7 @@ footer nav .link button {
     [class^="conception_content"] {
         padding: 15px;
     }
-
+    
     [class^="conception_mobile_content"] {
         padding: 15px;
     }

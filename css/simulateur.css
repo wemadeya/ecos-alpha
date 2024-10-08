@@ -132,7 +132,9 @@ canvas {
     justify-content: center;
     width: 225px;
     position: relative;
+    overflow: hidden;
 }
+
 .simulateur_iphone img {
     height: 100%;
     width: 100%;
@@ -141,11 +143,29 @@ canvas {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    opacity: 0;
+    top: 100%;
+}
+.simulateur_iphone img.anim-iphone-simulateur {
+    animation: 1s cubic-bezier(0.14, .38, .19, .99) anim-iphone-simulateur both;
 }
 .simulateur_content_2 {
     display: flex;
     flex-direction: column;
     gap: 50px;
+}
+.simulateur_content_1, .simulateur_content_2, .simulateur_content_2_text1, .simulateur_content_2_text2  {
+    opacity: 0;
+    transform: translateY(40px);
+}
+.simulateur_content_2 {
+    animation-delay: 0.5s;
+}
+.simulateur_content_2_text1 {
+    animation-delay: 0.5s;
+}
+.simulateur_content_2_text2 {
+    animation-delay: 1s;
 }
 .simulateur_content_2_title  {
     font-size: 25px;
@@ -159,6 +179,13 @@ canvas {
     color: #7A8795;
 }
 
+@keyframes anim-iphone-simulateur {
+    100% {
+        opacity: 1;
+        top: 50%;
+    }
+}
+
 @media screen and (max-width: 1440px)  {
     .simulateur_text_wrapper {
         gap: 50px;
@@ -170,7 +197,6 @@ canvas {
         gap: 25px;
     }
 }
-
 @media screen and (max-width: 1280px) {
     .simulateur_text_wrapper {
         flex-direction: column;
@@ -180,7 +206,6 @@ canvas {
     }
 }
 @media screen and (max-width: 768px) {
-
     .simulateur_text_1 {
         width: 65%;
     }
@@ -190,22 +215,29 @@ canvas {
 }
 @media screen and (max-width: 560px) {
     .simulateur_content_1 {
-        padding: 25px;
+        padding: 25px 25px 0 25px;
         flex-direction: column;
     }
     .simulateur_text_1 {
         width: 100%;
     }
     .simulateur_iphone {
-        width: 100%;
+        width: 110%;
     }
     .simulateur_iphone img {
         height: auto;
-        width: 110%;
+        width: 95%;
         object-fit: contain;
         position: absolute;
         top: 0%;
         left: 55%;
         transform: translate(-50%, 0%);
     }
+    @keyframes anim-iphone-simulateur {
+        100% {
+            opacity: 1;
+            top: 0%;
+        }
+    }
+    
 }

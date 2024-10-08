@@ -1,4 +1,3 @@
-const { scrollTop, clientHeight } = document.documentElement;
 ////////////////////
 ///// Tuto ////////
 document.addEventListener('DOMContentLoaded', function() { 
@@ -152,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 ////////////////////////
 ///// scroll event /////
+const { scrollTop, clientHeight } = document.documentElement;
 window.addEventListener("scroll", () => {
   /* conception */
   const conceptionContentMobile1 = document.querySelector(".conception_mobile_content_1");
@@ -283,17 +283,6 @@ window.addEventListener("scroll", () => {
     communauteBtn.classList.add("anim-y");
     communauteText.classList.add("anim-y");
   }
-  /* simulateur */
-  const simulateurTextWrapper = document.querySelector(".simulateur_text_wrapper");
-  const simulateurContent1 = document.querySelector(".simulateur_content_1");
-  const simulateurContent2 = document.querySelector(".simulateur_content_2");
-
-  const simulateurTextWrapperTop = simulateurTextWrapper.getBoundingClientRect().top;
-  if (scrollTop > scrollTop + simulateurTextWrapperTop - clientHeight * 0.8) {
-    simulateurContent1.classList.add("anim-y");
-    simulateurContent2.classList.add("anim-y");
-  }
-
 
 });
 

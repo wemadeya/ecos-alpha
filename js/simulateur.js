@@ -251,3 +251,29 @@ async function initApp() {
 
 // Démarrer l'application
 initApp();
+
+
+const { scrollTop, clientHeight } = document.documentElement;
+window.addEventListener("scroll", () => {
+
+  /* simulateur */
+  const simulateurContent1 = document.querySelector(".simulateur_content_1");
+  const simulateurContent2 = document.querySelector(".simulateur_content_2");
+  const simulateurIphone = document.querySelector(".simulateur_iphone img");
+  const simulateurContent2Text1 = document.querySelector(".simulateur_content_2_text1");
+  const simulateurContent2Text2 = document.querySelector(".simulateur_content_2_text2");
+
+  const simulateurContent1Top = simulateurContent1.getBoundingClientRect().top;
+  const simulateurContent2Top = simulateurContent2.getBoundingClientRect().top;
+
+  if (scrollTop > scrollTop + simulateurContent1Top - clientHeight * 0.8) {
+    simulateurContent1.classList.add("anim-y-both");
+    simulateurIphone.classList.add("anim-iphone-simulateur");
+  }
+  if (scrollTop > scrollTop + simulateurContent2Top - clientHeight * 0.8) {
+    simulateurContent2.classList.add("anim-y-both");
+    simulateurContent2Text1.classList.add("anim-y-both");
+    simulateurContent2Text2.classList.add("anim-y-both");
+  }
+
+});

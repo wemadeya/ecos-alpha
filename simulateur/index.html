@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/regression@2.0.1/dist/regression.min.js"></script>
     <link href="../css/style.css" rel="stylesheet" type="text/css">
     <link href="../css/simulateur.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -125,7 +126,49 @@
                                 <select id="ville"></select>
                             </div>
                         </div>
-                        <a class="btn btn_chart" onclick="generateChart()">Générer le graphique</a>
+                        <div class="input_wrapper notes">
+                            <div class="input_content">
+                                <label for="note">Note aux EDN :</label>
+                                <div class="slider-wrapper">
+                                    <div class="slider-ticks">
+                                        <span>0</span>
+                                        <span>2</span>
+                                        <span>4</span>
+                                        <span>6</span>
+                                        <span>8</span>
+                                        <span>10</span>
+                                        <span>12</span>
+                                        <span>14</span>
+                                        <span>16</span>
+                                        <span>18</span>
+                                        <span>20</span>
+                                    </div>
+                                    <input type="range" id="noteEDN" min="0" max="20" step="1" oninput="updateSliderValue('noteEDN', this.value)"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input_wrapper notes">
+                            <div class="input_content">
+                                <label for="moyenne">Note aux ECOS :</label>
+                                <div class="slider-wrapper">
+                                    <div class="slider-ticks">
+                                        <span>0</span>
+                                        <span>2</span>
+                                        <span>4</span>
+                                        <span>6</span>
+                                        <span>8</span>
+                                        <span>10</span>
+                                        <span>12</span>
+                                        <span>14</span>
+                                        <span>16</span>
+                                        <span>18</span>
+                                        <span>20</span>
+                                    </div>
+                                    <input type="range" id="noteECOS" min="0" max="20" step="1" oninput="updateSliderValue('noteECOS', this.value)"/>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="btn btn_chart" onclick="generateChart()">Voir le classement</a>
                     </div>
                 </div>
                 <div class="chart_wrapper">
@@ -134,8 +177,8 @@
                 </div>
             </div>
         </section>
-            <!-- Rejoignez une communauté d’étudiants investis -->
-            <section>     
+        <!-- Rejoignez une communauté d’étudiants investis -->
+        <section>     
                 <article class="simulateur_text_wrapper">
                     <div class="bg_white simulateur_content_1">
                         <div class="simulateur_text_1">

@@ -160,10 +160,12 @@ regressionLine[regressionLine.length - 1] = [sortedData[sortedData.length - 1].n
             display: true,
             text: "Note Totale",
           },
+          grid: {
+            drawBorder: false, // Supprime la bordure de l'axe X
+            drawOnChartArea: true, // Maintient les lignes de la grille dans la zone du graphique
+          },
           ticks: {
-            align: 'center', // Positionne le texte de l'étiquette horizontalement au centre de chaque tick
-            crossAlign: 'center', // Aligne le texte de l'étiquette verticalement au centre
-            padding: 5, // Ajuste l'espace autour du texte
+            padding: 10, // Ajouter un espace pour une meilleure lisibilité
           },
         },
         y: {
@@ -174,10 +176,19 @@ regressionLine[regressionLine.length - 1] = [sortedData[sortedData.length - 1].n
             display: true,
             text: "Classement",
           },
+          grid: {
+            drawBorder: false, // Supprime la bordure de l'axe Y
+            drawOnChartArea: true, // Maintient les lignes de la grille dans la zone du graphique
+          },
           ticks: {
-            align: 'start', // Positionne le texte de l'étiquette horizontalement au début
-            crossAlign: 'center', // Aligne le texte de l'étiquette verticalement au centre
-            padding: 10, // Ajuste l'espace autour du texte pour le séparer de l'axe
+            padding: 10,
+            callback: function(value) {
+              // Masquer les valeurs min et max, afficher seulement les valeurs intermédiaires
+              if (value === this.min || value === this.max) {
+                return ''; // Retourner une chaîne vide pour masquer les valeurs extrêmes
+              }
+              return value; // Afficher les autres valeurs intermédiaires
+            }
           },
         },
       },

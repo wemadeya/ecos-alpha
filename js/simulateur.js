@@ -52,32 +52,48 @@ const matieres = [
 
 // Fonction pour récupérer les données de la première API (notes et classements)
 async function fetchMatiereData() {
-  const response = await fetch(
-    "https://n8n.wemadeya.fr/webhook/f7e590f8-6eed-45f4-a13b-ac1e4ea9bcd1"
-  );
+  const response = await fetch("https://n8n.wemadeya.fr/webhook/f7e590f8-6eed-45f4-a13b-ac1e4ea9bcd1");
   const data = await response.json();
   return data.data;
 }
 
 // Fonction pour récupérer les données de la deuxième API (limites)
 async function fetchLimitesData() {
-  const response = await fetch(
-    "https://n8n.wemadeya.fr/webhook/b7545da9-8d97-406a-85ac-fe8097132737"
-  );
+  const response = await fetch("https://n8n.wemadeya.fr/webhook/b7545da9-8d97-406a-85ac-fe8097132737");
   const data = await response.json();
   return data.limites;
 }
 
 // Fonction pour initialiser sortedData
 function initializeSortedData(notes, classements) {
-  sortedData = notes
-    .map((note, i) => ({ note, classement: classements[i] }))
-    .sort((a, b) => a.note - b.note);
+  sortedData = notes.map((note, i) => ({ note, classement: classements[i] })).sort((a, b) => a.note - b.note);
 }
 
-// Fonction pour mettre à jour la valeur affichée du slider
-function updateSliderValue(spanId, value) {
-  document.getElementById(spanId).innerText = value;
+// Fonction pour créer une légende personnalisée avec des checkboxes
+function createCustomLegend(chart) {
+  const legendContainer = document.getElementById('chart-legend-container');
+  legendContainer.innerHTML = ''; // Efface le contenu précédent
+
+  chart.data.datasets.forEach((dataset, index) => {
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = !dataset.hidden; // Afficher ou masquer par défaut selon la configuration du dataset
+    checkbox.id = `checkbox-${index}`;
+    checkbox.onchange = () => {
+      const meta = chart.getDatasetMeta(index);
+      meta.hidden = !checkbox.checked; // Affiche ou masque le dataset
+      chart.update();
+    };
+
+    const label = document.createElement('label');
+    label.htmlFor = `checkbox-${index}`;
+    label.textContent = dataset.label;
+
+    const legendItem = document.createElement('div');
+    legendItem.appendChild(checkbox);
+    legendItem.appendChild(label);
+    legendContainer.appendChild(legendItem);
+  });
 }
 
 // Fonction pour créer un graphique avec Chart.js
@@ -85,29 +101,16 @@ function createChart(matiere, notes, classements, limite) {
   initializeSortedData(notes, classements);
   const sortedNotes = sortedData.map((d) => d.note);
 
-  // Obtenir la note minimum et maximum pour la matière sélectionnée
-  const minNote = Math.min(...sortedNotes);
-  const maxNote = Math.max(...sortedNotes);
+  // Calculer la régression polynomiale de degré 3
+  const result = regression.polynomial(sortedData.map((d) => [d.note, d.classement]), { order: 3 });
+  let regressionLine = result.points;
 
-// Calculer la régression polynomiale de degré 3
-const result = regression.polynomial(
-  sortedData.map((d) => [d.note, d.classement]),
-  { order: 3 }
-);
+  // Forcer les points de la courbe de régression à correspondre aux valeurs réelles aux extrémités
+  regressionLine[0] = [sortedData[0].note, sortedData[0].classement];
+  regressionLine[regressionLine.length - 1] = [sortedData[sortedData.length - 1].note, sortedData[sortedData.length - 1].classement];
 
-// Ajuster manuellement la courbe aux extrémités pour passer par les points réels
-let regressionLine = result.points;
-
-// Forcer le premier point de la courbe de régression à correspondre exactement à la note et au classement minimum
-regressionLine[0] = [sortedData[0].note, sortedData[0].classement];
-
-// Forcer le dernier point de la courbe de régression à correspondre exactement à la note et au classement maximum
-regressionLine[regressionLine.length - 1] = [sortedData[sortedData.length - 1].note, sortedData[sortedData.length - 1].classement];
-
-  // Créer un nouvel élément canvas pour chaque graphique
+  // Créer un nouvel élément canvas pour le graphique
   const canvas = document.createElement("canvas");
-
-  // Ajouter le canvas au conteneur
   const container = document.getElementById("charts");
   container.innerHTML = ""; // Effacer le contenu précédent
   container.appendChild(canvas);
@@ -119,18 +122,19 @@ regressionLine[regressionLine.length - 1] = [sortedData[sortedData.length - 1].n
       labels: sortedNotes,
       datasets: [
         {
-          label: `Classement pour ${matiere}`,
-          data: sortedData.map((d) => ({ x: d.note, y: d.classement })), // Utilisation de {x, y} pour une meilleure flexibilité
+          label: `Classement`,
+          data: sortedData.map((d) => ({ x: d.note, y: d.classement })),
           borderColor: "rgba(0, 0, 0, 0.8)",
           backgroundColor: "transparent",
           tension: 0.4,
           fill: false,
           pointBackgroundColor: "black",
-          pointRadius: 2,
+          pointRadius: 1.5,
           showLine: false,
+          hidden: true, // Cacher le dataset par défaut
         },
         {
-          label: `Rang limite pour ${matiere}`,
+          label: `Rang limite`,
           data: Array(sortedNotes.length).fill(limite),
           fill: true,
           borderColor: "#48DE5A",
@@ -151,34 +155,34 @@ regressionLine[regressionLine.length - 1] = [sortedData[sortedData.length - 1].n
       ],
     },
     options: {
+      plugins: {
+        legend: {
+          display: false, // Désactiver la légende par défaut pour utiliser notre légende personnalisée
+        },
+      },
       scales: {
         x: {
           type: 'linear',
-          min: minNote,
-          max: maxNote,
           title: {
             display: true,
             text: "Note Totale",
           },
           grid: {
-            drawBorder: false, // Supprime la bordure de l'axe X
-            drawOnChartArea: true, // Maintient les lignes de la grille dans la zone du graphique
+            display: false, // Désactiver les lignes de la grille pour l'axe Y
           },
           ticks: {
-            padding: 10, // Ajouter un espace pour une meilleure lisibilité
+            padding: 10,
           },
         },
         y: {
           reverse: true,
-          min: -500,
-          max: 10500,
           title: {
             display: true,
             text: "Classement",
           },
           grid: {
-            drawBorder: false, // Supprime la bordure de l'axe Y
-            drawOnChartArea: true, // Maintient les lignes de la grille dans la zone du graphique
+            drawBorder: false,
+            drawOnChartArea: true,
           },
           ticks: {
             padding: 10,
@@ -194,8 +198,10 @@ regressionLine[regressionLine.length - 1] = [sortedData[sortedData.length - 1].n
       },
     },
   });
-}
 
+  // Créer la légende personnalisée après la création du graphique
+  createCustomLegend(graphiqueEcos);
+}
 
 // Fonction pour mettre à jour le marqueur du classement estimé
 function updateMarker(noteEDN, noteECOS) {
@@ -276,6 +282,7 @@ async function generateChart() {
   if (limite) {
     createChart(selectedMatiere, notes, classements, limite);
 
+    // Récupérer les valeurs des notes EDN et ECOS pour afficher le classement estimé
     const noteEDN = parseFloat(document.getElementById('noteEDN').value);
     const noteECOS = parseFloat(document.getElementById('noteECOS').value);
     updateMarker(noteEDN, noteECOS);
@@ -283,8 +290,7 @@ async function generateChart() {
     alert(`Aucune limite trouvée pour ${selectedMatiere} dans la ville ${selectedVille}`);
   }
 }
-
-// Initialiser le formulaire avec les matières et villes
+// Fonction pour initialiser le formulaire avec les matières et villes
 function initForm(matieres, villes) {
   const matiereSelect = document.getElementById("matiere");
   const villeSelect = document.getElementById("ville");
@@ -303,7 +309,6 @@ function initForm(matieres, villes) {
     villeSelect.appendChild(option);
   });
 }
-
 // Fonction principale pour démarrer l'application
 async function initApp() {
   const limitesData = await fetchLimitesData();
@@ -317,11 +322,12 @@ async function initApp() {
   document.getElementById("matiere").value = defaultMatiere;
   document.getElementById("ville").value = defaultVille;
 
-  generateChart(); // Initialiser le graphique sans le marqueur
+  generateChart();
 }
 
-// Démarrer l'application
+// Initialisation du formulaire et démarrage de l'application
 initApp();
+
 
 
 

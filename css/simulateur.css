@@ -11,7 +11,7 @@
 }
 
 .simulateur_wrapper {
-    padding-top: 50px;
+    padding-top: 100px;
     display: flex;
     justify-content: space-between;
     gap: 25px;
@@ -148,11 +148,12 @@ input[type="range"]::-moz-range-thumb {
     text-align: left;
 }
 
-.chart_wrapper p {
+.chart_title {
     font-size: 20px;
     color: #000;
     font-weight: 600;
     margin-bottom: 20px;
+    margin-left: 85px;
 }
 
 #charts {

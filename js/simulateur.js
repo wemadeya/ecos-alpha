@@ -2,66 +2,28 @@ let graphiqueEcos;
 let sortedData = [];
 let isButtonClicked = false; // Variable pour suivre si le bouton a été cliqué
 
-// Liste des matières
-const matieres = [
-  "Allergologie",
-  "Anatomie et cytologie pathologiques",
-  "Anesthésie-réanimation",
-  "Biologie médicale",
-  "Chirurgie maxillo-faciale",
-  "Chirurgie orale",
-  "Chirurgie orthopédique et traumatologique",
-  "Chirurgie pédiatrique",
-  "Chirurgie plastique, reconstructrice et esthétique",
-  "Chirurgie thoracique et cardiovasculaire",
-  "Chirurgie vasculaire",
-  "Chirurgie viscérale et digestive",
-  "Dermatologie et vénéréologie",
-  "Endocrinologie-diabétologie-nutrition",
-  "Génétique médicale",
-  "Gériatrie",
-  "Gynécologie médicale",
-  "Gynécologie obstétrique",
-  "Hématologie",
-  "Hépato-gastro-entérologie",
-  "Maladies infectieuses et tropicales",
-  "Médecine cardiovasculaire",
-  "Médecine d’urgence",
-  "Médecine et santé au travail",
-  "Médecine générale",
-  "Médecine intensive-réanimation",
-  "Médecine interne et immunologie clinique",
-  "Médecine légale et expertises médicales",
-  "Médecine nucléaire",
-  "Médecine physique et de réadaptation",
-  "Médecine vasculaire",
-  "Néphrologie",
-  "Neurochirurgie",
-  "Neurologie",
-  "Oncologie",
-  "Ophtalmologie",
-  "Oto-rhino-laryngologie - chirurgie cervico-faciale",
-  "Pédiatrie",
-  "Pneumologie",
-  "Psychiatrie",
-  "Radiologie et imagerie médicale",
-  "Rhumatologie",
-  "Santé publique",
-  "Urologie",
-];
+// Fonction pour récupérer les données de la deuxième API (limites)
+async function fetchLimitesData() {
+  try {
+    const response = await fetch("https://n8n.wemadeya.fr/webhook/b7545da9-8d97-406a-85ac-fe8097132737");
+    const data = await response.json();
+    return data.limites; // Retourne les données des limites
+  } catch (error) {
+    console.error('Erreur lors de la récupération des données de l\'API :', error);
+    return [];
+  }
+}
 
 // Fonction pour récupérer les données de la première API (notes et classements)
 async function fetchMatiereData() {
-  const response = await fetch("https://n8n.wemadeya.fr/webhook/f7e590f8-6eed-45f4-a13b-ac1e4ea9bcd1");
-  const data = await response.json();
-  return data.data;
-}
-
-// Fonction pour récupérer les données de la deuxième API (limites)
-async function fetchLimitesData() {
-  const response = await fetch("https://n8n.wemadeya.fr/webhook/b7545da9-8d97-406a-85ac-fe8097132737");
-  const data = await response.json();
-  return data.limites;
+  try {
+    const response = await fetch("https://n8n.wemadeya.fr/webhook/f7e590f8-6eed-45f4-a13b-ac1e4ea9bcd1");
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error('Erreur lors de la récupération des données des matières :', error);
+    return [];
+  }
 }
 
 // Fonction pour initialiser sortedData
@@ -97,9 +59,20 @@ function createCustomLegend(chart) {
 }
 
 // Fonction pour créer un graphique avec Chart.js
-function createChart(matiere, notes, classements, limite) {
+function createChart(matiere, notes, classements, limite, noteCalculee) {
   initializeSortedData(notes, classements);
   const sortedNotes = sortedData.map((d) => d.note);
+
+  // Obtenir la note minimum et maximum pour la matière sélectionnée
+  const minNote = Math.min(...sortedNotes);
+  const maxNote = Math.max(...sortedNotes);
+
+  // Déterminer les bornes de l'axe X en fonction de la note calculée
+  let xAxisMin = Math.min(minNote, noteCalculee);
+  let xAxisMax = Math.max(maxNote, noteCalculee);
+
+  // Valeur minimale de l'axe Y
+  const yAxisMin = -1000;
 
   // Calculer la régression polynomiale de degré 3
   const result = regression.polynomial(sortedData.map((d) => [d.note, d.classement]), { order: 3 });
@@ -131,16 +104,16 @@ function createChart(matiere, notes, classements, limite) {
           pointBackgroundColor: "black",
           pointRadius: 1.5,
           showLine: false,
-          hidden: true, // Cacher le dataset par défaut
+          hidden: true,
         },
         {
           label: `Rang limite`,
-          data: Array(sortedNotes.length).fill(limite),
-          fill: true,
+          data: [{ x: xAxisMin, y: limite }, { x: xAxisMax, y: limite }],
+          fill: 'end',
           borderColor: "#48DE5A",
           backgroundColor: "rgba(72, 222, 90, 0.20)",
-          pointRadius: 0,
-          borderWidth: 0.5,
+          pointRadius: 1,
+          borderWidth: 1,
         },
         {
           label: "Régression lisse",
@@ -156,43 +129,53 @@ function createChart(matiere, notes, classements, limite) {
     },
     options: {
       plugins: {
-        legend: {
-          display: false, // Désactiver la légende par défaut pour utiliser notre légende personnalisée
+        tooltip: {
+          enabled: true,
+          position: 'nearest',
+          mode: "index",
+          intersect: true,
+          callbacks: {
+            label: function (tooltipItem) {
+              const dataset = tooltipItem.chart.data.datasets[tooltipItem.datasetIndex];
+              // Ne pas afficher le tooltip pour les datasets "Régression lisse" et "Classement"
+              if (dataset.label === 'Régression lisse' || dataset.label === 'Classement') {
+                return null;
+              }
+              // Afficher le classement estimé pour le marqueur "Classement estimé"
+              if (dataset.label === 'Classement estimé') {
+                const classementEstime = Math.round(tooltipItem.raw.y); // Afficher le classement estimé arrondi
+                return `${dataset.label}: ${classementEstime}`; // Afficher le classement estimé pour le marqueur
+              }
+            },
+          },
         },
+        legend: { display: false },
       },
+      hover: { mode: 'nearest', intersect: true },
       scales: {
         x: {
           type: 'linear',
-          title: {
-            display: true,
-            text: "Note Totale",
-          },
-          grid: {
-            display: false, // Désactiver les lignes de la grille pour l'axe Y
-          },
-          ticks: {
-            padding: 10,
-          },
+          min: xAxisMin,
+          max: xAxisMax,
+          title: { display: true, text: "Note Totale" },
+          grid: { display: false },
+          ticks: { padding: 10 },
         },
         y: {
+          min: yAxisMin,
+          max: 11000,
           reverse: true,
-          title: {
-            display: true,
-            text: "Classement",
-          },
+          title: { display: true, text: "Classement" },
           grid: {
-            drawBorder: false,
-            drawOnChartArea: true,
+            display: true,
+            drawBorder: false, // Désactive la ligne de bordure autour du graphique
+            drawOnChartArea: true, // Affiche les lignes de grille dans la zone du graphique
+            drawTicks: false, // Désactive les petits traits sur les axes
+            color: (context) => (context.tick.value === yAxisMin || context.tick.value === 11000 ? 'transparent' : 'rgba(224, 224, 224, 0.4)'), // Rendre les lignes invisibles aux extrémités
           },
           ticks: {
             padding: 10,
-            callback: function(value) {
-              // Masquer les valeurs min et max, afficher seulement les valeurs intermédiaires
-              if (value === this.min || value === this.max) {
-                return ''; // Retourner une chaîne vide pour masquer les valeurs extrêmes
-              }
-              return value; // Afficher les autres valeurs intermédiaires
-            }
+            callback: (value) => (value === yAxisMin || value === 11000 ? '' : value),
           },
         },
       },
@@ -225,7 +208,7 @@ function updateMarker(noteEDN, noteECOS) {
       const point2 = sortedData[i + 1];
       if (point1.note <= noteTotale && noteTotale <= point2.note) {
         const slope = (point2.classement - point1.classement) / (point2.note - point1.note);
-        classementEstime = point1.classement + slope * (noteTotale - point1.note);
+        classementEstime = Math.round(point1.classement + slope * (noteTotale - point1.note));
         break;
       }
     }
@@ -254,9 +237,16 @@ function updateMarker(noteEDN, noteECOS) {
   graphiqueEcos.update();
 }
 
+// Fonction pour mettre à jour la valeur affichée du slider
+function updateSliderValue(sliderId, value) {
+  const outputElement = document.getElementById(`${sliderId}Output`);
+  if (outputElement) {
+    outputElement.textContent = value; // Met à jour la valeur affichée du slider
+  }
+}
 // Fonction pour générer le graphique en fonction de la sélection
 async function generateChart() {
-  isButtonClicked = true; // Marquer que le bouton a été cliqué
+  isButtonClicked = true;
   const selectedMatiere = document.getElementById("matiere").value;
   const selectedVille = document.getElementById("ville").value;
 
@@ -279,26 +269,31 @@ async function generateChart() {
   );
   const limite = limiteVille ? limiteVille["Rang limite ajusté"] : null;
 
-  if (limite) {
-    createChart(selectedMatiere, notes, classements, limite);
+  const noteEDN = parseFloat(document.getElementById('noteEDN').value);
+  const noteECOS = parseFloat(document.getElementById('noteECOS').value);
+  const noteCalculee = Math.round((2 / 3 * noteEDN + 1 / 3 * noteECOS) * 100) / 100;
 
-    // Récupérer les valeurs des notes EDN et ECOS pour afficher le classement estimé
-    const noteEDN = parseFloat(document.getElementById('noteEDN').value);
-    const noteECOS = parseFloat(document.getElementById('noteECOS').value);
+  if (limite) {
+    createChart(selectedMatiere, notes, classements, limite, noteCalculee);
     updateMarker(noteEDN, noteECOS);
   } else {
     alert(`Aucune limite trouvée pour ${selectedMatiere} dans la ville ${selectedVille}`);
   }
 }
+
 // Fonction pour initialiser le formulaire avec les matières et villes
-function initForm(matieres, villes) {
+async function initForm() {
+  const limitesData = await fetchLimitesData();
+  const specialites = [...new Set(limitesData.map(d => d.Spécialité))];
+  const villes = [...new Set(limitesData.map(d => d.Ville))];
+
   const matiereSelect = document.getElementById("matiere");
   const villeSelect = document.getElementById("ville");
 
-  matieres.forEach((matiere) => {
+  specialites.forEach((specialite) => {
     const option = document.createElement("option");
-    option.value = matiere;
-    option.textContent = matiere;
+    option.value = specialite;
+    option.textContent = specialite;
     matiereSelect.appendChild(option);
   });
 
@@ -309,19 +304,10 @@ function initForm(matieres, villes) {
     villeSelect.appendChild(option);
   });
 }
+
 // Fonction principale pour démarrer l'application
 async function initApp() {
-  const limitesData = await fetchLimitesData();
-  const villes = [...new Set(limitesData.map((d) => d.Ville))];
-
-  initForm(matieres, villes);
-
-  const defaultMatiere = matieres[0];
-  const defaultVille = villes[0];
-
-  document.getElementById("matiere").value = defaultMatiere;
-  document.getElementById("ville").value = defaultVille;
-
+  await initForm();
   generateChart();
 }
 

@@ -347,30 +347,35 @@ async function initForm() {
   const defaultVilleOption = document.createElement("option");
   defaultVilleOption.value = "";
   defaultVilleOption.textContent = "Choisir une ville";
-  defaultVilleOption.disabled = true; // Empêche la sélection de cette option après le choix initial
-  defaultVilleOption.selected = true; // Sélectionne cette option par défaut
+  defaultVilleOption.disabled = true;
+  defaultVilleOption.selected = true;
   villeSelect.appendChild(defaultVilleOption);
 
-  // Remplir la liste des villes triées par ordre alphabétique
+  // Remplir la liste des villes
   villes.forEach((ville) => {
-      const option = document.createElement("option");
-      option.value = ville;
-      option.textContent = ville;
-      villeSelect.appendChild(option);
+    const option = document.createElement("option");
+    option.value = ville;
+    option.textContent = ville;
+    villeSelect.appendChild(option);
   });
 
   // Ajouter l'option par défaut pour la sélection de spécialité
   const defaultMatiereOption = document.createElement("option");
   defaultMatiereOption.value = "";
   defaultMatiereOption.textContent = "Choisir une spécialité";
-  defaultMatiereOption.disabled = true; // Empêche la sélection de cette option après le choix initial
-  defaultMatiereOption.selected = true; // Sélectionne cette option par défaut
+  defaultMatiereOption.disabled = true;
+  defaultMatiereOption.selected = true;
   matiereSelect.appendChild(defaultMatiereOption);
 
-  // Ajouter un événement pour mettre à jour les spécialités lorsqu'une ville est sélectionnée
+  // Mettre à jour les spécialités et villes en fonction des sélections
   villeSelect.addEventListener('change', () => {
-      const selectedVille = villeSelect.value;
-      updateSpecialitesForVille(selectedVille, limitesData);
+    const selectedVille = villeSelect.value;
+    updateSpecialitesForVille(selectedVille, limitesData);
+  });
+
+  matiereSelect.addEventListener('change', () => {
+    const selectedMatiere = matiereSelect.value;
+    updateVillesForSpecialite(selectedMatiere, limitesData);
   });
 }
 

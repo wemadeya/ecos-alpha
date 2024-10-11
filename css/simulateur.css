@@ -22,6 +22,8 @@ html {
 .classement {
     display: none;
     width: 100%;
+    flex-direction: column;
+    gap: 10px;
 }
 #default-message {
     display: block;
@@ -219,7 +221,7 @@ input[type="range"]::-moz-range-thumb {
 canvas {
     width: 100% !important;
     height: 100% !important;
-    aspect-ratio: 16/9;
+    aspect-ratio: 737 / 368;
 }
 
 #chart-legend-container {
@@ -416,5 +418,7 @@ canvas {
     .header_nav_simulateur {
         height: calc(100dvh - 81px);
     }
-    
+    #chart-legend-container label {
+        font-size: 10px;
+    }
 }

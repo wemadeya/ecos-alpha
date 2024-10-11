@@ -163,7 +163,7 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
           min: yAxisMin,
           max: 11000,
           reverse: true,
-          title: { display: true, text: "Classement" },
+          title: { display: false, text: "Classement" },
           grid: {
             display: true,
             drawBorder: false, // Désactive la ligne de bordure autour du graphique
@@ -184,7 +184,6 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
   createCustomLegend(graphiqueEcos);
 }
 
-// Fonction pour mettre à jour le marqueur du classement estimé
 // Fonction pour mettre à jour le marqueur du classement estimé
 function updateMarker(noteEDN, noteECOS) {
   if (!isButtonClicked) return; // Ne pas afficher le marqueur si le bouton n'a pas été cliqué
@@ -301,7 +300,7 @@ async function generateChart() {
   if (limite) {
       // Masquer le message par défaut et afficher le simulateur
       defaultMessage.style.display = "none";
-      classementContainer.style.display = "block";
+      classementContainer.style.display = "flex";
 
       createChart(selectedMatiere, notes, classements, limite, noteCalculee);
       updateMarker(noteEDN, noteECOS);

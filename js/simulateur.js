@@ -173,6 +173,7 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
           },
           ticks: {
             padding: 10,
+            display: window.innerWidth > 430, // Cache les ticks si la largeur est inférieure à 430px
             callback: (value) => (value === yAxisMin || value === 11000 ? '' : value),
           },
         },
@@ -246,7 +247,10 @@ function updateMarker(noteEDN, noteECOS) {
   graphiqueEcos.update();
 }
 
-
+window.addEventListener('resize', () => {
+  graphiqueEcos.options.scales.y.ticks.display = window.innerWidth > 430;
+  graphiqueEcos.update(); // Mettre à jour le graphique
+});
 
 // Fonction pour mettre à jour la valeur affichée du slider
 function updateSliderValue(sliderId, value) {

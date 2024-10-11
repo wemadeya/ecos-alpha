@@ -422,9 +422,3 @@ canvas {
         font-size: 10px;
     }
 }
-
-@media screen and (max-width: 430px) {
-    canvas {
-        aspect-ratio: 5 / 3;
-    }
-}

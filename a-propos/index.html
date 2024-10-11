@@ -25,21 +25,27 @@
     <body>
         <!-- Header -->
         <header>
+            <div class="liseret">
+                <div class="liseret_content">
+                    <p>GRATUIT : Entre tes résultats et obtiens une estimation de ton classement national aux EDN et ECOS en temp réel.</p>
+                    <a href="simulateur/">Simulateur<img src="../img/icons/arrow_right.svg"></a>
+                </div>            
+            </div>
             <div class="header_wrapper">
-                <a href="../index.html" class="ecos-alpha">
-                    <img class="logo_ecos-alpha" src="../img/logo_ecos-alpha.svg">
+                <a href="index.html" class="ecos-alpha">
+                    <img class="logo_ecos-alpha" src="../img/logo_ecos-alpha.svg" alt="Logo Ecos Alpha">
                     <p>ECOS Alpha</p>
                 </a>
                 <nav class="header_nav">
                     <div class="header_nav_wrapper">
                         <ul class="header_nav_link">
                             <li class="header_link">
-                                <p>Mode d'entraînement <span class="circle_yellow"></span> <img class="chevron" src="../img/chevron.svg" alt="chevron"></p>                  
+                                <p>Mode d'entraînement <span class="circle"></span> <img class="chevron" src="../img/chevron.svg" alt="chevron"></p>                  
                                 <div class="header_nav_dropdown">
                                     <ul>
-                                        <span class="dropdown_title">Ecos Classique</span>
+                                        <li class="dropdown_title">Ecos Classique</li>
                                         <li>
-                                            <a class="dropdown_link ancre" href="../index.html#plusieurs" title="Ecos - A plusieurs">
+                                            <a class="dropdown_link ancre" href="#plusieurs" title="Ecos - A plusieurs">
                                                 <div>
                                                     <img class="icon" src="../img/multi_user.png" alt="icon user"/>À plusieurs
                                                 </div>
@@ -47,18 +53,18 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown_link ancre" href="../index.html#seul" title="Ecos - Seul">
+                                            <a class="dropdown_link ancre" href="#seul" title="Ecos - Seul">
                                                 <div>
-                                                    <img class="icon" src="../img/user.png" alt="icon document"/>Solo <span>Bientôt</span>
+                                                    <img class="icon" src="../img/user.png" alt="icon document"/>Solo <span>Nouveau</span>
                                                 </div>
                                                 <img class="arrow" src="../img/arrow.svg" alt="arrow"/>
                                             </a>
                                         </li>
-                                        <span class="dropdown_title">Autres modes de jeu</span>
+                                        <li class="dropdown_title">Autres modes de jeu</li>
                                         <li>
-                                            <a class="dropdown_link ancre" href="../index.html#flashcards" title="Ecos - FlashECOS">
+                                            <a class="dropdown_link ancre" href="#flashcards" title="Ecos - FlashECOS">
                                                 <div>
-                                                    <img class="icon" src="../img/card.png" alt="icon document"/>FlashECOS <span>Bientôt</span>
+                                                    <img class="icon" src="../img/card.png" alt="icon document"/>FlashECOS <span>Nouveau</span>
                                                 </div>
                                                 <img class="arrow" src="../img/arrow.svg" alt="arrow"/>
                                             </a>
@@ -66,7 +72,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            <span class="dropdown_title" id="informations">Informations</span>
+                            <li class="dropdown_title" id="informations">Informations</li>
                             <li class="header_link">
                                 <a class="tarifs" href="../tarifs/" title="tarifs">
                                     <p>Tarifs</p>
@@ -74,13 +80,16 @@
                                 </a>
                             </li>
                             <li class="header_link">
-                                <a class="tarifs" href="#" title="Les ECOS">
+                                <a class="tarifs" href="../a-propos/" title="Les ECOS">
                                     <p>Les ECOS</p>
                                     <img class="informations_arrow" src="../img/icons/arrow-right-blue.svg" alt="arrow"/>
                                 </a>
                             </li>
-                        </ul>                   
-                        <a class="btn btn_blue">Essayer gratuitement<img src="../img/icons/icon_arrow_top-right.svg" alt="icon d'une flèche pointant en haut à droite" /></a>
+                        </ul>
+                        <div class="cta">
+                            <a class="btn btn_blue_light" href="../simulateur/">Simulateur ECOS/EDN<img src="../img/icons/arrow_blue.svg" alt="icon d'une flèche"/></a>                   
+                            <a class="btn btn_blue">Commence tes révisions<img src="../img/icons/book.svg" alt="icon d'un livre"/></a>
+                        </div>
                     </div>
                 </nav>
                 <!-- menu_hamburger_wrapper -->

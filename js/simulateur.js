@@ -137,11 +137,9 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
           callbacks: {
             label: function (tooltipItem) {
               const dataset = tooltipItem.chart.data.datasets[tooltipItem.datasetIndex];
-              // Ne pas afficher le tooltip pour les datasets "Régression lisse" et "Classement"
               if (dataset.label === 'Régression lisse' || dataset.label === 'Classement') {
-                return null;
+                return null; // Ne pas afficher le tooltip pour ces datasets
               }
-              // Afficher le classement estimé pour le marqueur "Classement estimé"
               if (dataset.label === 'Classement estimé') {
                 const classementEstime = Math.round(tooltipItem.raw.y); // Afficher le classement estimé arrondi
                 return `${dataset.label}: ${classementEstime}`; // Afficher le classement estimé pour le marqueur
@@ -187,6 +185,7 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
 }
 
 // Fonction pour mettre à jour le marqueur du classement estimé
+// Fonction pour mettre à jour le marqueur du classement estimé
 function updateMarker(noteEDN, noteECOS) {
   if (!isButtonClicked) return; // Ne pas afficher le marqueur si le bouton n'a pas été cliqué
 
@@ -196,7 +195,7 @@ function updateMarker(noteEDN, noteECOS) {
   const minNote = Math.min(...sortedData.map(d => d.note));
   const maxNote = Math.max(...sortedData.map(d => d.note));
 
-  let classementEstime;
+  let classementEstime = null;
   if (noteTotale < minNote) {
     classementEstime = sortedData[0].classement; // Utiliser le classement minimum si en dessous de la plage
   } else if (noteTotale > maxNote) {
@@ -208,34 +207,47 @@ function updateMarker(noteEDN, noteECOS) {
       const point2 = sortedData[i + 1];
       if (point1.note <= noteTotale && noteTotale <= point2.note) {
         const slope = (point2.classement - point1.classement) / (point2.note - point1.note);
-        classementEstime = Math.round(point1.classement + slope * (noteTotale - point1.note));
+        classementEstime = point1.classement + slope * (noteTotale - point1.note);
         break;
       }
     }
   }
 
+  // Si aucun classement estimé n'est trouvé, on laisse le marqueur vide
+  if (classementEstime === null) {
+    console.error('Erreur : impossible de calculer le classement estimé.');
+    return;
+  }
+
   // Créer le marqueur à l'emplacement exact de la noteTotale et du classement estimé
   const marker = {
     label: 'Classement estimé',
-    data: [{ x: noteTotale, y: classementEstime }],
+    data: [{ x: noteTotale, y: classementEstime }], // Utilisez noteTotale ici pour que le marqueur soit correctement positionné
     borderColor: 'rgba(0, 123, 255, 1)',
     backgroundColor: 'rgba(0, 123, 255, 1)',
-    pointRadius: 5,
+    pointRadius: 6,
+    pointHoverRadius: 12,
     showLine: false,
     fill: false,
   };
 
+  console.log('noteTotale:', noteTotale);
+  console.log('classementEstime:', classementEstime);
+  console.log('Marqueur:', marker);
+
   // Mettre à jour ou ajouter le marqueur au graphique
   const markerIndex = graphiqueEcos.data.datasets.findIndex(dataset => dataset.label === 'Classement estimé');
   if (markerIndex >= 0) {
-    graphiqueEcos.data.datasets[markerIndex].data = [{ x: noteTotale, y: classementEstime }];
+    graphiqueEcos.data.datasets[markerIndex] = marker; // Remplacer complètement le dataset du marqueur
   } else {
-    graphiqueEcos.data.datasets.push(marker);
+    graphiqueEcos.data.datasets.push(marker); // Ajouter le marqueur s'il n'existe pas encore
   }
 
   // Rafraîchir le graphique pour refléter les changements
   graphiqueEcos.update();
 }
+
+
 
 // Fonction pour mettre à jour la valeur affichée du slider
 function updateSliderValue(sliderId, value) {
@@ -250,14 +262,27 @@ async function generateChart() {
   const selectedMatiere = document.getElementById("matiere").value;
   const selectedVille = document.getElementById("ville").value;
 
+  // Obtenez les éléments du message par défaut et du conteneur du simulateur
+  const defaultMessage = document.getElementById("default-message");
+  const chartsContainer = document.getElementById("charts");
+  const classementContainer = document.querySelector(".classement");
+
+  // Vérifiez si une ville et une spécialité sont sélectionnées
+  if (!selectedVille || !selectedMatiere) {
+      // Afficher le message par défaut et cacher le simulateur
+      defaultMessage.style.display = "block";
+      classementContainer.style.display = "none"; // Masquer le simulateur
+      return;
+  }
+
   const matiereData = await fetchMatiereData();
   const limitesData = await fetchLimitesData();
 
   const matiereEntry = matiereData.find((obj) => Object.keys(obj)[0] === selectedMatiere);
 
   if (!matiereEntry) {
-    alert(`Aucune donnée trouvée pour la matière ${selectedMatiere}`);
-    return;
+      alert(`Aucune donnée trouvée pour la matière ${selectedMatiere}`);
+      return;
   }
 
   const matiereValues = matiereEntry[selectedMatiere];
@@ -265,7 +290,7 @@ async function generateChart() {
   const classements = matiereValues.map((d) => d.Classement);
 
   const limiteVille = limitesData.find(
-    (obj) => obj.Spécialité === selectedMatiere && obj.Ville === selectedVille
+      (obj) => obj.Spécialité === selectedMatiere && obj.Ville === selectedVille
   );
   const limite = limiteVille ? limiteVille["Rang limite ajusté"] : null;
 
@@ -274,36 +299,79 @@ async function generateChart() {
   const noteCalculee = Math.round((2 / 3 * noteEDN + 1 / 3 * noteECOS) * 100) / 100;
 
   if (limite) {
-    createChart(selectedMatiere, notes, classements, limite, noteCalculee);
-    updateMarker(noteEDN, noteECOS);
+      // Masquer le message par défaut et afficher le simulateur
+      defaultMessage.style.display = "none";
+      classementContainer.style.display = "block";
+
+      createChart(selectedMatiere, notes, classements, limite, noteCalculee);
+      updateMarker(noteEDN, noteECOS);
   } else {
-    alert(`Aucune limite trouvée pour ${selectedMatiere} dans la ville ${selectedVille}`);
+      alert(`Aucune limite trouvée pour ${selectedMatiere} dans la ville ${selectedVille}`);
   }
 }
 
-// Fonction pour initialiser le formulaire avec les matières et villes
-async function initForm() {
-  const limitesData = await fetchLimitesData();
-  const specialites = [...new Set(limitesData.map(d => d.Spécialité))];
-  const villes = [...new Set(limitesData.map(d => d.Ville))];
 
+
+// Fonction pour mettre à jour les spécialités en fonction de la ville sélectionnée
+function updateSpecialitesForVille(ville, limitesData) {
   const matiereSelect = document.getElementById("matiere");
-  const villeSelect = document.getElementById("ville");
+  matiereSelect.innerHTML = ''; // Effacer les options précédentes
 
-  specialites.forEach((specialite) => {
+  const filteredSpecialites = limitesData
+    .filter(d => d.Ville === ville && d["Rang limite ajusté"] !== 0)
+    .map(d => d.Spécialité);
+
+  // Trier les spécialités par ordre alphabétique
+  const uniqueSpecialites = [...new Set(filteredSpecialites)].sort();
+
+  uniqueSpecialites.forEach((specialite) => {
     const option = document.createElement("option");
     option.value = specialite;
     option.textContent = specialite;
     matiereSelect.appendChild(option);
   });
+}
 
+// Fonction pour initialiser le formulaire avec les matières et villes
+async function initForm() {
+  const limitesData = await fetchLimitesData();
+  const villes = [...new Set(limitesData.map(d => d.Ville))].sort(); // Trier les villes par ordre alphabétique
+
+  const villeSelect = document.getElementById("ville");
+  const matiereSelect = document.getElementById("matiere");
+
+  // Ajouter l'option par défaut pour la sélection de ville
+  const defaultVilleOption = document.createElement("option");
+  defaultVilleOption.value = "";
+  defaultVilleOption.textContent = "Choisir une ville";
+  defaultVilleOption.disabled = true; // Empêche la sélection de cette option après le choix initial
+  defaultVilleOption.selected = true; // Sélectionne cette option par défaut
+  villeSelect.appendChild(defaultVilleOption);
+
+  // Remplir la liste des villes triées par ordre alphabétique
   villes.forEach((ville) => {
-    const option = document.createElement("option");
-    option.value = ville;
-    option.textContent = ville;
-    villeSelect.appendChild(option);
+      const option = document.createElement("option");
+      option.value = ville;
+      option.textContent = ville;
+      villeSelect.appendChild(option);
+  });
+
+  // Ajouter l'option par défaut pour la sélection de spécialité
+  const defaultMatiereOption = document.createElement("option");
+  defaultMatiereOption.value = "";
+  defaultMatiereOption.textContent = "Choisir une spécialité";
+  defaultMatiereOption.disabled = true; // Empêche la sélection de cette option après le choix initial
+  defaultMatiereOption.selected = true; // Sélectionne cette option par défaut
+  matiereSelect.appendChild(defaultMatiereOption);
+
+  // Ajouter un événement pour mettre à jour les spécialités lorsqu'une ville est sélectionnée
+  villeSelect.addEventListener('change', () => {
+      const selectedVille = villeSelect.value;
+      updateSpecialitesForVille(selectedVille, limitesData);
   });
 }
+
+
 
 // Fonction principale pour démarrer l'application
 async function initApp() {
@@ -314,7 +382,19 @@ async function initApp() {
 // Initialisation du formulaire et démarrage de l'application
 initApp();
 
+// Fonction pour afficher ou masquer les options du menu déroulant
+function toggleDropdown(dropdownId) {
+  const dropdown = document.getElementById(dropdownId);
+  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
 
+// Fonction pour sélectionner une option et afficher sa valeur
+function selectOption(selectedElementId, optionElement) {
+  const selectedElement = document.getElementById(selectedElementId);
+  selectedElement.textContent = optionElement.textContent;
+  const dropdownOptions = optionElement.parentElement;
+  dropdownOptions.style.display = 'none'; // Masque les options après la sélection
+}
 
 
 

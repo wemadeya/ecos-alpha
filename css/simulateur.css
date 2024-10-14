@@ -19,6 +19,9 @@ html {
     justify-content: space-between;
     gap: 20px;
 }
+.mention {
+    margin-top: 75px;
+}
 .classement {
     display: none;
     width: 100%;
@@ -238,7 +241,7 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 100px;
+    gap: 50px;
 }
 
 .simulateur_content_1 {
@@ -283,11 +286,16 @@ canvas {
 .simulateur_iphone img.anim-iphone-simulateur {
     animation: 1s cubic-bezier(0.14, .38, .19, .99) anim-iphone-simulateur both;
 }
-
+.simulateur_content_1 {
+    width: 60%;
+}
+.simulateur_content_2 {
+    width: 40%;
+}
 .simulateur_content_2 {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 30px;
 }
 .simulateur_content_1, .simulateur_content_2, .simulateur_content_2_text1, .simulateur_content_2_text2  {
     opacity: 0;
@@ -345,9 +353,11 @@ canvas {
     .simulateur_text_wrapper {
         flex-direction: column;
     }
-
     .simulateur_content_1 {
         padding: 25px 10px 25px 25px;
+    }
+    .simulateur_content_1, .simulateur_content_2 {
+        width: 100%;
     }
 }
 @media screen and (max-width: 1024px) {
@@ -374,7 +384,6 @@ canvas {
     .simulateur_text_1 {
         width: 65%;
     }
-
     .simulateur_iphone {
         height: 350px;
     }
@@ -396,7 +405,7 @@ canvas {
 
     .simulateur_iphone img {
         height: auto;
-        width: 95%;
+        width: 90%;
         object-fit: contain;
         position: absolute;
         top: 0%;

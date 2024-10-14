@@ -391,10 +391,12 @@ canvas {
 
 @media screen and (max-width: 560px) {
     .simulateur_content_1 {
-        padding: 25px 25px 0 25px;
+        padding: 15px 15px 0 15px;
         flex-direction: column;
     }
-
+    .simulateur_content_2_title {
+        font-size: 22px;
+    }
     .simulateur_text_1 {
         width: 100%;
     }

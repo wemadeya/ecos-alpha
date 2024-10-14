@@ -1,6 +1,5 @@
 let graphiqueEcos;
 let sortedData = [];
-let isButtonClicked = false; // Variable pour suivre si le bouton a été cliqué
 
 // Fonction pour récupérer les données de la deuxième API (limites)
 async function fetchLimitesData() {
@@ -67,7 +66,7 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
   const minNote = Math.min(...sortedNotes);
   const maxNote = Math.max(...sortedNotes);
 
-  // Déterminer les bornes de l'axe X en fonction de la note calculée
+  // Ajuster les bornes de l'axe X en fonction de la note calculée
   let xAxisMin = Math.min(minNote, noteCalculee);
   let xAxisMax = Math.max(maxNote, noteCalculee);
 
@@ -95,67 +94,92 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
       labels: sortedNotes,
       datasets: [
         {
-          label: `Classement`,
+          label: "Régression lisse",
+          data: regressionLine.map((point) => ({ x: point[0], y: point[1] })),
+          borderColor: "rgba(0, 0, 255, 0.8)",
+          backgroundColor: "rgba(0, 0, 255, 0.8)",
+          pointRadius: 0,
+          borderWidth: 2,
+          showLine: true,
+          tension: 0.5,
+          fill: false,
+        },
+        {
+          label: `Autres étudiants`,
           data: sortedData.map((d) => ({ x: d.note, y: d.classement })),
           borderColor: "rgba(0, 0, 0, 0.8)",
-          backgroundColor: "transparent",
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
           tension: 0.4,
           fill: false,
           pointBackgroundColor: "black",
           pointRadius: 1.5,
           showLine: false,
-          hidden: true,
         },
         {
           label: `Rang limite`,
-          data: [{ x: xAxisMin, y: limite }, { x: xAxisMax, y: limite }],
+          data: [
+            { x: xAxisMin, y: limite },
+            { x: xAxisMax, y: limite }
+          ],
           fill: 'end',
           borderColor: "#48DE5A",
           backgroundColor: "rgba(72, 222, 90, 0.20)",
           pointRadius: 1,
           borderWidth: 1,
         },
-        {
-          label: "Régression lisse",
-          data: regressionLine.map((point) => ({ x: point[0], y: point[1] })),
-          borderColor: "rgba(0, 0, 255, 0.8)",
-          pointRadius: 0,
-          borderWidth: 2,
-          showLine: true,
-          tension: 0.3,
-          fill: false,
-        },
       ],
     },
     options: {
       plugins: {
         tooltip: {
-          enabled: true,
-          position: 'nearest',
-          mode: "index",
-          intersect: true,
-          callbacks: {
-            label: function (tooltipItem) {
-              const dataset = tooltipItem.chart.data.datasets[tooltipItem.datasetIndex];
-              if (dataset.label === 'Régression lisse' || dataset.label === 'Classement') {
-                return null; // Ne pas afficher le tooltip pour ces datasets
-              }
-              if (dataset.label === 'Classement estimé') {
-                const classementEstime = Math.round(tooltipItem.raw.y); // Afficher le classement estimé arrondi
-                return `${dataset.label}: ${classementEstime}`; // Afficher le classement estimé pour le marqueur
-              }
+          enabled: false,
+        },
+        legend: {
+          display: true,
+          position: 'bottom', 
+          align: 'start',
+          labels: {
+            usePointStyle: true,
+            padding: 20,
+            generateLabels: function (chart) {
+              const datasets = chart.data.datasets;
+            
+              return datasets.map((dataset, i) => {
+                let label = dataset.label;
+                if (label === 'Rang limite') {
+                  label += ` : ${limite}`; // Ajouter la valeur de rang limite
+                } else if (label.startsWith('Ton classement')) {
+                  const classementEstime = dataset.data[0]?.y || 'N/A'; // Récupérer la valeur du classement estimé
+                  const noteTotale = dataset.data[0]?.x || 'N/A'; // Récupérer la note calculée
+                  label += ` : ${classementEstime} (Note : ${noteTotale})`; // Ajouter la valeur du classement estimé suivi de la note calculée
+                }
+                return {
+                  text: label,
+                  fillStyle: dataset.backgroundColor,
+                  strokeStyle: dataset.borderColor,
+                  hidden: !chart.isDatasetVisible(i),
+                  index: i,
+                };
+              });
             },
           },
         },
-        legend: { display: false },
       },
-      hover: { mode: 'nearest', intersect: true },
+      // Désactiver les interactions par survol
+      hover: {
+        mode: null, // Désactiver le mode de survol
+      },
+      // Désactiver les événements au clic/survol
+      events: [],
       scales: {
         x: {
           type: 'linear',
-          min: xAxisMin,
-          max: xAxisMax,
-          title: { display: true, text: "Note Totale" },
+          min: xAxisMin, // Ajuster l'axe X pour inclure la note calculée
+          max: xAxisMax, // Ajuster l'axe X pour inclure la note calculée
+          title: { 
+            display: true,
+            text: "Note totale"
+          },
           grid: { display: false },
           ticks: { padding: 10 },
         },
@@ -166,29 +190,26 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
           title: { display: false, text: "Classement" },
           grid: {
             display: true,
-            drawBorder: false, // Désactive la ligne de bordure autour du graphique
-            drawOnChartArea: true, // Affiche les lignes de grille dans la zone du graphique
-            drawTicks: false, // Désactive les petits traits sur les axes
-            color: (context) => (context.tick.value === yAxisMin || context.tick.value === 11000 ? 'transparent' : 'rgba(224, 224, 224, 0.4)'), // Rendre les lignes invisibles aux extrémités
+            drawBorder: false,
+            drawOnChartArea: true,
+            drawTicks: false,
+            color: (context) => (context.tick.value === yAxisMin || context.tick.value === 11000 ? 'transparent' : 'rgba(224, 224, 224, 0.5)'),
           },
           ticks: {
             padding: 10,
-            display: window.innerWidth > 430, // Cache les ticks si la largeur est inférieure à 430px
+            display: window.innerWidth > 430,
             callback: (value) => (value === yAxisMin || value === 11000 ? '' : value),
           },
         },
       },
     },
   });
-
-  // Créer la légende personnalisée après la création du graphique
-  createCustomLegend(graphiqueEcos);
 }
+
+
 
 // Fonction pour mettre à jour le marqueur du classement estimé
 function updateMarker(noteEDN, noteECOS) {
-  if (!isButtonClicked) return; // Ne pas afficher le marqueur si le bouton n'a pas été cliqué
-
   const noteTotale = Math.round((2 / 3 * noteEDN + 1 / 3 * noteECOS) * 100) / 100;
 
   // Vérifier si la noteTotale est en dehors de la plage des données
@@ -219,33 +240,38 @@ function updateMarker(noteEDN, noteECOS) {
     return;
   }
 
+  // Arrondir la valeur du classement estimé
+  classementEstime = Math.round(classementEstime);
+
   // Créer le marqueur à l'emplacement exact de la noteTotale et du classement estimé
   const marker = {
-    label: 'Classement estimé',
-    data: [{ x: noteTotale, y: classementEstime }], // Utilisez noteTotale ici pour que le marqueur soit correctement positionné
-    borderColor: 'rgba(0, 123, 255, 1)',
-    backgroundColor: 'rgba(0, 123, 255, 1)',
+    label: `Ton classement`,
+    data: [{ x: noteTotale, y: classementEstime }],
+    borderColor: '#FF4747',
+    backgroundColor: '#FF4747',
     pointRadius: 6,
     pointHoverRadius: 12,
     showLine: false,
     fill: false,
+    pointStyle: 'circle',
+    z: 10 // Donne une priorité visuelle plus élevée aux points du marqueur
   };
 
-  console.log('noteTotale:', noteTotale);
-  console.log('classementEstime:', classementEstime);
-  console.log('Marqueur:', marker);
-
   // Mettre à jour ou ajouter le marqueur au graphique
-  const markerIndex = graphiqueEcos.data.datasets.findIndex(dataset => dataset.label === 'Classement estimé');
+  const markerIndex = graphiqueEcos.data.datasets.findIndex(dataset => dataset.label === 'Ton classement');
   if (markerIndex >= 0) {
-    graphiqueEcos.data.datasets[markerIndex] = marker; // Remplacer complètement le dataset du marqueur
-  } else {
-    graphiqueEcos.data.datasets.push(marker); // Ajouter le marqueur s'il n'existe pas encore
+    // Supprimez l'ancien dataset du marqueur pour l'ajouter à la fin
+    graphiqueEcos.data.datasets.splice(markerIndex, 1);
   }
 
-  // Rafraîchir le graphique pour refléter les changements
+  // Ajouter le marqueur en dernier dans les datasets pour le dessiner par-dessus les autres
+  graphiqueEcos.data.datasets.push(marker);
+
+  // Rafraîchir le graphique et la légende
   graphiqueEcos.update();
 }
+
+
 
 window.addEventListener('resize', () => {
   graphiqueEcos.options.scales.y.ticks.display = window.innerWidth > 430;
@@ -261,31 +287,31 @@ function updateSliderValue(sliderId, value) {
 }
 // Fonction pour générer le graphique en fonction de la sélection
 async function generateChart() {
-  isButtonClicked = true;
   const selectedMatiere = document.getElementById("matiere").value;
   const selectedVille = document.getElementById("ville").value;
 
   // Obtenez les éléments du message par défaut et du conteneur du simulateur
   const defaultMessage = document.getElementById("default-message");
-  const chartsContainer = document.getElementById("charts");
   const classementContainer = document.querySelector(".classement");
 
   // Vérifiez si une ville et une spécialité sont sélectionnées
-  if (!selectedVille || !selectedMatiere) {
-      // Afficher le message par défaut et cacher le simulateur
-      defaultMessage.style.display = "block";
-      classementContainer.style.display = "none"; // Masquer le simulateur
-      return;
+  if (!selectedVille || !selectedMatiere || selectedMatiere === "") {
+    // Afficher le message par défaut et masquer le simulateur
+    defaultMessage.style.display = "block";
+    classementContainer.style.display = "none"; // Masquer le simulateur
+    return;
   }
+
+  defaultMessage.style.display = "none"; // Masquer le message par défaut
+  classementContainer.style.display = "flex"; // Afficher le simulateur
 
   const matiereData = await fetchMatiereData();
   const limitesData = await fetchLimitesData();
 
   const matiereEntry = matiereData.find((obj) => Object.keys(obj)[0] === selectedMatiere);
-
   if (!matiereEntry) {
-      alert(`Aucune donnée trouvée pour la matière ${selectedMatiere}`);
-      return;
+    alert(`Aucune donnée trouvée pour la matière ${selectedMatiere}`);
+    return;
   }
 
   const matiereValues = matiereEntry[selectedMatiere];
@@ -293,7 +319,7 @@ async function generateChart() {
   const classements = matiereValues.map((d) => d.Classement);
 
   const limiteVille = limitesData.find(
-      (obj) => obj.Spécialité === selectedMatiere && obj.Ville === selectedVille
+    (obj) => obj.Spécialité === selectedMatiere && obj.Ville === selectedVille
   );
   const limite = limiteVille ? limiteVille["Rang limite ajusté"] : null;
 
@@ -302,14 +328,10 @@ async function generateChart() {
   const noteCalculee = Math.round((2 / 3 * noteEDN + 1 / 3 * noteECOS) * 100) / 100;
 
   if (limite) {
-      // Masquer le message par défaut et afficher le simulateur
-      defaultMessage.style.display = "none";
-      classementContainer.style.display = "flex";
-
-      createChart(selectedMatiere, notes, classements, limite, noteCalculee);
-      updateMarker(noteEDN, noteECOS);
+    createChart(selectedMatiere, notes, classements, limite, noteCalculee);
+    updateMarker(noteEDN, noteECOS);
   } else {
-      alert(`Aucune limite trouvée pour ${selectedMatiere} dans la ville ${selectedVille}`);
+    alert(`Aucune limite trouvée pour ${selectedMatiere} dans la ville ${selectedVille}`);
   }
 }
 
@@ -319,6 +341,14 @@ async function generateChart() {
 function updateSpecialitesForVille(ville, limitesData) {
   const matiereSelect = document.getElementById("matiere");
   matiereSelect.innerHTML = ''; // Effacer les options précédentes
+
+  // Ajouter l'option par défaut "Choisir une spécialité"
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Choisir une spécialité";
+  defaultOption.disabled = true;
+  defaultOption.selected = true;
+  matiereSelect.appendChild(defaultOption);
 
   const filteredSpecialites = limitesData
     .filter(d => d.Ville === ville && d["Rang limite ajusté"] !== 0)
@@ -367,15 +397,23 @@ async function initForm() {
   defaultMatiereOption.selected = true;
   matiereSelect.appendChild(defaultMatiereOption);
 
-  // Mettre à jour les spécialités et villes en fonction des sélections
   villeSelect.addEventListener('change', () => {
     const selectedVille = villeSelect.value;
     updateSpecialitesForVille(selectedVille, limitesData);
+    
+    const selectedMatiere = document.getElementById("matiere").value;
+    if (selectedVille || selectedMatiere) {
+      generateChart(); // Mettre à jour le graphique seulement si les deux sont sélectionnés
+    }
   });
-
+  
   matiereSelect.addEventListener('change', () => {
+    const selectedVille = document.getElementById("ville").value;
     const selectedMatiere = matiereSelect.value;
-    updateVillesForSpecialite(selectedMatiere, limitesData);
+    
+    if (selectedVille || selectedMatiere) {
+      generateChart(); // Mettre à jour le graphique seulement si les deux sont sélectionnés
+    }
   });
 }
 
@@ -384,11 +422,38 @@ async function initForm() {
 // Fonction principale pour démarrer l'application
 async function initApp() {
   await initForm();
-  generateChart();
+
+  const noteEDNInput = document.getElementById('noteEDN');
+  const noteECOSInput = document.getElementById('noteECOS');
+  
+  noteEDNInput.addEventListener('input', () => {
+    const noteEDN = parseFloat(noteEDNInput.value);
+    const noteECOS = parseFloat(noteECOSInput.value);
+  
+    // Régénérer le graphique avec les nouvelles valeurs EDN et ECOS
+    generateChart().then(() => {
+      // Une fois le graphique généré, mettre à jour le marqueur
+      updateMarker(noteEDN, noteECOS);
+    });
+  });
+  
+  noteECOSInput.addEventListener('input', () => {
+    const noteEDN = parseFloat(noteEDNInput.value);
+    const noteECOS = parseFloat(noteECOSInput.value);
+  
+    // Régénérer le graphique avec les nouvelles valeurs EDN et ECOS
+    generateChart().then(() => {
+      // Une fois le graphique généré, mettre à jour le marqueur
+      updateMarker(noteEDN, noteECOS);
+    });
+  });
+  
 }
 
 // Initialisation du formulaire et démarrage de l'application
-initApp();
+document.addEventListener("DOMContentLoaded", () => {
+  initApp(); // Initialiser l'application après le chargement du DOM
+});
 
 // Fonction pour afficher ou masquer les options du menu déroulant
 function toggleDropdown(dropdownId) {
@@ -414,7 +479,6 @@ window.addEventListener("scroll", () => {
   const simulateurContent2 = document.querySelector(".simulateur_content_2");
   const simulateurIphone = document.querySelector(".simulateur_iphone img");
   const simulateurContent2Text1 = document.querySelector(".simulateur_content_2_text1");
-  const simulateurContent2Text2 = document.querySelector(".simulateur_content_2_text2");
 
   const simulateurContent1Top = simulateurContent1.getBoundingClientRect().top;
   const simulateurContent2Top = simulateurContent2.getBoundingClientRect().top;
@@ -426,7 +490,6 @@ window.addEventListener("scroll", () => {
   if (scrollTop > scrollTop + simulateurContent2Top - clientHeight * 0.8) {
     simulateurContent2.classList.add("anim-y-both");
     simulateurContent2Text1.classList.add("anim-y-both");
-    simulateurContent2Text2.classList.add("anim-y-both");
   }
 
 });

@@ -470,6 +470,10 @@ function selectOption(selectedElementId, optionElement) {
 }
 
 // Fonction pour convertir le canvas en image et ouvrir une option de partage
+
+const btnShareChart = document.querySelector(".btn_share_chart");
+btnShareChart.disabled = true;
+
 function shareChartImage() {
   const canvas = document.querySelector("#charts canvas"); // Sélectionnez le canvas du graphique
 
@@ -496,9 +500,8 @@ function shareChartImage() {
       newTab.document.body.innerHTML = `<img src="${imageURL}" alt="Graphique ECOS" />`;
     }
   } else {
-    setTimeout(() => {
       alert("Veuillez choisir une ville, une spécialité ainsi que des notes EDN et ECOS pour pouvoir partager le graphique.");
-    }, 100); 
+      btnShareChart.disabled = false;
   }
 }
 
@@ -514,7 +517,7 @@ function dataURItoBlob(dataURI) {
   return new Blob([ab], { type: mimeString });
 }
 
-const btnShareChart = document.querySelector(".btn_share_chart");
+shareButton.disabled = true;
 
 btnShareChart.addEventListener("click", () => {
   shareChartImage();

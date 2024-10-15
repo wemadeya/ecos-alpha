@@ -130,6 +130,8 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
       ],
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         tooltip: {
           enabled: false,
@@ -205,8 +207,6 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
     },
   });
 }
-
-
 
 // Fonction pour mettre à jour le marqueur du classement estimé
 function updateMarker(noteEDN, noteECOS) {

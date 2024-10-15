@@ -496,7 +496,9 @@ function shareChartImage() {
       newTab.document.body.innerHTML = `<img src="${imageURL}" alt="Graphique ECOS" />`;
     }
   } else {
-    alert("Veuillez choisir une ville, une spécialité ainsi que des notes EDN et ECOS pour pouvoir partager le graphique.");
+    setTimeout(() => {
+      alert("Veuillez choisir une ville, une spécialité ainsi que des notes EDN et ECOS pour pouvoir partager le graphique.");
+    }, 100); 
   }
 }
 

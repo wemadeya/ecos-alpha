@@ -91,7 +91,7 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
   canvas.height = 420;
 
   // Dessinez un fond blanc sur le canvas
-  ctx.fillStyle = '#fff'; // Couleur de fond
+  ctx.fillStyle = '#ffffff'; // Couleur de fond
   ctx.fillRect(0, 0, canvas.width, canvas.height); 
   
   const container = document.getElementById("charts");

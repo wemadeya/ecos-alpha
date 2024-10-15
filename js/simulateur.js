@@ -86,6 +86,10 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
 
   const ctx = canvas.getContext('2d');
 
+  // Fixer la taille du canvas
+  canvas.width = 350;  // ou toute autre largeur nécessaire
+  canvas.height = 420;
+
   // Dessinez un fond blanc sur le canvas
   ctx.fillStyle = '#fff'; // Couleur de fond
   ctx.fillRect(0, 0, canvas.width, canvas.height); 
@@ -479,10 +483,10 @@ function selectOption(selectedElementId, optionElement) {
 // Fonction pour convertir le canvas en image et ouvrir une option de partage
 
 const btnShareChart = document.querySelector(".btn_share_chart");
-btnShareChart.disabled = true;
 
 function shareChartImage() {
-  const canvas = document.querySelector("#charts canvas"); // Sélectionnez le canvas du graphique
+  const canvas = document.querySelector("#charts canvas"); 
+  
 
   if (canvas) {
     const imageURL = canvas.toDataURL("image/png"); // Convertit le canvas en image PNG
@@ -507,8 +511,7 @@ function shareChartImage() {
       newTab.document.body.innerHTML = `<img src="${imageURL}" alt="Graphique ECOS" />`;
     }
   } else {
-      alert("Veuillez choisir une ville, une spécialité ainsi que des notes EDN et ECOS pour pouvoir partager le graphique.");
-      btnShareChart.disabled = false;
+      alert("Veuillez choisir une ville, une spécialité ainsi que des notes EDN et ECOS pour pouvoir partager le graphique.");  
   }
 }
 
@@ -523,8 +526,6 @@ function dataURItoBlob(dataURI) {
   }
   return new Blob([ab], { type: mimeString });
 }
-
-shareButton.disabled = true;
 
 btnShareChart.addEventListener("click", () => {
   shareChartImage();

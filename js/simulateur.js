@@ -83,6 +83,13 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
 
   // Créer un nouvel élément canvas pour le graphique
   const canvas = document.createElement("canvas");
+
+  const ctx = canvas.getContext('2d');
+
+  // Dessinez un fond blanc sur le canvas
+  ctx.fillStyle = '#fff'; // Couleur de fond
+  ctx.fillRect(0, 0, canvas.width, canvas.height); 
+  
   const container = document.getElementById("charts");
   container.innerHTML = ""; // Effacer le contenu précédent
   container.appendChild(canvas);

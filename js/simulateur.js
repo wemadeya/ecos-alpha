@@ -83,6 +83,17 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
 
   // Créer un nouvel élément canvas pour le graphique
   const canvas = document.createElement("canvas");
+
+  const ctx = canvas.getContext('2d');
+
+  // Fixer la taille du canvas
+  canvas.width = 350;  // ou toute autre largeur nécessaire
+  canvas.height = 420;
+
+  // Dessinez un fond blanc sur le canvas
+  ctx.fillStyle = '#ffffff'; // Couleur de fond
+  ctx.fillRect(0, 0, canvas.width, canvas.height); 
+  
   const container = document.getElementById("charts");
   container.innerHTML = ""; // Effacer le contenu précédent
   container.appendChild(canvas);
@@ -130,6 +141,8 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
       ],
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         tooltip: {
           enabled: false,
@@ -205,8 +218,6 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
     },
   });
 }
-
-
 
 // Fonction pour mettre à jour le marqueur du classement estimé
 function updateMarker(noteEDN, noteECOS) {
@@ -469,6 +480,56 @@ function selectOption(selectedElementId, optionElement) {
   dropdownOptions.style.display = 'none'; // Masque les options après la sélection
 }
 
+// Fonction pour convertir le canvas en image et ouvrir une option de partage
+
+const btnShareChart = document.querySelector(".btn_share_chart");
+
+function shareChartImage() {
+  const canvas = document.querySelector("#charts canvas"); 
+  
+
+  if (canvas) {
+    const imageURL = canvas.toDataURL("image/png"); // Convertit le canvas en image PNG
+
+    // Vérifiez si l'API Web Share est disponible
+    if (navigator.share) {
+      // Utilisez l'API Web Share pour partager l'image directement via les options natives
+      navigator.share({
+        title: 'Mon Résultat ECOS',
+        text: 'Voici mon classement et mes notes pour la ville et la spécialité sélectionnées.',
+        files: [
+          new File([dataURItoBlob(imageURL)], "graphique-ecos.png", { type: "image/png" })
+        ]
+      }).then(() => {
+        console.log('Partage réussi');
+      }).catch((error) => {
+        console.error('Erreur lors du partage :', error);
+      });
+    } else {
+      // Si l'API Web Share n'est pas disponible, afficher simplement l'image dans une nouvelle fenêtre
+      const newTab = window.open();
+      newTab.document.body.innerHTML = `<img src="${imageURL}" alt="Graphique ECOS" />`;
+    }
+  } else {
+      alert("Veuillez choisir une ville, une spécialité ainsi que des notes EDN et ECOS pour pouvoir partager le graphique.");  
+  }
+}
+
+// Fonction pour convertir les données en base64 en Blob
+function dataURItoBlob(dataURI) {
+  const byteString = atob(dataURI.split(',')[1]);
+  const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+  return new Blob([ab], { type: mimeString });
+}
+
+btnShareChart.addEventListener("click", () => {
+  shareChartImage();
+});
 
 
 const { scrollTop, clientHeight } = document.documentElement;

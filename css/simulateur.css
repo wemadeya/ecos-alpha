@@ -222,6 +222,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 canvas {
+    background-color: #fff;
     width: 100% !important;
     height: 100% !important;
     aspect-ratio: 737 / 368;
@@ -324,6 +325,16 @@ canvas {
     color: #7A8795;
 }
 
+.btn_share_chart {
+    display: none;
+    color: #fff;
+    background-color: #007AFF;
+    gap: 10px;
+}
+.btn_share_chart:hover {
+    background-color: #268EFF;
+    transform: translateY(-3px);
+}
 @keyframes anim-iphone-simulateur {
     100% {
         opacity: 1;
@@ -431,5 +442,22 @@ canvas {
     }
     #chart-legend-container label {
         font-size: 10px;
+    }
+    #charts {
+        width: 100%;
+        max-width: 100%;
+        height: 100%; 
+        position: relative;
+    }     
+    canvas {
+        width: 100% !important;
+        height: auto !important; 
+        aspect-ratio: 4/5;
+    }
+    .mention {
+        text-align: left;
+    }
+    .btn_share_chart {
+        display: block;
     }
 }

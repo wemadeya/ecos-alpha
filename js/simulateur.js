@@ -86,8 +86,6 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
 
   const ctx = canvas.getContext('2d');
 
-  ctx.drawImage(canvas, 0, 0);
-  
   // Fixer la taille du canvas
   canvas.width = 350;  // ou toute autre largeur nécessaire
   canvas.height = 420;
@@ -95,7 +93,7 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
   // Dessinez un fond blanc sur le canvas
   ctx.fillStyle = '#ffffff'; // Couleur de fond
   ctx.fillRect(0, 0, canvas.width, canvas.height); 
-  
+
   const container = document.getElementById("charts");
   container.innerHTML = ""; // Effacer le contenu précédent
   container.appendChild(canvas);
@@ -220,6 +218,7 @@ function createChart(matiere, notes, classements, limite, noteCalculee) {
     },
   });
 }
+
 
 // Fonction pour mettre à jour le marqueur du classement estimé
 function updateMarker(noteEDN, noteECOS) {
@@ -497,7 +496,7 @@ function shareChartImage() {
     if (navigator.share) {
       // Utilisez l'API Web Share pour partager l'image directement via les options natives
       navigator.share({
-        title: 'Mon Résultat ECOS',
+        title: 'Mon Résultat ECOS !',
         text: 'Voici mon classement et mes notes pour la ville et la spécialité sélectionnées !',
         files: [
           new File([dataURItoBlob(imageURL)], "graphique-ecos.png", { type: "image/png" })
@@ -510,7 +509,7 @@ function shareChartImage() {
     } else {
       // Si l'API Web Share n'est pas disponible, afficher simplement l'image dans une nouvelle fenêtre
       const newTab = window.open();
-      newTab.document.body.innerHTML = `<img src="${imageURL}" alt="Graphique ECOS" />`;
+      newTab.document.body.innerHTML = `<img style="background-color: #fff;" src="${imageURL}" alt="Graphique ECOS" />`;
     }
   } else {
       alert("Veuillez choisir une ville, une spécialité ainsi que des notes EDN et ECOS pour pouvoir partager le graphique.");  

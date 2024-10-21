@@ -496,7 +496,7 @@ function shareChartImage() {
       // Utilisez l'API Web Share pour partager l'image directement via les options natives
       navigator.share({
         title: 'Mon Résultat ECOS',
-        text: 'Voici mon classement et mes notes pour la ville et la spécialité sélectionnées.',
+        text: 'Voici mon classement et mes notes pour la ville et la spécialité sélectionnées !',
         files: [
           new File([dataURItoBlob(imageURL)], "graphique-ecos.png", { type: "image/png" })
         ]

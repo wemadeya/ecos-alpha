@@ -486,11 +486,26 @@ function selectOption(selectedElementId, optionElement) {
 const btnShareChart = document.querySelector(".btn_share_chart");
 
 function shareChartImage() {
-  const canvas = document.querySelector("#charts canvas"); 
-  
+  const canvas = document.querySelector("#charts canvas");
 
   if (canvas) {
-    const imageURL = canvas.toDataURL("image/png"); // Convertit le canvas en image PNG
+    // Créer un canvas temporaire pour ajouter un fond blanc
+    const tempCanvas = document.createElement("canvas");
+    const ctx = tempCanvas.getContext("2d");
+
+    // Configurer la taille du canvas temporaire pour correspondre au canvas d'origine
+    tempCanvas.width = canvas.width;
+    tempCanvas.height = canvas.height;
+
+    // Dessinez un fond blanc sur le canvas temporaire
+    ctx.fillStyle = '#ffffff'; // Couleur de fond blanche
+    ctx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+    // Dessiner le canvas original par-dessus le fond blanc
+    ctx.drawImage(canvas, 0, 0);
+
+    // Convertir le canvas temporaire en image PNG
+    const imageURL = tempCanvas.toDataURL("image/png");
 
     // Vérifiez si l'API Web Share est disponible
     if (navigator.share) {
@@ -509,12 +524,25 @@ function shareChartImage() {
     } else {
       // Si l'API Web Share n'est pas disponible, afficher simplement l'image dans une nouvelle fenêtre
       const newTab = window.open();
-      newTab.document.body.innerHTML = `<img style="background-color: #fff;" src="${imageURL}" alt="Graphique ECOS" />`;
+      newTab.document.body.innerHTML = `<img src="${imageURL}" alt="Graphique ECOS" />`;
     }
   } else {
-      alert("Veuillez choisir une ville, une spécialité ainsi que des notes EDN et ECOS pour pouvoir partager le graphique.");  
+    alert("Veuillez choisir une ville, une spécialité ainsi que des notes EDN et ECOS pour pouvoir partager le graphique.");
   }
 }
+
+// Fonction pour convertir les données en base64 en Blob
+function dataURItoBlob(dataURI) {
+  const byteString = atob(dataURI.split(',')[1]);
+  const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+  return new Blob([ab], { type: mimeString });
+}
+
 
 // Fonction pour convertir les données en base64 en Blob
 function dataURItoBlob(dataURI) {

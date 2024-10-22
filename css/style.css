@@ -747,11 +747,8 @@ li.accordion .accordion-item p.accordion_item_title:hover {
 
 .chevron {
     transition: 0.3s ease-in-out;
-    width: 20px;
-}
-
-.chevron.rotate {
-    transform: rotate(-180deg);
+    width: auto;
+    min-width: 16px;
 }
 
 .accordion-item-text {

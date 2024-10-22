@@ -4441,7 +4441,7 @@ footer nav .link button {
     }
 
     /***** correction_notation *****/
-    .checkbox_wrapper label {
+    .checkbox_wrapper label, .radio_wrapper label span  {
         font-size: 14px;
     }
 

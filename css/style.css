@@ -78,7 +78,6 @@ p {
 
 /***** btn *****/
 .btn {
-    transition: 0.2s;
     font-weight: 500;
     display: flex;
     padding: 15px 25px;
@@ -182,8 +181,7 @@ span {
     display: block;
 }
 
-header,
-footer {
+header {
     display: flex;
     justify-content: space-between;
     margin: auto;
@@ -192,10 +190,6 @@ footer {
 main {
     width: 70%;
     margin: auto;
-}
-
-footer {
-    width: 65%;
 }
 
 /***** header *****/
@@ -262,11 +256,8 @@ header {
     align-items: center;
     gap: 10px;
 }
-footer {
-    padding: 35px 0;
-}
 
-section, footer {
+section {
     margin: 0 auto 0;
     padding-top: 200px;
 }
@@ -2679,27 +2670,74 @@ li.accordion .accordion-item p.accordion_item_title:hover {
 
 /*******************/
 /***** footer *****/
+footer {
+    padding: 200px 0 35px 0;
+    width: 70%;
+    margin: 0 auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.footer_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.footer_wrapper.legal  {
+    align-items: center;
+    font-size: 14px;
+}
+
+.footer_wrapper.legal nav {
+    flex-direction: row;
+    gap: 20px;
+}
+
 footer nav {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+footer nav a {
+    display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 10px;
+}
+
+footer nav a span {
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: rgb(255, 71, 71);
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+}
+
+footer nav p {
+    color: #7B9EC4;
+    text-transform: uppercase;
+    font-size: 14px;
 }
 
 footer nav .link {
-    padding: 10px 0;
     color: #131313;
     font-weight: 500;
+    font-size: 14px;
 }
 
 footer nav .link button {
-    padding: 0 !important;
+    padding: 5px 10px !important;
     color: #131313 !important;
     font-weight: 500 !important;
     cursor: pointer !important;
     background-color: initial !important;
-    font-size: 16px !important;
+    font-size: 14px !important;
     font-family: 'Inter', sans-serif !important;
-    font-weight: 500 !important;
     line-height: normal !important;
     height: auto !important;
 }
@@ -3277,11 +3315,6 @@ footer nav .link button {
         width: 75%;
         height: 65%;
     }
-
-    /***** footer *****/
-    footer .btn {
-        display: none;
-    }
 }
 
 @media screen and (min-width: 1025px) {
@@ -3643,6 +3676,9 @@ footer nav .link button {
     }
 
     /***** footer *****/
+    footer .btn {
+        display: none;
+    }
     footer nav {
         gap: 20px;
     }
@@ -4206,6 +4242,11 @@ footer nav .link button {
         gap: 25px;
     }
 
+    .footer_wrapper {
+        width: 100%;
+        flex-direction: column;
+    }
+
     footer nav {
         gap: 10px;
         flex-direction: column;
@@ -4518,6 +4559,15 @@ footer nav .link button {
     .modal_close {
         top: 15px;
         right: 15px;
+    }
+
+    .footer_wrapper.legal {
+        align-items: flex-start;
+    }
+
+    .footer_wrapper.legal nav {
+        flex-direction: column;
+        gap: 5px;
     }
 }
 

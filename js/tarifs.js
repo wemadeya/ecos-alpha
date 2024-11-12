@@ -53,7 +53,9 @@ function changeCard() {
     const lightning_bg = document.getElementById("lightning_bg");
     const lightning_img = document.getElementById("lightning_img");
     const card_title = document.getElementById("card_title");
+    const list_title = document.getElementById("list_title");
     const tarif = document.getElementById("tarif");
+    const tarif_text = document.getElementById("tarif_text")
     const facturation = document.getElementById("facturation");
     const icon_check = document.querySelectorAll(".icon_check");
     const outil_btn = document.getElementById("outil_btn");
@@ -74,32 +76,62 @@ function changeCard() {
   
         const role = this.getAttribute("data-role");
         switch (role) {
-          case "annuel":
+        case "annuel":
             lightning_bg.style.background = "rgba(0, 122, 255, 0.35)";
             lightning_img.src = "../img/icons/icon_lightning_blue.svg";
-            card_title.textContent = "Perfusion 💉";
+            card_title.textContent = "Annuel";
             tarif.textContent = "9.5€";
+            tarif_text.textContent = "/ mois";
             facturation.textContent = "Facturé pour 12 mois";
+            list_title.textContent = "Tout du pack Gratuit, plus :";
             icon_check.forEach((icon) => {
               icon.src = "../img/icons/icon_check_blue.svg";
             });
             outil_btn.style.background = "#007AFF";
-            outil_btn.style.color = "#fff"; 
+            outil_btn.style.color = "#fff";
             outil_btn_img.src = "../img/icons/icon_arrow_top-right.svg";
-            break;
-          case "5_mois":
+        break;
+        case "mensuel":
             lightning_bg.style.background = "rgba(255, 203, 61, 0.35)";
             lightning_img.src = "../img/icons/icon_lightning_yellow.svg";
-            card_title.textContent = "Urgence 💉";
+            card_title.textContent = "Mensuel";
             tarif.textContent = "19.58€";
+            tarif_text.textContent = "/ mois";
             facturation.textContent = "Sans engagement";
             icon_check.forEach((icon) => {
               icon.src = "../img/icons/icon_check_yellow.svg";
             });
             outil_btn.style.background = "#FFCB3D";
-            outil_btn.style.color = "#000"; 
+            outil_btn.style.color = "#000";
             outil_btn_img.src = "../img/icons/icon_top_right_blue.svg";
-            break;
+        break;
+        case "ecos2025":
+            lightning_bg.style.background = "rgba(151, 71, 255, 0.35)";
+            lightning_img.src = "../img/icons/icon_lightning_purple.svg";
+            card_title.textContent = "ECOS 2025";
+            tarif.textContent = "79.9€";
+            tarif_text.textContent = "soit 11.4€/mois";
+            facturation.textContent = "Facturé pour 7 mois";
+            icon_check.forEach((icon) => {
+                icon.src = "../img/icons/icon_check_purple.svg";
+            });
+            outil_btn.style.background = "#9747FF";
+            outil_btn.style.color = "#fff";
+            outil_btn_img.src = "../img/icons/icon_arrow_top-right.svg";
+        break;
+        case "jour":
+            lightning_bg.style.background = "rgba(255, 61, 148, 0.35)";
+            lightning_img.src = "../img/icons/icon_lightning_pink.svg";
+            card_title.textContent = "Accès 24H";
+            tarif.textContent = "1.99€";
+            tarif_text.textContent = "";
+            facturation.textContent = "Tu veux rejoindre une session créée par un ami avec un compte premium ? Débloque l'accès pour 24 heures.";
+            icon_check.forEach((icon) => {
+                icon.src = "../img/icons/icon_check_pink.svg";
+            });
+            outil_btn.style.background = "#FF3D94";
+            outil_btn.style.color = "#fff";
+            outil_btn_img.src = "../img/icons/icon_arrow_top-right.svg";
         }
       });
     });
@@ -111,8 +143,21 @@ function changeCard() {
   
   //click sur annuel au chargement
   document.addEventListener("DOMContentLoaded", function () {
-    const annuelTab = document.querySelector('[data-role="annuel"]');
+    const annuelTab = document.querySelector('[data-role="mensuel"]');
     if (annuelTab) {
       annuelTab.click();
     }
   });
+
+  // resize outil_nav
+function updateJourText() {
+    const jour = document.getElementById("jour");
+    if (window.innerWidth < 500) {
+        jour.textContent = "24h";
+    } else {
+        jour.textContent = "24 heures";
+    }
+}
+
+window.addEventListener("resize", updateJourText);
+document.addEventListener("DOMContentLoaded", updateJourText);

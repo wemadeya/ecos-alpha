@@ -1644,7 +1644,6 @@ li.accordion .accordion-item p.accordion_item_title:hover {
     border-radius: 150px;
     display: flex;
     position: relative;
-    width: 300px;
 }
 
 .outil_nav a {
@@ -1658,7 +1657,6 @@ li.accordion .accordion-item p.accordion_item_title:hover {
     font-size: 16px;
     z-index: 10;
     cursor: pointer;
-    flex: 1;
     text-align: center;
 }
 
@@ -4366,7 +4364,7 @@ footer nav .link button {
 
     /***** tarifs *****/
     .outil_wrapper {
-        padding: 20px;
+        padding: 20px 0;
         gap: 20px;
     }
 }

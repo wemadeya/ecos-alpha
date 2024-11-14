@@ -1658,11 +1658,29 @@ li.accordion .accordion-item p.accordion_item_title:hover {
     z-index: 10;
     cursor: pointer;
     text-align: center;
+    min-width: 200px;
+    flex: 1;
 }
 
 .outil_nav a.active {
     color: white;
     transition: all 0.3s ease;
+}
+
+#ecos2025 {
+    position: relative;
+}
+
+.populaire {
+    position: absolute;
+    width: 150px;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 3px;
+    border-radius: 999px;
+    background: #FF4747;
+    color: #fff;
 }
 
 .nav-background {
@@ -3661,6 +3679,19 @@ footer nav .link button {
         padding-left: 0;
     }
 
+    /***** outils *****/
+    .outil_nav a {
+        min-width: auto;
+        flex: auto;
+    }
+
+    .populaire {
+        font-size: 12px;
+        width: max-content;
+        padding: 3px 10px;
+        top: -15px;
+    }
+
     /***** popup *****/
     .popup_img_wrapper {
         height: 253px;
@@ -4505,8 +4536,12 @@ footer nav .link button {
         flex: auto;
     }
 
-    .reduction {
+    .populaire {
         font-size: 10px;
+    }
+
+    .reduction {
+        display: none;
     }
 
     /***** Popup *****/

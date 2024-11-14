@@ -92,26 +92,12 @@ function changeCard() {
             outil_btn_img.src = "../img/icons/icon_arrow_top-right.svg";
         break;
         case "mensuel":
-            lightning_bg.style.background = "rgba(255, 203, 61, 0.35)";
-            lightning_img.src = "../img/icons/icon_lightning_yellow.svg";
-            card_title.textContent = "Mensuel";
-            tarif.textContent = "19.58€";
-            tarif_text.textContent = "/ mois";
-            facturation.textContent = "Sans engagement";
-            icon_check.forEach((icon) => {
-              icon.src = "../img/icons/icon_check_yellow.svg";
-            });
-            outil_btn.style.background = "#FFCB3D";
-            outil_btn.style.color = "#000";
-            outil_btn_img.src = "../img/icons/icon_top_right_blue.svg";
-        break;
-        case "ecos2025":
             lightning_bg.style.background = "rgba(151, 71, 255, 0.35)";
             lightning_img.src = "../img/icons/icon_lightning_purple.svg";
-            card_title.textContent = "ECOS 2025";
-            tarif.textContent = "79.9€";
-            tarif_text.textContent = "soit 11.4€/mois";
-            facturation.textContent = "Facturé pour 7 mois";
+            card_title.textContent = "Mensuel";
+            tarif.textContent = "19.49€";
+            tarif_text.textContent = "/ mois";
+            facturation.textContent = "Facturé pour 1 mois";
             icon_check.forEach((icon) => {
                 icon.src = "../img/icons/icon_check_purple.svg";
             });
@@ -119,13 +105,28 @@ function changeCard() {
             outil_btn.style.color = "#fff";
             outil_btn_img.src = "../img/icons/icon_arrow_top-right.svg";
         break;
+        case "ecos2025":
+            lightning_bg.style.background = "rgba(255, 203, 61, 0.35)";
+            lightning_img.src = "../img/icons/icon_lightning_yellow.svg";
+            card_title.textContent = "ECOS 2025";
+            tarif.textContent = "11.43€";
+            tarif_text.textContent = "/ mois";
+            facturation.textContent = "Facturé pour 7 mois";
+            icon_check.forEach((icon) => {
+                icon.src = "../img/icons/icon_check_yellow.svg";
+            });
+            outil_btn.style.background = "#FFCB3D";
+            outil_btn.style.color = "#000";
+            outil_btn_img.src = "../img/icons/icon_top_right_blue.svg";
+        break;
         case "jour":
             lightning_bg.style.background = "rgba(255, 61, 148, 0.35)";
             lightning_img.src = "../img/icons/icon_lightning_pink.svg";
             card_title.textContent = "Accès 24H";
             tarif.textContent = "1.99€";
-            tarif_text.textContent = "";
-            facturation.textContent = "Tu veux rejoindre une session créée par un ami avec un compte premium ? Débloque l'accès pour 24 heures.";
+            tarif_text.textContent = "les 24h";
+            facturation.textContent = "";
+            list_title.textContent = "Tu veux rejoindre une session créée par un ami avec un compte premium ? Débloque l'accès pour 24h";
             icon_check.forEach((icon) => {
                 icon.src = "../img/icons/icon_check_pink.svg";
             });
@@ -148,16 +149,3 @@ function changeCard() {
       annuelTab.click();
     }
   });
-
-  // resize outil_nav
-function updateJourText() {
-    const jour = document.getElementById("jour");
-    if (window.innerWidth < 500) {
-        jour.textContent = "24h";
-    } else {
-        jour.textContent = "24 heures";
-    }
-}
-
-window.addEventListener("resize", updateJourText);
-document.addEventListener("DOMContentLoaded", updateJourText);

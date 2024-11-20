@@ -1,3 +1,6 @@
+html {
+    scroll-padding-top: 200px;
+}
 #simulateur {
     padding-top: 50px;
     text-align: center;
@@ -11,12 +14,26 @@
 }
 
 .simulateur_wrapper {
-    padding-top: 50px;
+    padding-top: 100px;
     display: flex;
     justify-content: space-between;
-    gap: 50px;
+    gap: 20px;
 }
-
+.mention {
+    margin-top: 75px;
+}
+.classement {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+}
+#default-message {
+    display: block;
+    color: #007AFF;
+    font-size: 20px;
+    text-align: center;
+}
 .entrees_wrapper {
     display: flex;
     flex-direction: column;
@@ -33,7 +50,8 @@
 .input_wrapper {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 10px;
+    width: 100%;
 }
 
 .notes {
@@ -69,17 +87,57 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    padding: 12px 24px 12px 16px;
+    padding: 12px 24px 12px 12px;
     background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"%3E%3Cpath fill="none" stroke="%23666" stroke-width="2" d="M1 1l5 5 5-5"/%3E%3C/svg%3E');
     background-repeat: no-repeat;
     background-position: right 16px center;
     background-size: 12px;
+    font-size: 16px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 select:focus {
     outline: none;
 }
+/* Style général pour le menu déroulant personnalisé */
+.dropdown {
+    position: relative;
+    width: 200px;
+    margin: 10px 0;
+}
 
+.dropdown-selected {
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #333;
+}
+
+.dropdown-options {
+    display: none; /* Masque les options par défaut */
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 100%;
+    max-height: 200px; /* Limite la hauteur */
+    overflow-y: auto; /* Permet le défilement si le menu est trop grand */
+}
+
+.dropdown-option {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-option:hover {
+    background-color: #48DE5A; /* Couleur de fond au survol */
+    color: #fff;
+}
 input[type="range"] {
     width: 100%;
     -webkit-appearance: none;
@@ -141,35 +199,50 @@ input[type="range"]::-moz-range-thumb {
 .chart_wrapper {
     width: 60%;
     background: #FFF;
-    padding: 25px 25px 75px 25px;
+    padding: 25px;
     border-radius: 25px;
     box-shadow: 0px -10px 25px 0px rgba(0, 76, 158, 0.06);
     text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.chart_wrapper p {
+.chart_title {
     font-size: 20px;
     color: #000;
     font-weight: 600;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 #charts {
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
 }
 
 canvas {
+    background-color: #fff;
     width: 100% !important;
     height: 100% !important;
+    aspect-ratio: 737 / 368;
 }
 
+#chart-legend-container {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+}
+#chart-legend-container div {
+    display: flex;
+    gap: 5px;
+}
 /* Rejoignez une communauté d’étudiants investis */
 .simulateur_text_wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 100px;
+    gap: 50px;
 }
 
 .simulateur_content_1 {
@@ -214,11 +287,16 @@ canvas {
 .simulateur_iphone img.anim-iphone-simulateur {
     animation: 1s cubic-bezier(0.14, .38, .19, .99) anim-iphone-simulateur both;
 }
-
+.simulateur_content_1 {
+    width: 60%;
+}
+.simulateur_content_2 {
+    width: 40%;
+}
 .simulateur_content_2 {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 30px;
 }
 .simulateur_content_1, .simulateur_content_2, .simulateur_content_2_text1, .simulateur_content_2_text2  {
     opacity: 0;
@@ -247,6 +325,16 @@ canvas {
     color: #7A8795;
 }
 
+.btn_share_chart {
+    display: none;
+    color: #fff;
+    background-color: #007AFF;
+    gap: 10px;
+}
+.btn_share_chart:hover {
+    background-color: #268EFF;
+    transform: translateY(-3px);
+}
 @keyframes anim-iphone-simulateur {
     100% {
         opacity: 1;
@@ -255,6 +343,9 @@ canvas {
 }
 
 @media screen and (max-width: 1440px)  {
+    #chart-legend-container label {
+        font-size: 14px;
+    }
     .simulateur_text_wrapper {
         gap: 50px;
     }
@@ -267,12 +358,36 @@ canvas {
     }
 }
 @media screen and (max-width: 1280px) {
+    .chart_wrapper {
+        padding: 10px;
+    }
     .simulateur_text_wrapper {
         flex-direction: column;
     }
-
     .simulateur_content_1 {
         padding: 25px 10px 25px 25px;
+    }
+    .simulateur_content_1, .simulateur_content_2 {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .header_nav_simulateur {
+        height: calc(100dvh - 81px);
+    }
+    .simulateur_wrapper {
+        flex-direction: column;
+        gap: 50px;
+    }
+    .entrees_wrapper, .chart_wrapper {
+        width: 100%;
+    }
+    .chart_wrapper {
+        padding: 10px;
+        min-height: 200px;
+    }
+    html {
+        scroll-padding-top: 125px;
     }
 }
 
@@ -280,7 +395,6 @@ canvas {
     .simulateur_text_1 {
         width: 65%;
     }
-
     .simulateur_iphone {
         height: 350px;
     }
@@ -288,10 +402,12 @@ canvas {
 
 @media screen and (max-width: 560px) {
     .simulateur_content_1 {
-        padding: 25px 25px 0 25px;
+        padding: 15px 15px 0 15px;
         flex-direction: column;
     }
-
+    .simulateur_content_2_title {
+        font-size: 22px;
+    }
     .simulateur_text_1 {
         width: 100%;
     }
@@ -302,7 +418,7 @@ canvas {
 
     .simulateur_iphone img {
         height: auto;
-        width: 95%;
+        width: 90%;
         object-fit: contain;
         position: absolute;
         top: 0%;
@@ -315,5 +431,33 @@ canvas {
             top: 0%;
         }
     }
-    
+    .input_wrapper {
+        flex-direction: column;
+    }
+    .btn_chart {
+        width: 100%;
+    }
+    .header_nav_simulateur {
+        height: calc(100dvh - 81px);
+    }
+    #chart-legend-container label {
+        font-size: 10px;
+    }
+    #charts {
+        width: 100%;
+        max-width: 100%;
+        height: 100%; 
+        position: relative;
+    }     
+    canvas {
+        width: 100% !important;
+        height: auto !important; 
+        aspect-ratio: 4/5;
+    }
+    .mention {
+        text-align: left;
+    }
+    .btn_share_chart {
+        display: block;
+    }
 }

@@ -431,5 +431,33 @@ canvas {
             top: 0%;
         }
     }
-    
+    .input_wrapper {
+        flex-direction: column;
+    }
+    .btn_chart {
+        width: 100%;
+    }
+    .header_nav_simulateur {
+        height: calc(100dvh - 81px);
+    }
+    #chart-legend-container label {
+        font-size: 10px;
+    }
+    #charts {
+        width: 100%;
+        max-width: 100%;
+        height: 100%; 
+        position: relative;
+    }     
+    canvas {
+        width: 100% !important;
+        height: auto !important; 
+        aspect-ratio: 4/5;
+    }
+    .mention {
+        text-align: left;
+    }
+    .btn_share_chart {
+        display: block;
+    }
 }

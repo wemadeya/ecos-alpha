@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/regression@2.0.1/dist/regression.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2/dist/chartjs-plugin-annotation.min.js"></script>
     <link href="../css/style.css" rel="stylesheet" type="text/css">
     <link href="../css/simulateur.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,23 +25,17 @@
     </script>
     <!-- Meta description -->    
     <meta name="description" content="Les offres pour permettre d'exceller à l'examen (et à l'hopital)">
-    <title>ECOS Alpha - Les Tarifs</title>
+    <title>ECOS Alpha - Simulateur de classement</title>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="liseret">
-            <div class="liseret_content">
-                <p>GRATUIT : Entre tes résultats et obtiens une estimation de ton classement national aux EDN et ECOS en temp réel.</p>
-                <a href="https://wemadeya.github.io/ecos-alpha/simulateur">Simulateur<img src="../img/icons/arrow_right.svg"></a>
-            </div>            
-        </div>
         <div class="header_wrapper">
-            <a href="index.html" class="ecos-alpha">
+            <a href="https://www.ecosalpha.fr/" class="ecos-alpha">
                 <img class="logo_ecos-alpha" src="../img/logo_ecos-alpha.svg" alt="Logo Ecos Alpha">
                 <p>ECOS Alpha</p>
             </a>
-            <nav class="header_nav">
+            <nav class="header_nav header_nav_simulateur">
                 <div class="header_nav_wrapper">
                     <ul class="header_nav_link">
                         <li class="header_link">
@@ -49,7 +44,7 @@
                                 <ul>
                                     <li class="dropdown_title">Ecos Classique</li>
                                     <li>
-                                        <a class="dropdown_link ancre" href="#plusieurs" title="Ecos - A plusieurs">
+                                        <a class="dropdown_link ancre" href="../index.html#plusieurs/" title="Ecos - A plusieurs">
                                             <div>
                                                 <img class="icon" src="../img/multi_user.png" alt="icon user"/>À plusieurs
                                             </div>
@@ -57,7 +52,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown_link ancre" href="#seul" title="Ecos - Seul">
+                                        <a class="dropdown_link ancre" href="../index.html#seul" title="Ecos - Seul">
                                             <div>
                                                 <img class="icon" src="../img/user.png" alt="icon document"/>Solo <span>Nouveau</span>
                                             </div>
@@ -66,7 +61,7 @@
                                     </li>
                                     <li class="dropdown_title">Autres modes de jeu</li>
                                     <li>
-                                        <a class="dropdown_link ancre" href="#flashcards" title="Ecos - FlashECOS">
+                                        <a class="dropdown_link ancre" href="../index.html#flashcards" title="Ecos - FlashECOS">
                                             <div>
                                                 <img class="icon" src="../img/card.png" alt="icon document"/>FlashECOS <span>Nouveau</span>
                                             </div>
@@ -78,20 +73,20 @@
                         </li>
                         <li class="dropdown_title" id="informations">Informations</li>
                         <li class="header_link">
-                            <a class="tarifs" href="tarifs/" title="tarifs">
+                            <a class="tarifs" href="../tarifs/" title="tarifs">
                                 <p>Tarifs</p>
                                 <img class="informations_arrow" src="../img/icons/arrow-right-blue.svg" alt="arrow"/>
                             </a>
                         </li>
                         <li class="header_link">
-                            <a class="tarifs" href="a-propos/" title="Les ECOS">
+                            <a class="tarifs" href="../a-propos/" title="Les ECOS">
                                 <p>Les ECOS</p>
                                 <img class="informations_arrow" src="../img/icons/arrow-right-blue.svg" alt="arrow"/>
                             </a>
                         </li>
                     </ul>
                     <div class="cta">
-                        <a class="btn btn_blue_light" href="https://wemadeya.github.io/ecos-alpha/simulateur">Simulateur ECOS/EDN<img src="../img/icons/arrow_blue.svg" alt="icon d'une flèche"/></a>                   
+                        <a class="btn btn_blue_light" href="../simulateur">Simulateur ECOS/EDN<img src="../img/icons/arrow_blue.svg" alt="icon d'une flèche"/></a>                   
                         <a class="btn btn_blue">Commence tes révisions<img src="../img/icons/book.svg" alt="icon d'un livre"/></a>
                     </div>
                 </div>
@@ -110,20 +105,21 @@
     <main class="simulateur_main">
         <section id="simulateur">
             <div class="simulateur_title">
-                <h1>Simulateur de positionnement aux EDN et ECOS</h1>
-                <p class="text_grey">Entre tes résultats et obtiens une estimation de ton classement national aux EDN et ECOS</p>
+                <h1>Simulateur de classement aux EDN et ECOS</h1>
+                <p class="text_grey">Entre tes résultats aux EDN et ta spécialité/ville visée pour obtenir ton classement potentiel selon ta note aux ECOS.
+                </p>
             </div> 
             <div class="simulateur_wrapper">
                 <div class="entrees_wrapper">
                     <div class="form_container">
                         <div class="input_wrapper">
                             <div class="input_content">
-                                <label for="matiere">Spécialité :</label>
-                                <select id="matiere"></select>    
+                                <label for="ville">Ville</label>
+                                <select id="ville"></select>
                             </div>
                             <div class="input_content">
-                                <label for="ville">Ville :</label>
-                                <select id="ville"></select>
+                                <label for="matiere">Spécialité</label>
+                                <select id="matiere"></select>    
                             </div>
                         </div>
                         <div class="input_wrapper notes">
@@ -168,23 +164,29 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="btn btn_chart" onclick="generateChart()">Voir le classement</a>
                     </div>
                 </div>
-                <div class="chart_wrapper">
-                    <p>Estimation de classement</p>
-                    <div id="charts"></div>
+                <div class="chart_wrapper" id="chart_wrapper">                   
+                    <div id="default-message">
+                        <p>Choisissez une ville et une spécialité pour afficher le simulateur</p>
+                    </div>
+                    <div class="classement">
+                        <p class="chart_title">Estimation de classement</p>
+                        <div id="charts"></div>
+                    </div>
                 </div>
+                <a class="btn btn_share_chart">Partager le résultat</a>
             </div>
+            <p class="mention">Simulation à titre purement indicatif et d’orientation, susceptible d’évoluer à chaque concours.</p>
         </section>
-        <!-- Rejoignez une communauté d’étudiants investis -->
         <section>     
                 <article class="simulateur_text_wrapper">
                     <div class="bg_white simulateur_content_1">
                         <div class="simulateur_text_1">
-                            <h2 class="simulateur_content_1_title">Texte mettant en avant ECOS Alpha</h2>
-                            <p class="lightblue_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper, elit a mollis semper, sapien dolor ultricies mauris, at convallis mauris nisl ac ligula. Etiam sem metus, feugiat sed turpis sed, eleifend vehicula urna. Cras rutrum augue eu augue placerat, vitae pharetra eros aliquet. Donec dapibus risus vel ante varius congue.</p>
-                            <a class="btn btn_blue " href="https://www.instagram.com/ecosalpha/">Entraîne toi !</a>
+                            <h2 class="simulateur_content_2_title">La seule application tout-en-un pour réussir les ECOS et décrocher la spécialité de tes rêves</h2>
+                            <p>S’entraîner aux ECOS n’a jamais été aussi facile. En un clic, rejoins ou crée une session en choisissant parmi +300 ECOS de qualité et invite tes amis directement sur leurs téléphones.</p>
+                            <p>Toutes les connaissances exigibles. Dans ta poche. Plus besoin de chercher dans 40 collèges pour trouver chacune des connaissances exigibles des 356 SDD : on l’a fait pour toi. Grâce à plus de 100 cas intégrés, nos cartes FlashECOS te permettent de réviser facilement tout le programme. Révise avec le rappel actif pour être prêt le jour J.</p>
+                            <a class="btn btn_blue ">Entraîne toi !</a>
                         </div>
                         <div class="simulateur_iphone">
                             <img class="" src="../img/simulateur_iphone.webp" alt="iphone">
@@ -192,18 +194,10 @@
                     </div>
                     <div class="simulateur_content_2">
                         <div class="simulateur_content_2_text1">
-                            <h2 class="simulateur_content_2_title">Texte expliquant le fonctionnement du simulateur</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper, elit a mollis semper, sapien dolor ultricies mauris, at convallis mauris nisl ac ligula. Etiam sem metus, feugiat sed turpis sed, eleifend vehicula urna. Cras rutrum augue eu augue placerat, vitae pharetra eros aliquet. Donec dapibus risus vel ante varius congue.</p>
+                            <h2 class="simulateur_content_2_title">Méthodologie du simulateur</h2>
+                            <p>Ce simulateur a uniquement une vocation indicative, et vise à fournir aux étudiants une simulation de l'effet potentiel de leur performance aux ECOS sur leur classement final aux EDN et sur l’accès aux spécialités et villes souhaitées.Le simulateur repose sur un échantillon représentatif des résultats écrits aux EDN 2023, recueilli auprès de 325 étudiants via le TACFA. La note EDN considérée est celle des questions de rang A. Les classements pour les 13 groupes de spécialités sont ajustés sur un total de 10 000 étudiants. Les rangs limites utilisés correspondent aux seuils du tour définitif des EDN 2024.</p>
+                            <p>Les notes aux ECOS ont été modélisées selon une distribution de Weibull avec une moyenne de 14, un écart-type de 1,5, et une corrélation de 0,5 avec les résultats écrits aux EDN (statistiques adaptées des travaux d’Ezanno et al., 2023).</p>
                         </div>
-                        <div class="simulateur_content_2_text2">
-                            <h2 class="simulateur_content_2_title">Texte expliquant le fonctionnement du simulateur</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper, elit a mollis semper, sapien dolor ultricies mauris, at convallis mauris nisl ac ligula. Etiam sem metus, feugiat sed turpis sed, eleifend vehicula urna. Cras rutrum augue eu augue placerat, vitae pharetra eros aliquet. Donec dapibus risus vel ante varius congue.</p>
-                        </div>
-                    </div>
-                </article>
-                <article class="bg_white ">
-                    <div class="communaute_content wrapper-lightblue_text">
-
                     </div>
                 </article>
         </section>
@@ -230,24 +224,43 @@
                 <div class="modal_close"><img src="../img/icons/icon_close.svg" alt="icon d'une croix" /></div>           
             </div>
         </div>
+        <div data-tf-live="01JBF0B6SMW47EZQ7TD2PHXRNE"></div><script src="//embed.typeform.com/next/embed.js"></script>
     </main>
     <!-- Footer -->
     <footer>
-        <a href="../index.html" class="ecos-alpha">
-            <img class="logo_ecos-alpha" src="../img/logo_ecos-alpha.svg" alt="Logo Ecos Alpha">
-            <p>ECOS Alpha</p>
-        </a>
-        <nav>
-            <div class="link" data-tf-live="01HRSPHBENDNAFH4VHSRE0FS8D">Contact</div>
-            <a class="link" href="../a-propos/">A propos</a>
-            <a class="link" href="../legales/mentions-legales/">Mentions légales</a>
-            <a class="link" href="../legales/CGU-CGV/">CGU-CGV</a>
-            <a class="link" href="../legales/declaration-de-confidentialite/">Confidentialité</a>
-            <a class="btn btn_blue">
-                Essayer gratuitement
-                <img src="../img/icons/icon_arrow_top-right.svg" alt="icon d'une flèche" />
+        <div class="footer_wrapper">
+            <a href="https://www.ecosalpha.fr/" class="ecos-alpha">
+                <img class="logo_ecos-alpha" src="../img/logo_ecos-alpha.svg" alt="Logo Ecos Alpha">
+                <p>ECOS Alpha</p>
             </a>
-        </nav>       
+            <nav>
+                <p>Mode d'entrainement</p>
+                <a class="link" href="../#plusieurs" title="Ecos - A plusieurs">À plusieurs</a>
+                <a class="link" href="../#seul" title="Ecos - Seul">Solo <span>Nouveau</span></a>
+                <a class="link" href="../#flashcards" title="Ecos - FlashECOS">FlashECOS <span>Nouveau</span></a>
+            </nav>
+            <nav>
+                <p>Informations</p>
+                <a class="link" href="../tarifs" title="tarifs">Tarifs</a>
+                <a class="link" href="../a-propos/" title="A propos">Les ECOS</a>
+                <div class="link" data-tf-live="01HRSPHBENDNAFH4VHSRE0FS8D">Contact</div>
+            </nav>
+            <nav>
+                <a class="btn btn_blue">
+                    Essayer gratuitement
+                    <img src="../img/icons/icon_arrow_top-right.svg" alt="icon d'une flèche" />
+                </a>
+                <a class="btn btn_blue_light" href="#">Simulateur ECOS/EDN<img src="../img/icons/arrow_blue.svg" alt="icon d'une flèche"/></a>
+            </nav>
+        </div>
+        <div class="footer_wrapper legal">
+            <p>© 2024 ECOS Alpha. Tous droits réservés.</p>
+            <nav>
+                <a class="link" href="../legales/mentions-legales/">Mentions légales</a>
+                <a class="link" href="../legales/CGU-CGV/">CGU-CGV</a>
+                <a class="link" href="../legales/declaration-de-confidentialite/">Confidentialité</a>
+            </nav>
+        </div>
     </footer>
     <!-- Google Tag Manager (noscript) -->
     <noscript>

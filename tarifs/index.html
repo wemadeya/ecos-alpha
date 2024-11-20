@@ -28,12 +28,12 @@
         <header>
             <div class="liseret">
                 <div class="liseret_content">
-                    <p>GRATUIT : Entre tes résultats et obtiens une estimation de ton classement national aux EDN et ECOS en temp réel.</p>
-                    <a href="https://wemadeya.github.io/ecos-alpha/simulateur">Simulateur<img src="../img/icons/arrow_right.svg"></a>
+                    <p>GRATUIT : Entre tes résultats et obtiens une estimation de ton classement national aux EDN et ECOS en temps réel.</p>
+                    <a href="../simulateur/">Simulateur<img src="../img/icons/arrow_right.svg"></a>
                 </div>            
             </div>
             <div class="header_wrapper">
-                <a href="index.html" class="ecos-alpha">
+                <a href="https://www.ecosalpha.fr/" class="ecos-alpha">
                     <img class="logo_ecos-alpha" src="../img/logo_ecos-alpha.svg" alt="Logo Ecos Alpha">
                     <p>ECOS Alpha</p>
                 </a>
@@ -46,7 +46,7 @@
                                     <ul>
                                         <li class="dropdown_title">Ecos Classique</li>
                                         <li>
-                                            <a class="dropdown_link ancre" href="#plusieurs" title="Ecos - A plusieurs">
+                                            <a class="dropdown_link ancre" href="../#plusieurs" title="Ecos - A plusieurs">
                                                 <div>
                                                     <img class="icon" src="../img/multi_user.png" alt="icon user"/>À plusieurs
                                                 </div>
@@ -54,7 +54,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown_link ancre" href="#seul" title="Ecos - Seul">
+                                            <a class="dropdown_link ancre" href="../#seul" title="Ecos - Seul">
                                                 <div>
                                                     <img class="icon" src="../img/user.png" alt="icon document"/>Solo <span>Nouveau</span>
                                                 </div>
@@ -63,7 +63,7 @@
                                         </li>
                                         <li class="dropdown_title">Autres modes de jeu</li>
                                         <li>
-                                            <a class="dropdown_link ancre" href="#flashcards" title="Ecos - FlashECOS">
+                                            <a class="dropdown_link ancre" href="../#flashcards" title="Ecos - FlashECOS">
                                                 <div>
                                                     <img class="icon" src="../img/card.png" alt="icon document"/>FlashECOS <span>Nouveau</span>
                                                 </div>
@@ -75,20 +75,20 @@
                             </li>
                             <li class="dropdown_title" id="informations">Informations</li>
                             <li class="header_link">
-                                <a class="tarifs" href="tarifs/" title="tarifs">
+                                <a class="tarifs" href="../tarifs/" title="tarifs">
                                     <p>Tarifs</p>
                                     <img class="informations_arrow" src="../img/icons/arrow-right-blue.svg" alt="arrow"/>
                                 </a>
                             </li>
                             <li class="header_link">
-                                <a class="tarifs" href="a-propos/" title="Les ECOS">
+                                <a class="tarifs" href="../a-propos/" title="Les ECOS">
                                     <p>Les ECOS</p>
                                     <img class="informations_arrow" src="../img/icons/arrow-right-blue.svg" alt="arrow"/>
                                 </a>
                             </li>
                         </ul>
                         <div class="cta">
-                            <a class="btn btn_blue_light" href="https://wemadeya.github.io/ecos-alpha/simulateur">Simulateur ECOS/EDN<img src="../img/icons/arrow_blue.svg" alt="icon d'une flèche"/></a>                   
+                            <a class="btn btn_blue_light" href="../simulateur/">Simulateur ECOS/EDN<img src="../img/icons/arrow_blue.svg" alt="icon d'une flèche"/></a>                   
                             <a class="btn btn_blue">Commence tes révisions<img src="../img/icons/book.svg" alt="icon d'un livre"/></a>
                         </div>
                     </div>
@@ -114,15 +114,21 @@
                         </h1>
                         <nav class="outil_nav">
                             <div class="nav-background"></div>
+                            <a id="mensuel" data-role="mensuel">Mensuel</a>
+                            <a id="ecos2025" data-role="ecos2025">
+                                ECOS 2025
+                                <span class="reduction blue">-41%</span>
+                                <span class="populaire">Le + populaire</span>
+                            </a>
                             <a id="annuel" data-role="annuel">
                                 Annuel
                                 <span class="reduction blue">-51%</span>
                             </a>
-                            <a id="5_mois" data-role="5_mois">Mensuel</a>
+                            <a id="jour" data-role="jour">24h</a>
                         </nav>
                         <div class="tarif_wrapper">
                             <article class="outil_content_1">
-                                <p class="starter_title">Starter 🤓</p>
+                                <p class="starter_title">Gratuit</p>
                                 <div class="offre">
                                     <p class="tarif">0€</p>
                                     <p>(Gratuit)</p>
@@ -131,11 +137,11 @@
                                     <li>Inclus :</li>
                                     <li>
                                         <img src="../img/icons/icon_check_grey.svg" alt="icone check">
-                                        10 ECOS gratuits à jouer seul ou à plusieurs
+                                        10 ECOS à jouer seul
                                     </li>
                                     <li>
                                         <img src="../img/icons/icon_check_grey.svg" alt="icone check">
-                                        10 FlashECOS gratuits
+                                        10 Flash-ECOS
                                     </li>
                                 </ul>
                                 <a class="outil_btn btn_grey">
@@ -148,24 +154,24 @@
                                     <div id="lightning_bg" class="icon_lightning">
                                         <img id="lightning_img" src="../img/icons/icon_lightning_blue.svg" alt="icone éclair">
                                     </div>
-                                    <p id="card_title">Perfusion 💉</p>
+                                    <p id="card_title">Annuel</p>
                                 </div>
                                 <div class="premium">
                                     <div class="offre">
                                         <p id="tarif" class="tarif">9.5€</p>
-                                        <p>/ mois</p>
+                                        <p id="tarif_text">/ mois</p>
                                     </div>
                                     <p id="facturation" class="premium_text">Facturé pour 12 mois</p>
                                 </div>
                                 <ul>
-                                    <li id="list_title">Tout du pack STARTER 🤓, plus :</li>
+                                    <li id="list_title">Tout du pack Gratuit, plus :</li>
                                     <li>
                                         <img class="icon_check" src="../img/icons/icon_check_blue.svg" alt="icone check">
-                                        <span id="list_1">100+ FlashECOS pour réviser les situations de départ</span>
+                                        <span id="list_1">160+ FlashECOS de 5 à 10 flashcards chacun</span>
                                     </li>
                                     <li>
                                         <img class="icon_check" src="../img/icons/icon_check_blue.svg" alt="icone check">
-                                        <span id="list_2">300+ ECOS à jouer seul ou à plusieurs</span>
+                                        <span id="list_2">320+ ECOS à jouer seul ou à plusieurs</span>
                                     </li>
                                     <li>
                                         <img class="icon_check" src="../img/icons/icon_check_blue.svg" alt="icone check">
@@ -173,11 +179,11 @@
                                     </li>
                                     <li>
                                         <img class="icon_check" src="../img/icons/icon_check_blue.svg" alt="icone check">
-                                        <span id="list_4">Accède aux corrections détaillées</span>
+                                        <span id="list_4">Accède à des corrections détaillées</span>
                                     </li>
                                     <li>
                                         <img class="icon_check" src="../img/icons/icon_check_blue.svg" alt="icone check">
-                                        <span id="list_5">Accède aux nouveaux ECOS et FlashECOS ajoutés régulièrement</span>
+                                        <span id="list_5">Accède aux nouveaux ECOS ajoutés régulièrement</span>
                                     </li>
                                     <li>
                                         <img class="icon_check" src="../img/icons/icon_check_blue.svg" alt="icone check">
@@ -202,7 +208,7 @@
                             <li class="splide__slide">
                                 <div class="carousel_content">
                                     <p class="comment">
-                                        J'ai été bluffé par l'interface qui est plutôt bien fait et assez ludique.
+                                        Je me suis entrainé avec de nombreux supports différents: EDN.fr, La Martingale, ECOS à la carte, ECOS des TBC, Nephr'audio ET j'ai pu bénéficier de vos stations gratuites avec mon binôme de révision. Force est de constater que vous êtes ceux qui proposent la formule la plus aboutie, la plus ergonomique et la plus proche des stations du jour J.
                                     </p>
                                     <div class="rating">
                                         ★★★★★
@@ -211,52 +217,73 @@
                                 </div>
                                 <div class="carousel_header_wrapper">
                                     <div class="carousel_header">
-                                        <div class="avatar">RB</div>
+                                        <div class="avatar">PH</div>
                                         <div class="carousel_title_wrapper">
-                                            <p>Rachid B.</p>
-                                            <p>Top 350 ECOS 2024</p>
-                                        </div>
-                                    </div>
-                                    <img src="../img/icons/icon_guillemets.png" alt="icone guillemets">
-                                </div>
-                            </li>
-                            <li class="splide__slide">
-                                <div class="carousel_content">
-                                    <p class="comment">
-                                        ECOS Alpha a complètement transformé ma manière d’apprendre mes ECOS. Déjà, j'ai pu réviser plus souvent, dans les transports par exemple. Mais surtout, les flashcards m'ont aidée à retenir les informations clés et à améliorer ma rapidité de réponse. Ça m’a vraiment donné confiance pour aborder chaque station. Je recommande cette appli à tous les étudiants en médecine !
-                                    </p>
-                                    <div class="rating">
-                                        ★★★★★
-                                        <p>4,8</p>
-                                    </div>
-                                </div>
-                                <div class="carousel_header_wrapper">
-                                    <div class="carousel_header">
-                                        <div class="avatar">UD</div>
-                                        <div class="carousel_title_wrapper">
-                                            <p>Ulysse D.</p>
-                                            <p>Top 400 ECOS 2024</p>
-                                        </div>
-                                    </div>
-                                    <img src="../img/icons/icon_guillemets.png" alt="icone guillemets">
-                                </div>
-                            </li>
-                            <li class="splide__slide">
-                                <div class="carousel_content">
-                                    <p class="comment">
-                                        L’hôpital où je fais mes gardes captait très mal. Mais grâce aux flashcards disponibles hors ligne sur ECOS Alpha, je peux réviser vite fait entre deux consultations, sans avoir besoin de connexion. C’est super pratique de pouvoir m'entraîner dans les moments creux de la garde. C’est devenu mon outil indispensable pour réviser, où que je sois.
-                                    </p>
-                                    <div class="rating">
-                                        ★★★★★
-                                        <p>4,9</p>
-                                    </div>
-                                </div>
-                                <div class="carousel_header_wrapper">
-                                    <div class="carousel_header">
-                                        <div class="avatar">CC</div>
-                                        <div class="carousel_title_wrapper">
-                                            <p>Colombe C.</p>
+                                            <p>Pierre H.</p>
                                             <p>Top 100 ECOS 2024</p>
+                                        </div>
+                                    </div>
+                                    <img src="../img/icons/icon_guillemets.png" alt="icone guillemets">
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="carousel_content">
+                                    <p class="comment">
+                                        Simplement la meilleure plateforme pour s'entraîner, bien meilleur que tout ce qui est proposé pour avoir tout essayé.
+                                    </p>
+                                    <div class="rating">
+                                        ★★★★★
+                                        <p>5,0</p>
+                                    </div>
+                                </div>
+                                <div class="carousel_header_wrapper">
+                                    <div class="carousel_header">
+                                        <div class="avatar">MB</div>
+                                        <div class="carousel_title_wrapper">
+                                            <p>Mehdi B.</p>
+                                            <p>Top 300 ECOS 2024</p>
+                                        </div>
+                                    </div>
+                                    <img src="../img/icons/icon_guillemets.png" alt="icone guillemets">
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="carousel_content">
+                                    <p class="comment">
+                                        J’ai utilisé ECOS Alpha pour la préparation de mes ECOS, je suis convaincue de la pertinence et de l’intelligence de la formation que vous proposez.
+                                    </p>
+                                    <div class="rating">
+                                        ★★★★★
+                                        <p>5,0</p>
+                                    </div>
+                                </div>
+                                <div class="carousel_header_wrapper">
+                                    <div class="carousel_header">
+                                        <div class="avatar">LB</div>
+                                        <div class="carousel_title_wrapper">
+                                            <p>Laura B.</p>
+                                            <p>Top 200 ECOS 2024</p>
+                                        </div>
+                                    </div>
+                                    <img src="../img/icons/icon_guillemets.png" alt="icone guillemets">
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="carousel_content">
+                                    <p class="comment">
+                                        Merci pour les ECOS proposés, j'ai gagné plus de 1300 places grâce à vos ECOS qui ressemblaient à ce qu'on a eu pour plusieurs stations.
+                                    </p>
+                                    <div class="rating">
+                                        ★★★★★
+                                        <p>5,0</p>
+                                    </div>
+                                </div>
+                                <div class="carousel_header_wrapper">
+                                    <div class="carousel_header">
+                                        <div class="avatar">MD</div>
+                                        <div class="carousel_title_wrapper">
+                                            <p>Manon D.</p>
+                                            <p>Top 4000 ECOS 2024</p>
                                         </div>
                                     </div>
                                     <img src="../img/icons/icon_guillemets.png" alt="icone guillemets">
@@ -292,21 +319,39 @@
         </main>
         <!-- Footer -->
         <footer>
-            <a href="../index.html" class="ecos-alpha">
-                <img class="logo_ecos-alpha" src="../img/logo_ecos-alpha.svg" alt="Logo Ecos Alpha">
-                <p>ECOS Alpha</p>
-            </a>
-            <nav>
-                <div class="link" data-tf-live="01HRSPHBENDNAFH4VHSRE0FS8D">Contact</div>
-                <a class="link" href="../a-propos/">A propos</a>
-                <a class="link" href="../legales/mentions-legales/">Mentions légales</a>
-                <a class="link" href="../legales/CGU-CGV/">CGU-CGV</a>
-                <a class="link" href="../legales/declaration-de-confidentialite/">Confidentialité</a>
-                <a class="btn btn_blue">
-                    Essayer gratuitement
-                    <img src="../img/icons/icon_arrow_top-right.svg" alt="icon d'une flèche" />
+            <div class="footer_wrapper">
+                <a href="https://www.ecosalpha.fr/" class="ecos-alpha">
+                    <img class="logo_ecos-alpha" src="../img/logo_ecos-alpha.svg" alt="Logo Ecos Alpha">
+                    <p>ECOS Alpha</p>
                 </a>
-            </nav>       
+                <nav>
+                    <p>Mode d'entrainement</p>
+                    <a class="link" href="../#plusieurs" title="Ecos - A plusieurs">À plusieurs</a>
+                    <a class="link" href="../#seul" title="Ecos - Seul">Solo <span>Nouveau</span></a>
+                    <a class="link" href="../#flashcards" title="Ecos - FlashECOS">FlashECOS <span>Nouveau</span></a>
+                </nav>
+                <nav>
+                    <p>Informations</p>
+                    <a class="link" href="#" title="tarifs">Tarifs</a>
+                    <a class="link" href="../a-propos/" title="A propos">Les ECOS</a>
+                    <div class="link" data-tf-live="01HRSPHBENDNAFH4VHSRE0FS8D">Contact</div>
+                </nav>
+                <nav>
+                    <a class="btn btn_blue">
+                        Essayer gratuitement
+                        <img src="../img/icons/icon_arrow_top-right.svg" alt="icon d'une flèche" />
+                    </a>
+                    <a class="btn btn_blue_light" href="../simulateur/">Simulateur ECOS/EDN<img src="../img/icons/arrow_blue.svg" alt="icon d'une flèche"/></a>
+                </nav>
+            </div>
+            <div class="footer_wrapper legal">
+                <p>© 2024 ECOS Alpha. Tous droits réservés.</p>
+                <nav>
+                    <a class="link" href="../legales/mentions-legales/">Mentions légales</a>
+                    <a class="link" href="../legales/CGU-CGV/">CGU-CGV</a>
+                    <a class="link" href="../legales/declaration-de-confidentialite/">Confidentialité</a>
+                </nav>
+            </div>
         </footer>
         <!-- Google Tag Manager (noscript) -->
         <noscript>
@@ -318,4 +363,5 @@
         <script src="../js/tarifs.js"></script>
         <script src="../js/header.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"></script>
+    </body>
 </html>
